@@ -1,0 +1,10 @@
+.vs/
+obj/
+bin/
+*.user
+backup*/
+*.xlsx
+scripts/CurrentPathList
+scripts/hashlist.db
+scripts/delta.txt
+scripts/npc_files.json
