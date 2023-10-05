@@ -63,7 +63,7 @@ namespace VfxEditor.Library {
             using var tabBar = ImRaii.TabBar( "TabBar" );
             if( !tabBar ) return;
 
-            DrawRoot( NodeRoot, "Nodes" );
+            DrawRoot( NodeRoot, "节点" );
             DrawRoot( TextureRoot, "材质" );
         }
 

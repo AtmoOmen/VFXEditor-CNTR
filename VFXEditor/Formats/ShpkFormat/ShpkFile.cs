@@ -228,28 +228,28 @@ namespace VfxEditor.Formats.ShpkFormat {
         public override void Draw() {
             ImGui.Separator();
 
-            ImGui.TextDisabled( $"Version: {Version} DirectX: {DxVersion}" );
+            ImGui.TextDisabled( $"版本: {Version} DirectX: {DxVersion}" );
 
             using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
             if( !tabBar ) return;
 
-            using( var tab = ImRaii.TabItem( "Vertex Shaders" ) ) {
+            using( var tab = ImRaii.TabItem( "顶点着色器" ) ) {
                 if( tab ) VertexView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Pixel Shaders" ) ) {
+            using( var tab = ImRaii.TabItem( "像素着色器" ) ) {
                 if( tab ) PixelView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Material Parameters" ) ) {
+            using( var tab = ImRaii.TabItem( "材质参数" ) ) {
                 if( tab ) MaterialParameterView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Constants" ) ) {
+            using( var tab = ImRaii.TabItem( "常量" ) ) {
                 if( tab ) ConstantView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Samplers" ) ) {
+            using( var tab = ImRaii.TabItem( "采样" ) ) {
                 if( tab ) SamplerView.Draw();
             }
 
@@ -257,15 +257,15 @@ namespace VfxEditor.Formats.ShpkFormat {
                 if( tab ) ResourceView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Keys" ) ) {
+            using( var tab = ImRaii.TabItem( "键" ) ) {
                 if( tab ) DrawKeys();
             }
 
-            using( var tab = ImRaii.TabItem( "Nodes" ) ) {
+            using( var tab = ImRaii.TabItem( "节点" ) ) {
                 if( tab ) NodeView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Aliases" ) ) {
+            using( var tab = ImRaii.TabItem( "别称" ) ) {
                 if( tab ) AliasView.Draw();
             }
         }
@@ -278,19 +278,19 @@ namespace VfxEditor.Formats.ShpkFormat {
             using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
             if( !tabBar ) return;
 
-            using( var tab = ImRaii.TabItem( "System" ) ) {
+            using( var tab = ImRaii.TabItem( "系统" ) ) {
                 if( tab ) SystemKeyView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Scene" ) ) {
+            using( var tab = ImRaii.TabItem( "场景" ) ) {
                 if( tab ) SceneKeyView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Material" ) ) {
+            using( var tab = ImRaii.TabItem( "材质" ) ) {
                 if( tab ) MaterialKeyView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Sub-View" ) ) {
+            using( var tab = ImRaii.TabItem( "子视图" ) ) {
                 if( tab ) SubViewKeyView.Draw();
             }
         }

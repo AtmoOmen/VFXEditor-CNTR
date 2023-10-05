@@ -20,9 +20,9 @@ namespace VfxEditor.AvfxFormat {
         public readonly AvfxBool DocumentScaleEnabled = new( "启用文档缩放", "bDSE" );
         public readonly AvfxBool AdjustToScreenEnabled = new( "适应屏幕", "bATS" );
         public readonly AvfxBool BET_Unknown = new( "BET (未知)", "bBET" );
-        public readonly AvfxInt Life = new( "Life", "Life" );
+        public readonly AvfxInt Life = new( "生命周期", "Life" );
         public readonly AvfxEnum<BinderRotation> BinderRotationType = new( "绑定器选择类型", "RoTp" );
-        public readonly AvfxEnum<BinderType> BinderVariety = new( "Type", "BnVr" );
+        public readonly AvfxEnum<BinderType> BinderVariety = new( "类型", "BnVr" );
         public readonly AvfxBinderProperties PropStart = new( "起始属性", "PrpS" );
         public readonly AvfxBinderProperties Prop1 = new( "属性 1", "Prp1" );
         public readonly AvfxBinderProperties Prop2 = new( "属性 2", "Prp2" );

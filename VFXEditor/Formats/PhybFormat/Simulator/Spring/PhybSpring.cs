@@ -7,12 +7,12 @@ namespace VfxEditor.PhybFormat.Simulator.Spring {
     public class PhybSpring : PhybData, IPhysicsObject {
         public readonly PhybSimulator Simulator;
 
-        public readonly ParsedShort ChainId1 = new( "Chain Id 1" );
-        public readonly ParsedShort ChainId2 = new( "Chain Id 2" );
-        public readonly ParsedShort NodeId1 = new( "Node Id 1" );
-        public readonly ParsedShort NodeId2 = new( "Node Id 2" );
-        public readonly ParsedFloat StretchStiffness = new( "Stretch Stiffness" );
-        public readonly ParsedFloat CompressStiffness = new( "Compress Stiffness" );
+        public readonly ParsedShort ChainId1 = new( "链 ID 1" );
+        public readonly ParsedShort ChainId2 = new( "链 ID 2" );
+        public readonly ParsedShort NodeId1 = new( "节点 ID 1" );
+        public readonly ParsedShort NodeId2 = new( "节点 ID 2" );
+        public readonly ParsedFloat StretchStiffness = new( "延申刚度" );
+        public readonly ParsedFloat CompressStiffness = new( "压缩刚度" );
 
         public PhybSpring( PhybFile file, PhybSimulator simulator ) : base( file ) {
             Simulator = simulator;

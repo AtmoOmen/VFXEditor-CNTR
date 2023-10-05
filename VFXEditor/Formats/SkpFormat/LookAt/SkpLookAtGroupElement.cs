@@ -6,9 +6,9 @@ using VfxEditor.Ui.Interfaces;
 namespace VfxEditor.Formats.SkpFormat.LookAt {
     public class SkpLookAtGroupElement : IUiItem {
         private readonly ParsedByte Priority = new( "优先级" );
-        private readonly ParsedByte ParameterIndex = new( "Setup Parameters Index" );
+        private readonly ParsedByte ParameterIndex = new( "设置参数索引" );
         public readonly ParsedPaddedString BoneName = new( "骨骼名", 32, 0x00 );
-        public readonly ParsedPaddedString ParentBoneName = new( "Parent Bone Name", 32, 0x00 );
+        public readonly ParsedPaddedString ParentBoneName = new( "父级骨骼名称", 32, 0x00 );
 
         public SkpLookAtGroupElement() { }
 

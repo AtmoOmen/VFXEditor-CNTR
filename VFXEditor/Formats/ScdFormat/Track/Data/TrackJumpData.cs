@@ -9,7 +9,7 @@ namespace VfxEditor.ScdFormat {
 
     public class TrackJumpData : ScdTrackData {
         public readonly ParsedEnum<TrackCmdJump> Condition = new( "Condition" );
-        public readonly ParsedInt Offset = new( "Offset" );
+        public readonly ParsedInt Offset = new( "偏移" );
 
         public override void Read( BinaryReader reader ) {
             Condition.Read( reader );

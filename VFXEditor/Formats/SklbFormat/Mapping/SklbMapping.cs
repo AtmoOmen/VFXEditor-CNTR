@@ -48,7 +48,7 @@ namespace VfxEditor.SklbFormat.Mapping {
         }
 
         private void DrawSimpleMappings() {
-            using var tabItem = ImRaii.TabItem( "Simple Mappings" );
+            using var tabItem = ImRaii.TabItem( "简单映射" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "SimpleMappings" );

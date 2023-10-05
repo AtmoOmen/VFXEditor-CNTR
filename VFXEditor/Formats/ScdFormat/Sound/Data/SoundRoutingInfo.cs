@@ -147,7 +147,7 @@ namespace VfxEditor.ScdFormat.Sound.Data {
     public class SoundFilterParam {
         public readonly ParsedFloat Frequency = new( "Frequency" );
         public readonly ParsedFloat Invq = new( "Invq" );
-        public readonly ParsedFloat Gain = new( "Gain" );
+        public readonly ParsedFloat Gain = new( "增益" );
         public readonly ParsedEnum<FilterType> Type = new( "Type" );
 
         public void Read( BinaryReader reader ) {

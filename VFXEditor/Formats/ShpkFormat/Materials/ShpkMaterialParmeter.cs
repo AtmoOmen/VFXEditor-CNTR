@@ -6,7 +6,7 @@ using VfxEditor.Ui.Interfaces;
 namespace VfxEditor.Formats.ShpkFormat.Materials {
     public class ShpkMaterialParmeter : IUiItem {
         public readonly ParsedCrc Id = new( "Id" );
-        public readonly ParsedShort Offset = new( "Offset" );
+        public readonly ParsedShort Offset = new( "偏移" );
         public readonly ParsedShort Size = new( "大小" );
 
         public ShpkMaterialParmeter() { }

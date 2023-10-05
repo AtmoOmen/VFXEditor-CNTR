@@ -45,7 +45,7 @@ namespace VfxEditor.Library.Node {
 
             using var child = ImRaii.Child( "子级", ImGui.GetContentRegionAvail(), false );
 
-            if( Children.Count == 0 ) ImGui.TextDisabled( "No textures saved..." );
+            if( Children.Count == 0 ) ImGui.TextDisabled( "无已保存的材质" );
             return base.Draw( library, searchInput );
         }
 

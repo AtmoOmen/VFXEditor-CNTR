@@ -24,7 +24,7 @@ namespace VfxEditor.Select.Tmb.Action {
         protected override void DrawSelected() {
             SelectUiUtils.DrawIcon( Icon );
 
-            DrawPath( "开始", Selected.StartPath, $"{Selected.Name} Start", true );
+            DrawPath( "开始", Selected.StartPath, $"{Selected.Name} 开始", true );
             DrawMovementCancel( Selected.StartMotion );
 
             DrawPath( "结束", Selected.EndPath, $"{Selected.Name} End", true );

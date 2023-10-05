@@ -10,7 +10,7 @@ namespace VfxEditor.AvfxFormat {
 
         public readonly AvfxInt LoopStart = new( "循环开始", "LpSt" );
         public readonly AvfxInt LoopEnd = new( "循环结束", "LpEd" );
-        public readonly AvfxEnum<ParticleType> ParticleVariety = new( "Type", "PrVT" );
+        public readonly AvfxEnum<ParticleType> ParticleVariety = new( "类型", "PrVT" );
         public readonly AvfxEnum<RotationDirectionBase> RotationDirectionBaseType = new( "旋转方向基准", "RBDT" );
         public readonly AvfxEnum<RotationOrder> RotationOrderType = new( "旋转计算顺序", "RoOT" );
         public readonly AvfxEnum<CoordComputeOrder> CoordComputeOrderType = new( "坐标计算顺序", "CCOT" );

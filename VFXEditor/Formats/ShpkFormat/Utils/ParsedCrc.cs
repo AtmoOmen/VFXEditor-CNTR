@@ -47,7 +47,7 @@ namespace VfxEditor.Formats.ShpkFormat.Utils {
                     }
                 }
 
-                UiUtils.Tooltip( "Manually enter a string value to be converted to Crc32" );
+                UiUtils.Tooltip( "手动输入一个字符串值以转换为 Crc32" );
 
                 if( !Name.StartsWith( "##" ) ) {
                     ImGui.SameLine();
@@ -60,7 +60,7 @@ namespace VfxEditor.Formats.ShpkFormat.Utils {
                 var inputSize = UiUtils.GetOffsetInputSize( checkSize + cancelSize );
 
                 ImGui.SetNextItemWidth( inputSize );
-                ImGui.InputTextWithHint( $"##{Name}", "String to be converted", ref ManualValue, 255 );
+                ImGui.InputTextWithHint( $"##{Name}", "待转换的字符串值", ref ManualValue, 255 );
 
                 ImGui.SameLine();
                 using( var font = ImRaii.PushFont( UiBuilder.IconFont ) ) {

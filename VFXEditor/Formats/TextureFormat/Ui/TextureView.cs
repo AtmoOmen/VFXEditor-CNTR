@@ -120,7 +120,7 @@ namespace VfxEditor.Formats.TextureFormat.Ui {
 
         protected override void DrawLeftColumn() {
             if( Textures.Count == 0 ) {
-                ImGui.TextDisabled( "No textures have been replaced..." );
+                ImGui.TextDisabled( "无已替换的材质" );
                 return;
             }
 

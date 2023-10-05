@@ -26,7 +26,7 @@ namespace VfxEditor.AvfxFormat {
             AllowDelete = allowDelete;
 
             Name = name;
-            DefaultText = $"选择一个 {name}";
+            DefaultText = $"请选择 {name}...";
             DefaultPath = Path.Combine( Plugin.RootLocation, "Files", defaultPath );
         }
 

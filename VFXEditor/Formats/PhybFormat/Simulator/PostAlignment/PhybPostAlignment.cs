@@ -8,9 +8,9 @@ namespace VfxEditor.PhybFormat.Simulator.PostAlignment {
     public class PhybPostAlignment : PhybData, IPhysicsObject {
         public readonly PhybSimulator Simulator;
 
-        public readonly ParsedPaddedString CollisionName = new( "Collision Name", 32, 0xFE );
-        public readonly ParsedShort ChainId = new( "Chain Id" );
-        public readonly ParsedShort NodeId = new( "Node Id" );
+        public readonly ParsedPaddedString CollisionName = new( "碰撞名称", 32, 0xFE );
+        public readonly ParsedShort ChainId = new( "链 ID" );
+        public readonly ParsedShort NodeId = new( "节点 ID" );
 
         public PhybPostAlignment( PhybFile file, PhybSimulator simulator ) : base( file ) {
             Simulator = simulator;

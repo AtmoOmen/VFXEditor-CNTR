@@ -27,7 +27,7 @@ namespace VfxEditor.Formats.SkpFormat {
 
         private readonly int Version;
         private bool NewVersion => Version > 1000;
-        private readonly ParsedFlag<SkpFlags> Activated = new( "Activated" );
+        private readonly ParsedFlag<SkpFlags> Activated = new( "已激活" );
 
         private readonly SklbLayers Animation = new( null );
         private readonly SkpLookAt LookAt = new();
@@ -47,7 +47,7 @@ namespace VfxEditor.Formats.SkpFormat {
 
             if( Activated.HasFlag( SkpFlags.Animation ) ) Animation.Read( reader );
             if( Activated.HasFlag( SkpFlags.LookAt ) ) LookAt.Read( reader );
-            if( Activated.HasFlag( SkpFlags.Feet_Unknown ) ) PluginLog.Error( "FootIK found, please report this" );
+            if( Activated.HasFlag( SkpFlags.Feet_Unknown ) ) PluginLog.Error( "发现 FootIK, 请上报此情况" );
             if( NewVersion && Activated.HasFlag( SkpFlags.Slope ) ) Slope.Read( reader );
 
             VerifyIgnore = new();
@@ -94,7 +94,7 @@ namespace VfxEditor.Formats.SkpFormat {
         public override void Draw() {
             ImGui.Separator();
 
-            ImGui.TextDisabled( $"Version: {Version}" );
+            ImGui.TextDisabled( $"版本: {Version}" );
             Activated.Draw( CommandManager.Skp );
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
@@ -121,7 +121,7 @@ namespace VfxEditor.Formats.SkpFormat {
         private void DrawLookAt() {
             if( !Activated.HasFlag( SkpFlags.LookAt ) ) return;
 
-            using var tabItem = ImRaii.TabItem( "Look At" );
+            using var tabItem = ImRaii.TabItem( "望向" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Look At" );
@@ -132,7 +132,7 @@ namespace VfxEditor.Formats.SkpFormat {
         private void DrawSlope() {
             if( !NewVersion || !Activated.HasFlag( SkpFlags.Slope ) ) return;
 
-            using var tabItem = ImRaii.TabItem( "Slope" );
+            using var tabItem = ImRaii.TabItem( "坡度" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Slope" );

@@ -19,7 +19,7 @@ namespace VfxEditor.PhybFormat.Simulator {
         public readonly ParsedShort ConstraintLoop = new( "Constraint Loop" );
         public readonly ParsedShort CollisionLoop = new( "Collision Loop" );
         public readonly ParsedFlag<SimulatorFlags> Flags = new( "标识", size: 1 );
-        public readonly ParsedByte Group = new( "Group" );
+        public readonly ParsedByte Group = new( "组" );
         public readonly ParsedReserve Padding = new( 2 );
 
         public PhybSimulatorParams( PhybFile file ) : base( file ) { }

@@ -19,7 +19,7 @@ namespace VfxEditor.Select.Vfx {
     public class VfxSelectDialog : SelectDialog {
         public VfxSelectDialog( string id, AvfxManager manager, bool isSourceDialog ) : base( id, "avfx", manager, isSourceDialog ) {
             GameTabs.AddRange( new SelectTab[]{
-                new VfxItemTab( this, "Item" ),
+                new VfxItemTab( this, "物品" ),
                 new StatusTab( this, "状态" ),
                 new ActionTab( this, "技能" ),
                 new NonPlayerActionTab( this, "非玩家对象动作" ),

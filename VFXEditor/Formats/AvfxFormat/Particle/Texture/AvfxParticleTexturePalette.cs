@@ -11,7 +11,7 @@ namespace VfxEditor.AvfxFormat {
         public readonly AvfxEnum<TextureFilterType> TextureFilter = new( "材质筛选器", "TFT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorder = new( "Texture Border", "TBT" );
         public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", value: -1 );
-        public readonly AvfxCurve Offset = new( "Offset", "POff" );
+        public readonly AvfxCurve Offset = new( "偏移", "POff" );
 
         private readonly List<AvfxBase> Parsed;
 

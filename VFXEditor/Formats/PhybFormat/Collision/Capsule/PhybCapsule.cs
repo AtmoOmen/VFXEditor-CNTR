@@ -9,10 +9,10 @@ using VfxEditor.Parsing.String;
 namespace VfxEditor.PhybFormat.Collision.Capsule {
     public class PhybCapsule : PhybData, IPhysicsObject {
         public readonly ParsedPaddedString Name = new( "Name", "replace_me", 32, 0xFE );
-        public readonly ParsedPaddedString StartBone = new( "Start Bone", 32, 0xFE );
-        public readonly ParsedPaddedString EndBone = new( "End Bone", 32, 0xFE );
-        public readonly ParsedFloat3 StartOffset = new( "Start Offset" );
-        public readonly ParsedFloat3 EndOffset = new( "End Offset" );
+        public readonly ParsedPaddedString StartBone = new( "起始骨骼", 32, 0xFE );
+        public readonly ParsedPaddedString EndBone = new( "结束骨骼", 32, 0xFE );
+        public readonly ParsedFloat3 StartOffset = new( "起始偏移" );
+        public readonly ParsedFloat3 EndOffset = new( "结束偏移" );
         public readonly ParsedFloat Radius = new( "半径" );
 
         public PhybCapsule( PhybFile file ) : base( file ) { }

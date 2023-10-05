@@ -24,7 +24,7 @@ namespace VfxEditor.PhybFormat {
 
     public class PhybFile : FileManagerFile, IPhysicsObject {
         public readonly ParsedIntByte4 Version = new( "版本" );
-        public readonly ParsedUInt DataType = new( "Data Type" );
+        public readonly ParsedUInt DataType = new( "数据类型" );
 
         public readonly PhybCollision Collision;
         public readonly PhybSimulation Simulation;
@@ -102,11 +102,11 @@ namespace VfxEditor.PhybFormat {
 
                 SkeletonTabOpen = false;
 
-                using( var tab = ImRaii.TabItem( "Collision" ) ) {
+                using( var tab = ImRaii.TabItem( "碰撞" ) ) {
                     if( tab ) Collision.Draw();
                 }
 
-                using( var tab = ImRaii.TabItem( "Simulation" ) ) {
+                using( var tab = ImRaii.TabItem( "模拟" ) ) {
                     if( tab ) Simulation.Draw();
                 }
 

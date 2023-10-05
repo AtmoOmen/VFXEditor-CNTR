@@ -108,7 +108,7 @@ namespace VfxEditor.SklbFormat.Bones {
                             CommandManager.Sklb.Add( new GenericAddCommand<SklbBone>( Bones, newBone ) );
                         }
                     }
-                    UiUtils.Tooltip( "Create new bone at root" );
+                    UiUtils.Tooltip( "在根部创建新骨骼" );
 
                     // Expand
                     ImGui.SameLine();
@@ -117,7 +117,7 @@ namespace VfxEditor.SklbFormat.Bones {
                             expandAll = true;
                         }
                     }
-                    UiUtils.Tooltip( "Expand all tree nodes" );
+                    UiUtils.Tooltip( "展开所有树状节点" );
 
                     // Search
                     ImGui.SameLine();
@@ -174,7 +174,7 @@ namespace VfxEditor.SklbFormat.Bones {
         }
 
         private void DrawParentCombo( SklbBone bone ) {
-            using var combo = ImRaii.Combo( "Parent", bone.Parent == null ? "[无]" : bone.Parent.Name.Value );
+            using var combo = ImRaii.Combo( "父级", bone.Parent == null ? "[无]" : bone.Parent.Name.Value );
             if( !combo ) return;
 
             if( ImGui.Selectable( "[无]", bone.Parent == null ) ) {
@@ -218,7 +218,7 @@ namespace VfxEditor.SklbFormat.Bones {
             DragDrop( bone );
 
             if( ImGui.BeginPopupContextItem() ) {
-                if( UiUtils.IconSelectable( FontAwesomeIcon.Plus, "Create sub-bone" ) ) {
+                if( UiUtils.IconSelectable( FontAwesomeIcon.Plus, "创建子骨骼" ) ) {
                     var newId = BONE_ID++;
                     var newBone = new SklbBone( newId );
                     newBone.Name.Value = $"bone_{newId}";

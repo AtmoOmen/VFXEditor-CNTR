@@ -10,7 +10,7 @@ using VfxEditor.Ui.Interfaces;
 
 namespace VfxEditor.Formats.ShpkFormat.Nodes {
     public class ShpkNode : IUiItem {
-        public readonly ParsedUIntHex Selector = new( "Selector" );
+        public readonly ParsedUIntHex Selector = new( "选择器" );
 
         private readonly List<ParsedSByte> PassIndexes = new();
         private readonly List<ShpkPass> Passes = new();
@@ -78,11 +78,11 @@ namespace VfxEditor.Formats.ShpkFormat.Nodes {
                 if( tab ) DrawParameters();
             }
 
-            using( var tab = ImRaii.TabItem( "Passes" ) ) {
+            using( var tab = ImRaii.TabItem( "通道" ) ) {
                 if( tab ) PassView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Keys" ) ) {
+            using( var tab = ImRaii.TabItem( "键" ) ) {
                 if( tab ) DrawKeys();
             }
         }
@@ -95,7 +95,7 @@ namespace VfxEditor.Formats.ShpkFormat.Nodes {
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
 
-            ImGui.TextDisabled( "Pass Indexes:" );
+            ImGui.TextDisabled( "通道索引:" );
             foreach( var passIdx in PassIndexes ) passIdx.Draw( CommandManager.Shpk );
         }
 
@@ -107,19 +107,19 @@ namespace VfxEditor.Formats.ShpkFormat.Nodes {
             using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
             if( !tabBar ) return;
 
-            using( var tab = ImRaii.TabItem( "System" ) ) {
+            using( var tab = ImRaii.TabItem( "系统" ) ) {
                 if( tab ) SystemKeyView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Scene" ) ) {
+            using( var tab = ImRaii.TabItem( "场景" ) ) {
                 if( tab ) SceneKeyView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Material" ) ) {
+            using( var tab = ImRaii.TabItem( "材质" ) ) {
                 if( tab ) MaterialKeyView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Sub-View" ) ) {
+            using( var tab = ImRaii.TabItem( "子视图" ) ) {
                 if( tab ) SubViewKeyView.Draw();
             }
         }

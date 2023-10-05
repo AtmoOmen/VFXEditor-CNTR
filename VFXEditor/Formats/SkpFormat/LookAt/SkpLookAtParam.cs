@@ -16,12 +16,12 @@ namespace VfxEditor.Formats.SkpFormat.LookAt {
         }
 
         protected override List<ParsedBase> GetParsed() => new() {
-            new ParsedFloat4( "Limit Angles" ),
-            new ParsedFloat3( "Forward Rotation" ),
-            new ParsedFloat( "Limit Angle" ),
-            new ParsedFloat3( "Eye Positions" ),
+            new ParsedFloat4( "角度限制" ),
+            new ParsedFloat3( "前向旋转" ),
+            new ParsedFloat( "角度限制" ),
+            new ParsedFloat3( "眼部位置" ),
             new ParsedUInt( "标识" ),
-            new ParsedFloat( "Gain" ),
+            new ParsedFloat( "增益" ),
             Index,
         };
 
@@ -32,6 +32,6 @@ namespace VfxEditor.Formats.SkpFormat.LookAt {
 
         public void Draw() => DrawParsed( CommandManager.Skp );
 
-        public string GetText() => $"Parameters {Index.Value}";
+        public string GetText() => $"参数 {Index.Value}";
     }
 }

@@ -5,9 +5,9 @@ using VfxEditor.Ui.Interfaces;
 
 namespace VfxEditor.Formats.AtchFormat.Entry {
     public class AtchEntryState : IUiItem {
-        public readonly ParsedString Bone = new( "Bone" );
+        public readonly ParsedString Bone = new( "骨骼" );
         public readonly ParsedFloat Scale = new( "缩放" );
-        public readonly ParsedFloat3 Offset = new( "Offset" );
+        public readonly ParsedFloat3 Offset = new( "偏移" );
         public readonly ParsedRadians3 Rotation = new( "旋转" );
 
         public AtchEntryState( BinaryReader reader ) {

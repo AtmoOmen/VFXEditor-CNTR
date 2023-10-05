@@ -175,7 +175,7 @@ namespace VfxEditor.UldFormat {
         }
 
         private void DrawParts() {
-            using var tabItem = ImRaii.TabItem( "Part Lists" );
+            using var tabItem = ImRaii.TabItem( "部分列表" );
             if( !tabItem ) return;
 
             PartList.Draw();
@@ -183,7 +183,7 @@ namespace VfxEditor.UldFormat {
         }
 
         private void DrawComponents() {
-            using var tabItem = ImRaii.TabItem( "Components" );
+            using var tabItem = ImRaii.TabItem( "组件" );
             if( !tabItem ) return;
 
             ComponentList.Draw();
@@ -199,7 +199,7 @@ namespace VfxEditor.UldFormat {
         }
 
         private void DrawWidgets() {
-            using var tabItem = ImRaii.TabItem( "Widgets" );
+            using var tabItem = ImRaii.TabItem( "控件" );
             if( !tabItem ) return;
 
             WidgetList.Draw();

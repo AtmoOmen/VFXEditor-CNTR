@@ -270,7 +270,7 @@ namespace VfxEditor.AvfxFormat {
             using var _ = ImRaii.PushId( "Avfx" );
             using var child = ImRaii.Child( "子级" );
 
-            ImGui.TextDisabled( $"Version {UiVersion[0]}.{UiVersion[1]}.{UiVersion[2]}.{UiVersion[3]}" );
+            ImGui.TextDisabled( $"版本 {UiVersion[0]}.{UiVersion[1]}.{UiVersion[2]}.{UiVersion[3]}" );
 
             if( ImGui.InputFloat( "修改后缩放(整体)", ref ScaleCombined ) ) {
                 RevisedValuesScaleX.Value = ScaleCombined;
@@ -279,7 +279,7 @@ namespace VfxEditor.AvfxFormat {
             };
 
             ImGui.SameLine();
-            UiUtils.HelpMarker( "Revised scale, position, and rotation only work on effects which are not attached to a binder. See the \"Binders\" tab for more information." );
+            UiUtils.HelpMarker( "修改后的位置、缩放和旋转仅会作用于未链接绑定器的效果。获取更多信息请查看\"绑定器\"一栏" );
 
             DrawItems( Display );
         }

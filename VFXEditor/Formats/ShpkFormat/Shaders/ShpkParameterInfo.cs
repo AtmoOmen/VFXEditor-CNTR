@@ -14,8 +14,8 @@ namespace VfxEditor.Formats.ShpkFormat.Shaders {
         private readonly ParsedString Value = new( "值" );
         private readonly int TempStringOffset;
 
-        public readonly ParsedShort Slot = new( "Slot" );
-        public readonly ParsedShort Size = new( "Size (bytes)" );
+        public readonly ParsedShort Slot = new( "栏" );
+        public readonly ParsedShort Size = new( "大小 (字节)" );
 
         public ShpkParameterInfo() { }
 
@@ -31,7 +31,7 @@ namespace VfxEditor.Formats.ShpkFormat.Shaders {
             reader.BaseStream.Seek( parameterOffset + TempStringOffset, SeekOrigin.Begin );
             Value.Read( reader );
 
-            if( TempId != Id ) PluginLog.Error( "Ids do not match" );
+            if( TempId != Id ) PluginLog.Error( "ID 不符" );
         }
 
         public void Write( BinaryWriter writer, List<(long, string)> stringPositions ) {

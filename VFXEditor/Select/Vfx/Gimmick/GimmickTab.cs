@@ -34,7 +34,7 @@ namespace VfxEditor.Select.Vfx.Gimmick {
             }
 
             ImGui.SameLine();
-            ImGui.Text( "TMB:" );
+            ImGui.Text( "时间线:" );
             ImGui.SameLine();
             SelectUiUtils.DisplayPath( Selected.TmbPath );
 

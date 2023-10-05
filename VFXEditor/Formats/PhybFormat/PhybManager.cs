@@ -4,9 +4,9 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.PhybFormat {
     public class PhybManager : FileManager<PhybDocument, PhybFile, WorkspaceMetaBasic> {
-        public PhybManager() : base( "Phyb Editor", "Phyb" ) {
-            SourceSelect = new PhybSelectDialog( "Phyb Select [LOADED]", this, true );
-            ReplaceSelect = new PhybSelectDialog( "Phyb Select [REPLACED]", this, false );
+        public PhybManager() : base( "碰撞体编辑器", "碰撞" ) {
+            SourceSelect = new PhybSelectDialog( "碰撞体选择 [加载]", this, true );
+            ReplaceSelect = new PhybSelectDialog( "碰撞体选择 [替换]", this, false );
         }
 
         protected override PhybDocument GetNewDocument() => new( this, NewWriteLocation );

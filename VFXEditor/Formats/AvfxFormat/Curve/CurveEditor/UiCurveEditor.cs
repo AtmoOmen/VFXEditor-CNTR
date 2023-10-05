@@ -231,19 +231,19 @@ namespace VfxEditor.AvfxFormat {
                 var color = StyleModel.GetFromCurrent().BuiltInColors.ParsedGreen.Value;
                 using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( ImGui.GetStyle().ItemInnerSpacing.X, ImGui.GetStyle().ItemSpacing.Y ) );
 
-                ImGui.TextColored( color, "Ctrl+Left Click" );
+                ImGui.TextColored( color, "Ctrl + 左键" );
                 ImGui.SameLine();
-                ImGui.Text( "to add a new point" );
+                ImGui.Text( "以添加一个新的点" );
 
-                ImGui.TextColored( color, "Left Click" );
+                ImGui.TextColored( color, "单击左键" );
                 ImGui.SameLine();
-                ImGui.Text( "to selected a point" );
+                ImGui.Text( "以选择一个点" );
 
                 ImGui.Text( "Hold" );
                 ImGui.SameLine();
-                ImGui.TextColored( color, "Shift" );
+                ImGui.TextColored( color, "按住 Shift 键" );
                 ImGui.SameLine();
-                ImGui.Text( "to select multiple points" );
+                ImGui.Text( "以多选点" );
 
                 ImGui.EndTooltip();
             }

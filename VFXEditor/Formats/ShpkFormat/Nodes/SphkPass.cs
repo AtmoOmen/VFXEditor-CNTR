@@ -6,8 +6,8 @@ using VfxEditor.Ui.Interfaces;
 namespace VfxEditor.Formats.ShpkFormat.Nodes {
     public class ShpkPass : IUiItem {
         public readonly ParsedCrc Id = new( "Id " );
-        public readonly ParsedUInt VertexShaderIdx = new( "Vertex Shader Index" );
-        public readonly ParsedUInt PixelShaderIdx = new( "Pixel SHader Index" );
+        public readonly ParsedUInt VertexShaderIdx = new( "顶点着色器索引" );
+        public readonly ParsedUInt PixelShaderIdx = new( "像素着色器索引" );
 
         public ShpkPass() { }
 

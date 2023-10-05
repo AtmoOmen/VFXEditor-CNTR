@@ -299,15 +299,15 @@ namespace VfxEditor.FileManager {
                 drawList.AddTriangleFilled( bottomRight, bottomRight + new Vector2( -arrowWidth, arrowHeight / 2 ), bottomRight + new Vector2( -arrowWidth, -arrowHeight / 2 ), color );
             }
 
-            if( hovered ) UiUtils.Tooltip( "Toggle replacement", true );
+            if( hovered ) UiUtils.Tooltip( "切换替换模式", true );
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
             ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 25 );
-            ImGui.Text( $"Loaded {Id}" );
+            ImGui.Text( $"已载入 {Id}" );
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
             ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 25 );
-            ImGui.Text( $"{Id} Being Replaced" );
+            ImGui.Text( $"被替换的 {Id}" );
         }
 
         private static float DegreesToRadians( float degrees ) => MathF.PI / 180 * degrees;
@@ -386,7 +386,7 @@ namespace VfxEditor.FileManager {
             using( var font = ImRaii.PushFont( UiBuilder.IconFont ) ) {
                 if( ImGui.Button( FontAwesomeIcon.Download.ToIconString() ) ) ExportRaw();
             }
-            UiUtils.Tooltip( "Export as a raw file.\nTo export as a Textools/Penumbra mod, use the \"mod export\" menu item" );
+            UiUtils.Tooltip( "导出为原始文件。\n要导出为 Textools/Penumbra 模组，请使用\"模组导出\" 菜单项" );
 
             ImGui.SameLine();
             UiUtils.ShowVerifiedStatus( Verified );
@@ -478,7 +478,7 @@ namespace VfxEditor.FileManager {
             ImGui.PopStyleColor();
         }
 
-        private static readonly string WarningText = "请 不要 修改移动类技能 (冲刺、后跳等)。请尝试修改 .tmb 或 .pap 文件前先阅读指南";
+        private static readonly string WarningText = "请 不要 修改移动类技能 (冲刺、后跳等)。尝试修改 .tmb 或 .pap 文件前先阅读指南";
 
         protected static void DrawAnimationWarning() {
             using var color = ImRaii.PushColor( ImGuiCol.Border, new Vector4( 1, 0, 0, 0.3f ) );

@@ -114,11 +114,11 @@ namespace VfxEditor.TmbFormat {
 
             DrawParameters();
 
-            using( var tab = ImRaii.TabItem( "Actors" ) ) {
+            using( var tab = ImRaii.TabItem( "对象" ) ) {
                 if( tab ) ActorsDropdown.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "F-Curves" ) ) {
+            using( var tab = ImRaii.TabItem( "F 曲线" ) ) {
                 if( tab ) TmfcDropdown.Draw();
             }
 
@@ -136,10 +136,10 @@ namespace VfxEditor.TmbFormat {
         private void DrawUnused() {
             if( UnusedTracks.Count == 0 ) return;
 
-            using var tabItem = ImRaii.TabItem( "Unused" );
+            using var tabItem = ImRaii.TabItem( "未使用" );
             if( !tabItem ) return;
 
-            ImGui.TextDisabled( "These are leftover tracks which are never actually triggered, and are only useful for research purposes" );
+            ImGui.TextDisabled( "剩下的音轨，从未被触发，仅做研究用" );
             ImGui.Separator();
             UnusedTrackView.Draw();
         }
@@ -184,7 +184,7 @@ namespace VfxEditor.TmbFormat {
             ImGui.TextWrapped( "更改此文件有被潜在检测的可能性" );
             ImGui.PopStyleColor();
             ImGui.SameLine();
-            if( ImGui.SmallButton( "Guide" ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki/Notes-on-TMFC" );
+            if( ImGui.SmallButton( "指南" ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki/Notes-on-TMFC" );
         }
 
         public static void GenericWarning() {

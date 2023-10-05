@@ -32,7 +32,7 @@ namespace VfxEditor.AvfxFormat.Dialogs {
             ImGui.Checkbox( "导出依赖关系", ref ExportDependencies );
 
             ImGui.SameLine();
-            UiUtils.HelpMarker( @"Exports the selected items, as well as any dependencies they have (such as particles depending on textures). It is recommended to leave this selected." );
+            UiUtils.HelpMarker( @"导出选中项与它们的依赖关系 (如: 依赖材质的例子效果)。推荐选中此项" );
 
             ImGui.SameLine();
             if( ImGui.Button( "重置#" ) ) Reset();

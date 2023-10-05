@@ -306,10 +306,10 @@ namespace VfxEditor {
             if( ImGui.CollapsingHeader( "Lua", ImGuiTreeNodeFlags.DefaultOpen ) ) {
                 using var indent = ImRaii.PushIndent( 10f );
 
-                if( ImGui.ColorEdit4( "Parentheses color", ref LuaParensColor ) ) Save();
-                if( ImGui.ColorEdit4( "Function color", ref LuaFunctionColor ) ) Save();
-                if( ImGui.ColorEdit4( "Literal color", ref LuaLiteralColor ) ) Save();
-                if( ImGui.ColorEdit4( "Variable color", ref LuaVariableColor ) ) Save();
+                if( ImGui.ColorEdit4( "括号颜色", ref LuaParensColor ) ) Save();
+                if( ImGui.ColorEdit4( "函数颜色", ref LuaFunctionColor ) ) Save();
+                if( ImGui.ColorEdit4( "字面值颜色", ref LuaLiteralColor ) ) Save();
+                if( ImGui.ColorEdit4( "变量颜色", ref LuaVariableColor ) ) Save();
             }
         }
 

@@ -18,9 +18,9 @@ namespace VfxEditor.PhybFormat.Simulator.Chain {
     public class PhybChain : PhybData, IPhysicsObject {
         public readonly PhybSimulator Simulator;
 
-        public readonly ParsedFloat Dampening = new( "Dampening" );
+        public readonly ParsedFloat Dampening = new( "阻力" );
         public readonly ParsedFloat MaxSpeed = new( "Max Speed" );
-        public readonly ParsedFloat Friction = new( "Friction" );
+        public readonly ParsedFloat Friction = new( "摩擦" );
         public readonly ParsedFloat CollisionDampening = new( "Collision Dampening" );
         public readonly ParsedFloat RepulsionStrength = new( "Repulsion Strength" );
         public readonly ParsedFloat3 LastBoneOffset = new( "Last Bone Offset" );
@@ -90,7 +90,7 @@ namespace VfxEditor.PhybFormat.Simulator.Chain {
                 if( tab ) CollisionSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Nodes" ) ) {
+            using( var tab = ImRaii.TabItem( "节点" ) ) {
                 if( tab ) NodeSplitView.Draw();
             }
         }

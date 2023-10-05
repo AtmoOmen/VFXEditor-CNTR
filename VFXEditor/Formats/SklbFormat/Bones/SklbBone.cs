@@ -12,11 +12,11 @@ namespace VfxEditor.SklbFormat.Bones {
 
         public readonly int Id;
 
-        public readonly ParsedString Name = new( "Name" );
+        public readonly ParsedString Name = new( "名称" );
         public readonly ParsedFloat4 Position = new( "位置", new( 0, 0, 0, 1 ) );
         public readonly ParsedQuat Rotation = new( "旋转", new( 0 ) );
         public readonly ParsedFloat4 Scale = new( "缩放", new( 1, 1, 1, 1 ) );
-        public readonly ParsedInt LockTranslation = new( "Lock Translation" );
+        public readonly ParsedInt LockTranslation = new( "锁定翻译" );
 
         public Vector4 Pos => Position.Value;
         public Quaternion Rot => Rotation.Quat;

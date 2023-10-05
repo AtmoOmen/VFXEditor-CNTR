@@ -6,7 +6,7 @@ namespace VfxEditor.AvfxFormat {
     public class AvfxCurveKeys : AvfxBase {
         public readonly List<AvfxCurveKey> Keys = new();
 
-        public AvfxCurveKeys() : base( "Keys" ) { }
+        public AvfxCurveKeys() : base( "键" ) { }
 
         public override void ReadContents( BinaryReader reader, int size ) {
             var count = size / 16;

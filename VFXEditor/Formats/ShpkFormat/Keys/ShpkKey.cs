@@ -29,6 +29,6 @@ namespace VfxEditor.Formats.ShpkFormat.Keys {
             DefaultValue.Draw( CommandManager.Shpk, CrcMaps.Keys );
         }
 
-        public string GetText( int idx ) => CrcMaps.Keys.TryGetValue( Id.Value, out var text ) ? text : $"Key {idx} (0x{Id.Value:X4})";
+        public string GetText( int idx ) => CrcMaps.Keys.TryGetValue( Id.Value, out var text ) ? text : $"键 {idx} (0x{Id.Value:X4})";
     }
 }

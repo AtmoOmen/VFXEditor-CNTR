@@ -60,7 +60,7 @@ namespace VfxEditor.Formats.ShpkFormat.Shaders {
             for( var i = 0; i < numSamplers; i++ ) Samplers.Add( new( reader ) );
             for( var i = 0; i < numRw; i++ ) Resources.Add( new( reader ) );
 
-            if( numUnknown != 0 ) PluginLog.Error( "Unknown data" );
+            if( numUnknown != 0 ) PluginLog.Error( "未知数据" );
         }
 
         public void Read( BinaryReader reader, uint parameterOffset, uint shaderOffset ) {
@@ -105,15 +105,15 @@ namespace VfxEditor.Formats.ShpkFormat.Shaders {
             using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
             if( !tabBar ) return;
 
-            using( var tab = ImRaii.TabItem( "Code" ) ) {
+            using( var tab = ImRaii.TabItem( "编码" ) ) {
                 if( tab ) DrawCode();
             }
 
-            using( var tab = ImRaii.TabItem( "Constants" ) ) {
+            using( var tab = ImRaii.TabItem( "常量" ) ) {
                 if( tab ) ConstantView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Samplers" ) ) {
+            using( var tab = ImRaii.TabItem( "采样" ) ) {
                 if( tab ) SamplerView.Draw();
             }
 

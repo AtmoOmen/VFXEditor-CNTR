@@ -6,7 +6,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.SklbFormat {
     public partial class SklbDocument : FileManagerDocument<SklbFile, WorkspaceMetaBasic> {
-        public override string Id => "Sklb";
+        public override string Id => "骨骼";
         public override string Extension => "sklb";
 
         private string HkxTemp => WriteLocation.Replace( ".sklb", "_temp.hkx" );

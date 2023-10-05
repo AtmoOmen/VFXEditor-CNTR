@@ -36,7 +36,7 @@ namespace VfxEditor.Library.Node {
 
         protected override void DrawEditing() {
             var preX = ImGui.GetCursorPosX();
-            ImGui.InputText( "Name", ref Name, 255 );
+            ImGui.InputText( "名称", ref Name, 255 );
             var w = ImGui.GetCursorPosX() - preX;
             ImGui.ColorEdit4( "颜色", ref Color, ImGuiColorEditFlags.DisplayHex | ImGuiColorEditFlags.AlphaPreviewHalf | ImGuiColorEditFlags.AlphaBar );
             ImGui.InputTextMultiline( "描述", ref Description, 1000, new Vector2( w, 100 ) );

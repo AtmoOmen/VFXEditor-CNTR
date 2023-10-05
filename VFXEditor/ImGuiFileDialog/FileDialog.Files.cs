@@ -159,7 +159,7 @@ namespace ImGuiFileDialog {
             QuickAccess.Add( new SideBarItem {
                 Icon = ( char )FontAwesomeIcon.Download,
                 Location = Path.Combine( personal, "Downloads" ),
-                Text = "Downloads"
+                Text = "下载"
             } );
 
             QuickAccess.Add( new SideBarItem {

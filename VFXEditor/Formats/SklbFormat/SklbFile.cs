@@ -34,7 +34,7 @@ namespace VfxEditor.SklbFormat {
                 Data = new SklbOldData( reader );
             }
             else {
-                PluginLog.Error( $"Invalid SKLB version: {Version1:X4} {Version2:X4}" );
+                PluginLog.Error( $"无效的骨骼版本: {Version1:X4} {Version2:X4}" );
                 return;
             }
 
@@ -114,7 +114,7 @@ namespace VfxEditor.SklbFormat {
         }
 
         private void DrawBones() {
-            using var tabItem = ImRaii.TabItem( "Bones" );
+            using var tabItem = ImRaii.TabItem( "骨骼" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Bones" );
@@ -123,7 +123,7 @@ namespace VfxEditor.SklbFormat {
         }
 
         private void DrawMappings() {
-            using var tabItem = ImRaii.TabItem( "Mappings" );
+            using var tabItem = ImRaii.TabItem( "映射" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Mappings" );

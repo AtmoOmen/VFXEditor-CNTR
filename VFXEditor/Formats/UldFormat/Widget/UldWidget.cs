@@ -95,7 +95,7 @@ namespace VfxEditor.UldFormat.Widget {
         }
 
         private void DrawNodes() {
-            using var tabItem = ImRaii.TabItem( "Nodes" );
+            using var tabItem = ImRaii.TabItem( "节点" );
             if( !tabItem ) return;
 
             NodeSplitView.Draw();

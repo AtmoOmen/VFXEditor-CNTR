@@ -4,7 +4,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.Formats.ShpkFormat {
     public class ShpkDocument : FileManagerDocument<ShpkFile, WorkspaceMetaBasic> {
-        public override string Id => "Shpk";
+        public override string Id => "着色器";
         public override string Extension => "shpk";
 
         public ShpkDocument( ShpkManager manager, string writeLocation ) : base( manager, writeLocation ) { }

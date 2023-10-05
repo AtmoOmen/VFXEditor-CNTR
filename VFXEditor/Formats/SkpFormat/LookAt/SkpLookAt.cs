@@ -13,8 +13,8 @@ namespace VfxEditor.Formats.SkpFormat.LookAt {
         private readonly CommandSplitView<SkpLookAtGroup> GroupView;
 
         public SkpLookAt() {
-            ParamView = new( "Parameter", Params, true, ( SkpLookAtParam param, int idx ) => param.GetText(), () => new(), () => CommandManager.Skp );
-            GroupView = new( "Group", Groups, true, ( SkpLookAtGroup item, int idx ) => item.Id.Value, () => new(), () => CommandManager.Skp );
+            ParamView = new( "参数", Params, true, ( SkpLookAtParam param, int idx ) => param.GetText(), () => new(), () => CommandManager.Skp );
+            GroupView = new( "组", Groups, true, ( SkpLookAtGroup item, int idx ) => item.Id.Value, () => new(), () => CommandManager.Skp );
         }
 
         public void Read( BinaryReader reader ) {
@@ -39,11 +39,11 @@ namespace VfxEditor.Formats.SkpFormat.LookAt {
             using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
             if( !tabBar ) return;
 
-            using( var tab = ImRaii.TabItem( "Setup Parameters" ) ) {
+            using( var tab = ImRaii.TabItem( "设置参数" ) ) {
                 if( tab ) ParamView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Groups" ) ) {
+            using( var tab = ImRaii.TabItem( "组" ) ) {
                 if( tab ) GroupView.Draw();
             }
         }

@@ -120,7 +120,7 @@ namespace VfxEditor.Utils {
             using( var font = ImRaii.PushFont( UiBuilder.IconFont ) ) {
                 if( TransparentButton( FontAwesomeIcon.InfoCircle.ToIconString(), YELLOW_COLOR ) ) OpenUrl( url );
             }
-            Tooltip( "Click to view more information on the VFXEditor wiki" );
+            Tooltip( "点击以在 VFXEditor Wiki 上了解更多信息(英文)" );
         }
 
 #nullable enable

@@ -43,13 +43,13 @@ namespace VfxEditor.Select.Vfx.Action {
                 }
 
                 ImGui.SameLine();
-                ImGui.Text( "TMB:" );
+                ImGui.Text( "时间线:" );
                 ImGui.SameLine();
                 SelectUiUtils.DisplayPath( Loaded.OriginalPath );
             }
 
             DrawPath( "咏唱", Selected.CastVfxPath, $"{Selected.Name} 咏唱", true );
-            DrawPath( "开始", Selected.StartVfxPath, $"{Selected.Name} Start", true );
+            DrawPath( "开始", Selected.StartVfxPath, $"{Selected.Name} 开始", true );
             if( !string.IsNullOrEmpty( Loaded.OriginalPath ) ) {
                 DrawPaths( "VFX", Loaded.Paths, Selected.Name, true );
             }

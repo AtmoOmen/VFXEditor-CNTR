@@ -18,7 +18,7 @@ namespace VfxEditor.AvfxFormat {
 
         public override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
 
-        public override string GetDefaultText() => "Data";
+        public override string GetDefaultText() => "数据";
 
         public override void Draw() => SplitView.Draw();
 

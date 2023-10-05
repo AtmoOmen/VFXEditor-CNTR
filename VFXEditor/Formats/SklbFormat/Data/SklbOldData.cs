@@ -14,17 +14,17 @@ namespace VfxEditor.SklbFormat.Data {
 
             Parsed = new() {
                 Id,
-                new ParsedShort2( "Parent 1"),
-                new ParsedShort2( "Parent 2"),
-                new ParsedShort2( "Parent 3"),
-                new ParsedShort2( "Parent 4"),
-                new ParsedShort( "LoD Bones 1" ),
-                new ParsedShort( "LoD Bones 2" ),
-                new ParsedShort( "LoD Bones 3" ),
-                new ParsedShort( "Connect Bones 1" ),
-                new ParsedShort( "Connect Bones 2" ),
-                new ParsedShort( "Connect Bones 3" ),
-                new ParsedShort( "Connect Bones 4" )
+                new ParsedShort2( "父级 1"),
+                new ParsedShort2( "父级 2"),
+                new ParsedShort2( "父级 3"),
+                new ParsedShort2( "父级 4"),
+                new ParsedShort( "LoD 骨骼 1" ),
+                new ParsedShort( "LoD 骨骼 2" ),
+                new ParsedShort( "LoD 骨骼 3" ),
+                new ParsedShort( "连接骨骼 1" ),
+                new ParsedShort( "连接骨骼 2" ),
+                new ParsedShort( "连接骨骼 3" ),
+                new ParsedShort( "连接骨骼 4" )
             };
 
             Parsed.ForEach( x => x.Read( reader ) );
@@ -41,7 +41,7 @@ namespace VfxEditor.SklbFormat.Data {
         }
 
         public override void Draw() {
-            ImGui.TextDisabled( "Header Version: [OLD]" );
+            ImGui.TextDisabled( "头版本 [旧]" );
 
             Parsed.ForEach( x => x.Draw( CommandManager.Sklb ) );
         }

@@ -78,7 +78,7 @@ namespace VfxEditor {
         public Plugin( DalamudPluginInterface pluginInterface ) {
             pluginInterface.Create<Dalamud>();
 
-            Dalamud.CommandManager.AddHandler( CommandName, new CommandInfo( OnCommand ) { HelpMessage = "toggle ui" } );
+            Dalamud.CommandManager.AddHandler( CommandName, new CommandInfo( OnCommand ) { HelpMessage = "打开主界面" } );
 
             RootLocation = Dalamud.PluginInterface.AssemblyLocation.DirectoryName;
 

@@ -47,19 +47,19 @@ namespace VfxEditor.PhybFormat.Collision {
                 for( var i = 0; i < numSpheres; i++ ) Spheres.Add( new PhybSphere( file, reader ) );
             }
 
-            CapsuleSplitView = new( "Capsule", Capsules, false,
+            CapsuleSplitView = new( "胶囊", Capsules, false,
                 ( PhybCapsule item, int idx ) => item.Name.Value, () => new( File ), () => CommandManager.Phyb, ( PhybCapsule item ) => File.Updated() );
 
-            EllipsoidSplitView = new( "Ellipsoid", Ellipsoids, false,
+            EllipsoidSplitView = new( "椭球", Ellipsoids, false,
                 ( PhybEllipsoid item, int idx ) => item.Name.Value, () => new( File ), () => CommandManager.Phyb, ( PhybEllipsoid item ) => File.Updated() );
 
-            NormalPlaneSplitView = new( "Normal Plane", NormalPlanes, false,
+            NormalPlaneSplitView = new( "法平面", NormalPlanes, false,
                 ( PhybNormalPlane item, int idx ) => item.Name.Value, () => new( File ), () => CommandManager.Phyb, ( PhybNormalPlane item ) => File.Updated() );
 
-            ThreePointPlaneSplitView = new( "Three-Point Plane", ThreePointPlanes, false,
+            ThreePointPlaneSplitView = new( "三点平面", ThreePointPlanes, false,
                 ( PhybThreePointPlane item, int idx ) => item.Name.Value, () => new( File ), () => CommandManager.Phyb, ( PhybThreePointPlane item ) => File.Updated() );
 
-            SphereDropdown = new( "Sphere", Spheres, false,
+            SphereDropdown = new( "球", Spheres, false,
                 ( PhybSphere item, int idx ) => item.Name.Value, () => new PhybSphere( File ), () => CommandManager.Phyb, ( PhybSphere item ) => File.Updated() );
         }
 
@@ -86,7 +86,7 @@ namespace VfxEditor.PhybFormat.Collision {
             using var _ = ImRaii.PushId( "Collision" );
 
             if( Ellipsoids.Count > 0 || NormalPlanes.Count > 0 || ThreePointPlanes.Count > 0 ) {
-                ImGui.TextColored( UiUtils.RED_COLOR, "[ELLIPSOID/NORMAL PLANE/THREE-POINT PLANE]" );
+                ImGui.TextColored( UiUtils.RED_COLOR, "[椭球/法平面/三点平面]" );
             }
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 1 );
