@@ -5,7 +5,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.AvfxFormat {
     public class AvfxManager : FileManager<AvfxDocument, AvfxFile, WorkspaceMetaRenamed> {
-        public AvfxManager() : base( "VFXEditor", "视效", "avfx", "Docs", "VFX" ) {
+        public AvfxManager() : base( "VFXEditor", "Vfx", "avfx", "Docs", "VFX" ) {
             SourceSelect = new VfxSelectDialog( "选择文件 [加载]", this, true );
             ReplaceSelect = new VfxSelectDialog( "选择文件 [替换]", this, false );
         }

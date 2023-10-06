@@ -4,7 +4,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.PhybFormat {
     public class PhybDocument : FileManagerDocument<PhybFile, WorkspaceMetaBasic> {
-        public override string Id => "碰撞";
+        public override string Id => "Phyb";
         public override string Extension => "phyb";
 
         public PhybDocument( PhybManager manager, string writeLocation ) : base( manager, writeLocation ) { }

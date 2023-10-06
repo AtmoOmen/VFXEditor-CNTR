@@ -136,10 +136,10 @@ namespace VfxEditor {
             FileDialogManager.ImagePreview = FilepickerImagePreview;
 
             // Move old configurations over to new
-            ProcessOldManagerConfigs( RecentSelects, FavoriteVfx, "视效" );
-            ProcessOldManagerConfigs( RecentSelectsTMB, FavoriteTmb, "时间线" );
-            ProcessOldManagerConfigs( RecentSelectsPAP, FavoritePap, "动画" );
-            ProcessOldManagerConfigs( RecentSelectsScd, FavoriteScd, "音频" );
+            ProcessOldManagerConfigs( RecentSelects, FavoriteVfx, "Vfx" );
+            ProcessOldManagerConfigs( RecentSelectsTMB, FavoriteTmb, "Tmb" );
+            ProcessOldManagerConfigs( RecentSelectsPAP, FavoritePap, "Pap" );
+            ProcessOldManagerConfigs( RecentSelectsScd, FavoriteScd, "Scd" );
 
             try { Directory.CreateDirectory( WriteLocation ); }
             catch( Exception ) { WriteLocationError = true; }
@@ -199,11 +199,11 @@ namespace VfxEditor {
                 DrawKeybinds();
                 ImGui.EndTabItem();
             }
-            if( ImGui.BeginTabItem( "视效" ) ) {
+            if( ImGui.BeginTabItem( "Vfx" ) ) {
                 DrawVfx();
                 ImGui.EndTabItem();
             }
-            if( ImGui.BeginTabItem( "时间线" ) ) {
+            if( ImGui.BeginTabItem( "Tmb" ) ) {
                 DrawTmb();
                 ImGui.EndTabItem();
             }
@@ -274,7 +274,7 @@ namespace VfxEditor {
         }
 
         private void DrawVfx() {
-            using var child = ImRaii.Child( "视效" );
+            using var child = ImRaii.Child( "Vfx" );
 
             if( ImGui.CollapsingHeader( "曲线编辑器", ImGuiTreeNodeFlags.DefaultOpen ) ) {
                 using var indent = ImRaii.PushIndent( 10f );
@@ -301,7 +301,7 @@ namespace VfxEditor {
         }
 
         private void DrawTmb() {
-            using var child = ImRaii.Child( "时间线" );
+            using var child = ImRaii.Child( "Tmb" );
 
             if( ImGui.CollapsingHeader( "Lua", ImGuiTreeNodeFlags.DefaultOpen ) ) {
                 using var indent = ImRaii.PushIndent( 10f );

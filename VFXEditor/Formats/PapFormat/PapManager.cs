@@ -4,7 +4,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.PapFormat {
     public class PapManager : FileManager<PapDocument, PapFile, WorkspaceMetaBasic> {
-        public PapManager() : base( "动画编辑器", "动画" ) {
+        public PapManager() : base( "动画编辑器", "Pap" ) {
             SourceSelect = new PapSelectDialog( "选择动画 [加载]", this, true );
             ReplaceSelect = new PapSelectDialog( "选择动画 [替换]", this, false );
         }

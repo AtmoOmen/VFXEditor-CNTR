@@ -184,7 +184,7 @@ namespace VfxEditor.TmbFormat {
             ImGui.TextWrapped( "更改此文件有被潜在检测的可能性" );
             ImGui.PopStyleColor();
             ImGui.SameLine();
-            if( ImGui.SmallButton( "指南" ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki/Notes-on-TMFC" );
+            if( ImGui.SmallButton( "指南 (英文)" ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki/Notes-on-TMFC" );
         }
 
         public static void GenericWarning() {

@@ -69,9 +69,9 @@ namespace VfxEditor {
         public static SkpManager SkpManager { get; private set; }
         public static ShpkManager ShpkManager { get; private set; }
 
-        public string Name => "VFXEditor";
+        public string Name => "VFXEditorCN";
         public static string RootLocation { get; private set; }
-        private const string CommandName = "/vfxedit";
+        private const string CommandName = "/vfxeditcn";
 
         private static bool ClearKeyState = false;
 

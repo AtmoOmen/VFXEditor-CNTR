@@ -1,0 +1,13 @@
+{
+    "Author": "ocealot, AtmoOmen",
+    "Name": "VFXEditorCN",
+    "Punchline": "游戏视觉效果编辑器、查看器 (中文汉化版)",
+    "Description": "游戏内视觉效果、动画与音频编辑插件 | 图标来源: PAPACHIN | 国服本地化: AtmoOmen\n\n任何由于本地化产生的问题 (漏翻、原版插件能用但本地化版用不了)\n请去我的 Github 页面上提交 Issue (点击下方 浏览插件主页 按钮)",
+    "InternalName": "VFXEditorCN",
+    "AssemblyVersion": "1.7.9.2",
+    "RepoUrl": "https://github.com/AtmoOmen/VFXEditor-CNTR",
+    "ApplicableVersion": "any",
+    "Tags": [ "VFX", "AVFX" ],
+    "DalamudApiLevel": 8,
+    "LoadPriority": 69
+}

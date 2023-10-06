@@ -5,7 +5,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.SklbFormat {
     public class SklbManager : FileManager<SklbDocument, SklbFile, WorkspaceMetaBasic> {
-        public SklbManager() : base( "骨骼编辑器", "骨骼" ) {
+        public SklbManager() : base( "骨骼编辑器", "Sklb" ) {
             SourceSelect = new SklbSelectDialog( "骨骼选择 [加载]", this, true );
             ReplaceSelect = new SklbSelectDialog( "骨骼选择 [替换]", this, false );
         }

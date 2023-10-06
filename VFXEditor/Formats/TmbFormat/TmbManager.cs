@@ -6,7 +6,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.TmbFormat {
     public partial class TmbManager : FileManager<TmbDocument, TmbFile, WorkspaceMetaBasic> {
-        public TmbManager() : base( "时间线编辑器", "时间线" ) {
+        public TmbManager() : base( "时间线编辑器", "Tmb" ) {
             SourceSelect = new TmbSelectDialog( "选择时间线 [加载]", this, true );
             ReplaceSelect = new TmbSelectDialog( "选择时间线 [替换]", this, false );
         }

@@ -4,7 +4,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.UldFormat {
     public class UldDocument : FileManagerDocument<UldFile, WorkspaceMetaRenamed> {
-        public override string Id => "界面";
+        public override string Id => "Uld";
         public override string Extension => "uld";
 
         public UldDocument( UldManager manager, string writeLocation ) : base( manager, writeLocation ) { }

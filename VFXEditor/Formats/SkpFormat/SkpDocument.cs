@@ -4,7 +4,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.Formats.SkpFormat {
     public class SkpDocument : FileManagerDocument<SkpFile, WorkspaceMetaBasic> {
-        public override string Id => "建模";
+        public override string Id => "Skp";
         public override string Extension => "skp";
 
         public SkpDocument( SkpManager manager, string writeLocation ) : base( manager, writeLocation ) { }

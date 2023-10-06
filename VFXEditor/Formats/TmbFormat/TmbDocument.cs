@@ -8,7 +8,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.TmbFormat {
     public class TmbDocument : FileManagerDocument<TmbFile, WorkspaceMetaBasic> {
-        public override string Id => "时间线";
+        public override string Id => "Tmb";
         public override string Extension => "tmb";
 
         public uint AnimationId = 0;

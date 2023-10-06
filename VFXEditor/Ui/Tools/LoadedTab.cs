@@ -72,7 +72,7 @@ namespace VfxEditor.Ui.Tools {
                 using var tree = ImRaii.TreeNode( name );
                 if( tree ) {
                     if( GetResource( Marshal.ReadIntPtr( tablePtr ), out var fileName ) ) DrawResource( fileName );
-                    DrawAnimationTable( tablePtr + 8, "动作" );
+                    DrawAnimationTable( tablePtr + 8, "PAP" );
                 }
             }
         }

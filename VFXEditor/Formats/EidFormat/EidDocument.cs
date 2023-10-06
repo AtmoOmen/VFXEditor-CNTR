@@ -4,7 +4,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.EidFormat {
     public class EidDocument : FileManagerDocument<EidFile, WorkspaceMetaBasic> {
-        public override string Id => "角色";
+        public override string Id => "Eid";
         public override string Extension => "eid";
 
         public EidDocument( EidManager manager, string writeLocation ) : base( manager, writeLocation ) { }

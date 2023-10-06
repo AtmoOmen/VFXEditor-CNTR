@@ -8,7 +8,7 @@ namespace VfxEditor.Select.Pap.Npc {
 
         protected override void DrawSelected() {
             ImGui.Text( "分支: " + Selected.Variant );
-            DrawPaths( "动作", Loaded, Selected.Name );
+            DrawPaths( "PAP", Loaded, Selected.Name );
         }
 
         protected override void GetLoadedFiles( NpcFilesStruct files, out List<string> loaded ) {

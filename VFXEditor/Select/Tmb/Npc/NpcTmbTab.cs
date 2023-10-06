@@ -8,7 +8,7 @@ namespace VfxEditor.Select.Tmb.Npc {
 
         protected override void DrawSelected() {
             ImGui.Text( "分支: " + Selected.Variant );
-            DrawPaths( "时间线", Loaded, Selected.Name );
+            DrawPaths( "TMB", Loaded, Selected.Name );
         }
 
         protected override void GetLoadedFiles( NpcFilesStruct files, out List<string> loaded ) {

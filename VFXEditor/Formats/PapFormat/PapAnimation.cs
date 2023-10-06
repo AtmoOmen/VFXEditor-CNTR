@@ -88,7 +88,7 @@ namespace VfxEditor.PapFormat {
         }
 
         private void DrawTmb() {
-            using var tabItem = ImRaii.TabItem( "时间线" );
+            using var tabItem = ImRaii.TabItem( "TMB" );
             if( !tabItem ) return;
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );

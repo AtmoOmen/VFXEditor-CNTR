@@ -53,7 +53,7 @@ namespace VfxEditor.Select.Scd.Voice {
         // ===== DRAWING ======
 
         protected override void DrawSelected() {
-            DrawPaths( "音效", Loaded, Selected.Name );
+            DrawPaths( "SCD", Loaded, Selected.Name );
         }
 
         protected override string GetName( VoiceRow item ) => item.Name;

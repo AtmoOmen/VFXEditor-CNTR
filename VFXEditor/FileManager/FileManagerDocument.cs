@@ -303,7 +303,7 @@ namespace VfxEditor.FileManager {
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
             ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 25 );
-            ImGui.Text( $"已载入 {Id}" );
+            ImGui.Text( $"已载入的 {Id}" );
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
             ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 25 );

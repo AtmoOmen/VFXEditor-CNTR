@@ -4,7 +4,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.UldFormat {
     public unsafe class UldManager : FileManager<UldDocument, UldFile, WorkspaceMetaRenamed> {
-        public UldManager() : base( "界面编辑器", "界面" ) {
+        public UldManager() : base( "界面编辑器", "Uld" ) {
             SourceSelect = new UldSelectDialog( "选择界面 [加载]", this, true );
             ReplaceSelect = new UldSelectDialog( "选择界面 [替换]", this, false );
         }

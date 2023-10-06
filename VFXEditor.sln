@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		scripts\reslog_process.py = scripts\reslog_process.py
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VFXEditor", "VFXEditor\VFXEditor.csproj", "{F6806E83-137E-47D8-AD35-5E89501570B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VFXEditorCN", "VFXEditor\VFXEditorCN.csproj", "{F6806E83-137E-47D8-AD35-5E89501570B3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{77895120-9D50-43F0-A908-41B66F47B736} = {77895120-9D50-43F0-A908-41B66F47B736}
 		{F0D6AD41-28AB-4F58-9A19-C2C5FE687F43} = {F0D6AD41-28AB-4F58-9A19-C2C5FE687F43}

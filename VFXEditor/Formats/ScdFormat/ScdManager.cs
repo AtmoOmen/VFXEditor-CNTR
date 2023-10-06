@@ -8,7 +8,7 @@ namespace VfxEditor.ScdFormat {
         public static string ConvertWav => Path.Combine( Plugin.Configuration.WriteLocation, $"temp_out.wav" ).Replace( '\\', '/' );
         public static string ConvertOgg => Path.Combine( Plugin.Configuration.WriteLocation, $"temp_out.ogg" ).Replace( '\\', '/' );
 
-        public ScdManager() : base( "音频编辑器", "音频" ) {
+        public ScdManager() : base( "音频编辑器", "Scd" ) {
             SourceSelect = new ScdSelectDialog( "选择音频文件 [加载]", this, true );
             ReplaceSelect = new ScdSelectDialog( "选择音频文件 [替换]", this, false );
         }

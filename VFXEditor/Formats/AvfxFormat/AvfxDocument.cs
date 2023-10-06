@@ -11,7 +11,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.AvfxFormat {
     public class AvfxDocument : FileManagerDocument<AvfxFile, WorkspaceMetaRenamed> {
-        public override string Id => "视效";
+        public override string Id => "Vfx";
         public override string Extension => "avfx";
 
         private string SpawnPath => ReplacePath;

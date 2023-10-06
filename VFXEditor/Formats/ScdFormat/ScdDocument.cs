@@ -4,7 +4,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.ScdFormat {
     public class ScdDocument : FileManagerDocument<ScdFile, WorkspaceMetaBasic> {
-        public override string Id => "音频";
+        public override string Id => "Scd";
         public override string Extension => "scd";
 
         public ScdDocument( ScdManager manager, string writeLocation ) : base( manager, writeLocation ) { }

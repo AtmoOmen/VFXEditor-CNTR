@@ -5,7 +5,7 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.PapFormat {
     public partial class PapDocument : FileManagerDocument<PapFile, WorkspaceMetaBasic> {
-        public override string Id => "动画";
+        public override string Id => "Pap";
         public override string Extension => "pap";
 
         private string HkxTemp => WriteLocation.Replace( ".pap", "_temp.hkx" );
