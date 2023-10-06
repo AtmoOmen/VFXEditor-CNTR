@@ -1,4 +1,4 @@
-# VFXEditor
+# VFXEditor-CNTR
 
 ## 汉化进度
 
@@ -10,6 +10,8 @@
 **注: 目前汉化版插件各方面正处于测试，有任何问题请在此处提交 ISSUE (插件内的链接均为源库链接)**
 
 **联系方式(QQ): 3390869957**
+
+**本库用于执行各项测试翻译工作，用于推送至国服主库的稳定库请查阅：[VFXEditor-CN](https://github.com/AtmoOmen/VFXEditor-CN)**
 
 ## 说明
 
