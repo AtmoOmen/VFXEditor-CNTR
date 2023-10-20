@@ -7,9 +7,7 @@ using VfxEditor.Ui.Interfaces;
 
 namespace VfxEditor.SklbFormat.Layers {
     public class SklbLayer : IUiItem {
-        public bool IsSklb => File != null;
         public readonly SklbFile File;
-
         public readonly ParsedInt Id = new( "Id" );
         public readonly List<SklbLayerBone> Bones = new();
         private readonly ListView<SklbLayerBone> BonesView;
@@ -18,7 +16,7 @@ namespace VfxEditor.SklbFormat.Layers {
 
         public SklbLayer( SklbFile file ) {
             File = file;
-            BonesView = new( Bones, () => new( File ), () => IsSklb ? CommandManager.Sklb : CommandManager.Skp );
+            BonesView = new( Bones, () => new( File ), () => CommandManager.Sklb );
         }
 
         public SklbLayer( SklbFile file, BinaryReader reader ) : this( file ) {
@@ -36,37 +34,30 @@ namespace VfxEditor.SklbFormat.Layers {
         }
 
         public void Draw() {
-            Id.Draw( IsSklb ? CommandManager.Sklb : CommandManager.Skp );
+            Id.Draw( CommandManager.Sklb );
             BonesView.Draw();
         }
     }
 
     public unsafe class SklbLayerBone : IUiItem {
-        // For Sklb
-        public bool IsSklb => File != null;
         public readonly SklbFile File;
         public readonly ParsedBoneIndex Bone = new( "##Bone", -1 ); // Don't want the label to actually appear
-
-        // For Skp
-        public readonly ParsedShort SkpBone = new( "##Bone", -1 );
 
         public SklbLayerBone( SklbFile file ) {
             File = file;
         }
 
-        public SklbLayerBone( SklbFile file, BinaryReader reader ) : this( file ) {
-            if( IsSklb ) Bone.Read( reader );
-            else SkpBone.Read( reader );
+        public SklbLayerBone( SklbFile file, BinaryReader reader ) {
+            File = file;
+            Bone.Read( reader );
         }
 
         public void Write( BinaryWriter writer ) {
-            if( IsSklb ) Bone.Write( writer );
-            else SkpBone.Write( writer );
+            Bone.Write( writer );
         }
 
         public void Draw() {
-            if( IsSklb ) Bone.Draw( File.Bones.Bones );
-            else SkpBone.Draw( CommandManager.Skp );
+            Bone.Draw( File.Bones.Bones );
         }
     }
 }

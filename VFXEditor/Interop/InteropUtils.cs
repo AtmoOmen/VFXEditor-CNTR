@@ -11,27 +11,21 @@ using VfxEditor.Structs;
 
 namespace VfxEditor.Interop {
     public static unsafe class InteropUtils {
-        public static void Run( string exePath, string arguments, bool captureOutput, out string output ) {
-            output = "";
-
+        public static void Run( string exePath, string arguments ) {
             // Use ProcessStartInfo class
             var startInfo = new ProcessStartInfo {
-                CreateNoWindow = true,
+                CreateNoWindow = false,
                 UseShellExecute = false,
                 FileName = Path.Combine( Plugin.RootLocation, "Files", exePath ),
                 WindowStyle = ProcessWindowStyle.Hidden,
-                Arguments = arguments,
-                RedirectStandardOutput = true
+                Arguments = arguments
             };
 
             try {
-                var process = new Process {
-                    StartInfo = startInfo
-                };
-
-                process.Start();
-                if( captureOutput ) output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
+                // Start the process with the info we specified.
+                // Call WaitForExit and then the using statement will close.
+                using var exeProcess = Process.Start( startInfo );
+                exeProcess.WaitForExit();
             }
             catch( Exception e ) {
                 PluginLog.LogError( e, "执行过程中发生错误" );
@@ -62,8 +56,8 @@ namespace VfxEditor.Interop {
             return ret;
         }
 
-        public static byte[] GetDatCategory( uint prefix, string expansion ) {
-            var ret = BitConverter.GetBytes( prefix );
+        public static byte[] GetMusicCategory( string expansion ) {
+            var ret = BitConverter.GetBytes( 12u );
             if( expansion == "ffxiv" ) return ret;
             // music/ex4/BGM_EX4_Field_Ult_Day03.scd
             // 04 00 00 0C
@@ -72,17 +66,16 @@ namespace VfxEditor.Interop {
             return ret;
         }
 
-        public static void PrepPap( IntPtr resource, List<string> ids, List<short> types ) {
-            if( ids == null || types == null ) return;
+        public static void PrepPap( IntPtr resource, List<string> papIds ) {
+            if( papIds == null ) return;
             Marshal.WriteByte( resource + Constants.PrepPapOffset, Constants.PrepPapValue );
         }
 
-        public static void WritePapIds( IntPtr resource, List<string> ids, List<short> types ) {
-            if( ids == null ) return;
+        public static void WritePapIds( IntPtr resource, List<string> papIds ) {
+            if( papIds == null ) return;
             var data = Marshal.ReadIntPtr( resource + Constants.PapIdsOffset );
-            for( var i = 0; i < ids.Count; i++ ) {
-                SafeMemory.WriteString( data + ( i * 40 ), ids[i], Encoding.ASCII );
-                Marshal.WriteInt16( data + ( i * 40 ) + 32, types[i] );
+            for( var i = 0; i < papIds.Count; i++ ) {
+                SafeMemory.WriteString( data + ( i * 40 ), papIds[i], Encoding.ASCII );
                 Marshal.WriteByte( data + ( i * 40 ) + 34, ( byte )i );
             }
         }

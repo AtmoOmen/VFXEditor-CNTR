@@ -10,37 +10,37 @@ namespace VfxEditor.AvfxFormat {
         public readonly bool IsParticle;
         public readonly AvfxEmitter Emitter;
 
-        public readonly AvfxBool Enabled = new( "启用", "bEnb", value: false );
-        public readonly AvfxInt TargetIdx = new( "目标索引", "TgtB", value: -1 );
-        public readonly AvfxInt LocalDirection = new( "本地方向", "LoDr", value: 0 );
-        public readonly AvfxInt CreateTime = new( "创建时间", "CrTm", value: 1 );
-        public readonly AvfxInt CreateCount = new( "创建数", "CrCn", value: 1 );
-        public readonly AvfxInt CreateProbability = new( "创建概率", "CrPr", value: 100 );
-        public readonly AvfxEnum<ParentInfluenceCoordOptions> ParentInfluenceCoord = new( "对子级的影响", "PICd", value: ParentInfluenceCoordOptions.InitialPosition_WithOptions );
-        public readonly AvfxEnum<ParentInfluenceColorOptions> ParentInfluenceColor = new( "对子级颜色的影响", "PICo", value: ParentInfluenceColorOptions.Initial );
-        public readonly AvfxBool InfluenceCoordScale = new( "对缩放的影响", "ICbS", value: false );
-        public readonly AvfxBool InfluenceCoordRot = new( "对旋转的影响", "ICbR", value: false );
-        public readonly AvfxBool InfluenceCoordPos = new( "对位置的影响", "ICbP", value: true );
-        public readonly AvfxBool InfluenceCoordBinderPosition = new( "对绑定点位置的影响", "ICbB", value: false );
-        public readonly AvfxInt InfluenceCoordUnstickiness = new( "对坐标不粘性的影响", "ICSK", value: 0 );
-        public readonly AvfxBool InheritParentVelocity = new( "继承父级速度", "IPbV", value: false );
-        public readonly AvfxBool InheritParentLife = new( "继承父级生命周期", "IPbL", value: false );
-        public readonly AvfxBool OverrideLife = new( "覆盖生命周期", "bOvr", value: false );
-        public readonly AvfxInt OverrideLifeValue = new( "覆盖生命周期值", "OvrV", value: 60 );
-        public readonly AvfxInt OverrideLifeRandom = new( "随机覆盖生命周期", "OvrR", value: 0 );
-        public readonly AvfxInt ParameterLink = new( "参数链接", "PrLk", value: -1 );
-        public readonly AvfxInt StartFrame = new( "起始帧", "StFr", value: 0 );
-        public readonly AvfxBool StartFrameNullUpdate = new( "起始帧空更新", "bStN", value: false );
-        public readonly AvfxFloat ByInjectionAngleX = new( "通过 X 轴注射角度", "BIAX", value: 0 );
-        public readonly AvfxFloat ByInjectionAngleY = new( "通过 Y 轴注射角度", "BIAY", value: 0 );
-        public readonly AvfxFloat ByInjectionAngleZ = new( "通过 Z 轴注射角度", "BIAZ", value: 0 );
+        public readonly AvfxBool Enabled = new( "启用", "bEnb", defaultValue: false );
+        public readonly AvfxInt TargetIdx = new( "目标索引", "TgtB", defaultValue: -1 );
+        public readonly AvfxInt LocalDirection = new( "本地方向", "LoDr", defaultValue: 0 );
+        public readonly AvfxInt CreateTime = new( "创建时间", "CrTm", defaultValue: 1 );
+        public readonly AvfxInt CreateCount = new( "创建数", "CrCn", defaultValue: 1 );
+        public readonly AvfxInt CreateProbability = new( "创建概率", "CrPr", defaultValue: 100 );
+        public readonly AvfxEnum<ParentInfluenceCoordOptions> ParentInfluenceCoord = new( "对子级的影响", "PICd", defaultValue: ParentInfluenceCoordOptions.InitialPosition_WithOptions );
+        public readonly AvfxEnum<ParentInfluenceColorOptions> ParentInfluenceColor = new( "对子级颜色的影响", "PICo", defaultValue: ParentInfluenceColorOptions.Initial );
+        public readonly AvfxBool InfluenceCoordScale = new( "对缩放的影响", "ICbS", defaultValue: false );
+        public readonly AvfxBool InfluenceCoordRot = new( "对旋转的影响", "ICbR", defaultValue: false );
+        public readonly AvfxBool InfluenceCoordPos = new( "对位置的影响", "ICbP", defaultValue: true );
+        public readonly AvfxBool InfluenceCoordBinderPosition = new( "对绑定点位置的影响", "ICbB", defaultValue: false );
+        public readonly AvfxInt InfluenceCoordUnstickiness = new( "对坐标不粘性的影响", "ICSK", defaultValue: 0 );
+        public readonly AvfxBool InheritParentVelocity = new( "继承父级速度", "IPbV", defaultValue: false );
+        public readonly AvfxBool InheritParentLife = new( "继承父级生命周期", "IPbL", defaultValue: false );
+        public readonly AvfxBool OverrideLife = new( "覆盖生命周期", "bOvr", defaultValue: false );
+        public readonly AvfxInt OverrideLifeValue = new( "覆盖生命周期值", "OvrV", defaultValue: 60 );
+        public readonly AvfxInt OverrideLifeRandom = new( "随机覆盖生命周期", "OvrR", defaultValue: 0 );
+        public readonly AvfxInt ParameterLink = new( "参数链接", "PrLk", defaultValue: -1 );
+        public readonly AvfxInt StartFrame = new( "起始帧", "StFr", defaultValue: 0 );
+        public readonly AvfxBool StartFrameNullUpdate = new( "起始帧空更新", "bStN", defaultValue: false );
+        public readonly AvfxFloat ByInjectionAngleX = new( "通过 X 轴注射角度", "BIAX", defaultValue: 0 );
+        public readonly AvfxFloat ByInjectionAngleY = new( "通过 Y 轴注射角度", "BIAY", defaultValue: 0 );
+        public readonly AvfxFloat ByInjectionAngleZ = new( "通过 Z 轴注射角度", "BIAZ", defaultValue: 0 );
         public readonly AvfxInt GenerateDelay = new( "生成延迟", "GenD", 0 );
-        public readonly AvfxBool GenerateDelayByOne = new( "生成 1 单元延迟", "bGD", value: false );
+        public readonly AvfxBool GenerateDelayByOne = new( "生成 1 单元延迟", "bGD", false );
 
         private readonly List<AvfxBase> Parsed;
 
-        public AvfxNodeSelect<AvfxParticle> ParticleSelect;
-        public AvfxNodeSelect<AvfxEmitter> EmitterSelect;
+        public UiNodeSelect<AvfxParticle> ParticleSelect;
+        public UiNodeSelect<AvfxEmitter> EmitterSelect;
 
         private readonly List<IUiItem> Display;
         private readonly List<IUiItem> CoordOptionsDisplay;
@@ -116,8 +116,8 @@ namespace VfxEditor.AvfxFormat {
         public AvfxEmitterItem( bool isParticle, AvfxEmitter emitter, bool initNodeSelects, BinaryReader reader ) : this( isParticle, emitter, initNodeSelects ) => AvfxBase.ReadNested( reader, Parsed, 312 );
 
         public void InitializeNodeSelects() {
-            if( IsParticle ) ParticleSelect = new AvfxNodeSelect<AvfxParticle>( Emitter, "目标粒子", Emitter.NodeGroups.Particles, TargetIdx );
-            else EmitterSelect = new AvfxNodeSelect<AvfxEmitter>( Emitter, "目标发射器", Emitter.NodeGroups.Emitters, TargetIdx );
+            if( IsParticle ) ParticleSelect = new UiNodeSelect<AvfxParticle>( Emitter, "目标粒子", Emitter.NodeGroups.Particles, TargetIdx );
+            else EmitterSelect = new UiNodeSelect<AvfxEmitter>( Emitter, "目标发射器", Emitter.NodeGroups.Emitters, TargetIdx );
         }
 
         public void Write( BinaryWriter writer ) => AvfxBase.WriteNested( writer, Parsed );
@@ -132,7 +132,7 @@ namespace VfxEditor.AvfxFormat {
             AvfxBase.DrawItems( Display );
 
             ParentInfluenceCoord.Draw();
-            var influenceType = ParentInfluenceCoord.Value;
+            var influenceType = ParentInfluenceCoord.GetValue();
             var allowOptions = influenceType == ParentInfluenceCoordOptions.InitialPosition_WithOptions || influenceType == ParentInfluenceCoordOptions.WithOptions_NoPosition;
             if( !allowOptions ) ImGui.PushStyleVar( ImGuiStyleVar.Alpha, 0.5f );
             AvfxBase.DrawItems( CoordOptionsDisplay );

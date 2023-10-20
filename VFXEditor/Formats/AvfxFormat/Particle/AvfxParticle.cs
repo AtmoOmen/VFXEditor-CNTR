@@ -2,6 +2,7 @@ using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
+using VfxEditor.AvfxFormat.Nodes;
 using static VfxEditor.AvfxFormat.Enums;
 
 namespace VfxEditor.AvfxFormat {
@@ -230,7 +231,7 @@ namespace VfxEditor.AvfxFormat {
                 TP
             } );
 
-            ParticleVariety.Command = () => {
+            ParticleVariety.Parsed.ExtraCommandGenerator = () => {
                 return new AvfxParticleDataCommand( this );
             };
         }
@@ -238,7 +239,7 @@ namespace VfxEditor.AvfxFormat {
         public override void ReadContents( BinaryReader reader, int size ) {
             Peek( reader, Parsed, size );
             Peek( reader, Parsed2, size );
-            var particleType = ParticleVariety.Value;
+            var particleType = ParticleVariety.GetValue();
 
             ReadNested( reader, ( BinaryReader _reader, string _name, int _size ) => {
                 if( _name == "Data" ) {
@@ -261,8 +262,8 @@ namespace VfxEditor.AvfxFormat {
             RecurseAssigned( Parsed2, assigned );
         }
 
-        public override void WriteContents( BinaryWriter writer ) {
-            UVSetCount.Value = UvSets.Count;
+        protected override void WriteContents( BinaryWriter writer ) {
+            UVSetCount.SetValue( UvSets.Count );
             WriteNested( writer, Parsed );
 
             foreach( var uvSet in UvSets ) uvSet.Write( writer );
@@ -328,7 +329,7 @@ namespace VfxEditor.AvfxFormat {
             Data.Draw();
         }
 
-        public override string GetDefaultText() => $"Particle {GetIdx()} ({ParticleVariety.Value})";
+        public override string GetDefaultText() => $"Particle {GetIdx()} ({ParticleVariety.GetValue()})";
 
         public override string GetWorkspaceId() => $"Ptcl{GetIdx()}";
     }

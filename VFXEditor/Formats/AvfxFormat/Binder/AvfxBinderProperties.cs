@@ -9,13 +9,13 @@ namespace VfxEditor.AvfxFormat {
         public readonly string Name;
 
         public readonly AvfxEnum<BindPoint> BindPointType = new( "绑定点类型", "BPT" );
-        public readonly AvfxEnum<BindTargetPoint> BindTargetPointType = new( "绑定目标点类型", "BPTP", value: BindTargetPoint.ByName );
-        public readonly AvfxString BinderName = new( "Name", "Name", true, true );
-        public readonly AvfxInt BindPointId = new( "绑定点 ID", "BPID", value: 3 );
+        public readonly AvfxEnum<BindTargetPoint> BindTargetPointType = new( "绑定目标点类型", "BPTP", defaultValue: BindTargetPoint.ByName );
+        public readonly AvfxString BinderName = new( "Name", "Name", showRemoveButton: true );
+        public readonly AvfxInt BindPointId = new( "绑定点 ID", "BPID", defaultValue: 3 );
         public readonly AvfxInt GenerateDelay = new( "生成延迟", "GenD" );
-        public readonly AvfxInt CoordUpdateFrame = new( "坐标更新帧", "CoUF", value: -1 );
+        public readonly AvfxInt CoordUpdateFrame = new( "坐标更新帧", "CoUF", defaultValue: -1 );
         public readonly AvfxBool RingEnable = new( "启用环", "bRng" );
-        public readonly AvfxInt RingProgressTime = new( "环进度时间", "RnPT", value: 1 );
+        public readonly AvfxInt RingProgressTime = new( "环进度时间", "RnPT", defaultValue: 1 );
         public readonly AvfxFloat RingPositionX = new( "X 轴环位置", "RnPX" );
         public readonly AvfxFloat RingPositionY = new( "Y 轴环位置", "RnPY" );
         public readonly AvfxFloat RingPositionZ = new( "Z 轴环位置", "RnPZ" );
@@ -103,7 +103,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
+        protected override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
 
         public override void DrawUnassigned() {
             using var _ = ImRaii.PushId( Name );

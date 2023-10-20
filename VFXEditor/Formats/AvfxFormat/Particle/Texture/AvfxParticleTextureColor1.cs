@@ -18,8 +18,8 @@ namespace VfxEditor.AvfxFormat {
         public readonly AvfxEnum<TextureBorderType> TextureBorderV = new( "垂直材质边界", "TBVT" );
         public readonly AvfxEnum<TextureCalculateColor> TextureCalculateColor = new( "Calculate Color", "TCCT" );
         public readonly AvfxEnum<TextureCalculateAlpha> TextureCalculateAlpha = new( "Calculate Alpha", "TCAT" );
-        public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", value: -1 );
-        public readonly AvfxIntList MaskTextureIdx = new( "Mask Index", "TLst", value: -1 );
+        public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", defaultValue: -1 );
+        public readonly AvfxIntList MaskTextureIdx = new( "Mask Index", "TLst", defaultValue: -1 );
         public readonly AvfxCurve TexN = new( "TexN", "TxN" );
         public readonly AvfxCurve TexNRandom = new( "TexN Random", "TxNR" );
 
@@ -66,7 +66,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
+        protected override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
 
         public override void DrawUnassigned() {
             using var _ = ImRaii.PushId( "TC1" );
@@ -90,8 +90,8 @@ namespace VfxEditor.AvfxFormat {
 
         public override string GetDefaultText() => "材质颜色 1";
 
-        public override List<AvfxNodeSelect> GetNodeSelects() => new() {
-            new AvfxNodeSelectList<AvfxTexture>( Particle, "Mask Texture", Particle.NodeGroups.Textures, MaskTextureIdx )
+        public override List<UiNodeSelect> GetNodeSelects() => new() {
+            new UiNodeSelectList<AvfxTexture>( Particle, "Mask Texture", Particle.NodeGroups.Textures, MaskTextureIdx )
         };
     }
 }

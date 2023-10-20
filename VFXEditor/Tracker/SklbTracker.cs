@@ -10,20 +10,20 @@ namespace VfxEditor.Tracker {
         public SklbTracker() { }
 
         public override void PopulateAll( HashSet<TrackerItem> displayItems ) {
-            foreach( var item in Dalamud.Objects ) {
+            foreach( var item in Plugin.Objects ) {
                 PopulateSklbs( ( GameObject* )item.Address, displayItems );
             }
         }
 
         public override void Populate( List<TrackerItemWithPosition> floatingItems, Dictionary<int, HashSet<TrackerItem>> actorToItems, Dictionary<IntPtr, HashSet<TrackerItem>> addressToItems ) {
-            foreach( var item in Dalamud.Objects ) {
+            foreach( var item in Plugin.Objects ) {
                 var paths = new HashSet<TrackerItem>();
                 PopulateSklbs( ( GameObject* )item.Address, paths );
 
                 if( paths.Count == 0 ) continue;
 
                 var id = new IntPtr( item.Address );
-                if( !addressToItems.ContainsKey( id ) ) addressToItems[id] = new();
+                if( !addressToItems.ContainsKey( id ) ) addressToItems[id] = new HashSet<TrackerItem>();
 
                 foreach( var path in paths ) {
                     addressToItems[id].Add( path );

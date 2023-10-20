@@ -28,7 +28,9 @@ namespace VfxEditor.ScdFormat {
         public readonly CommandSplitView<ScdTrackEntry> TrackView;
         public readonly UiSplitView<ScdAttributeEntry> AttributeView;
 
-        public ScdFile( BinaryReader reader, bool verify ) : base( new( Plugin.ScdManager ) ) {
+        public ScdFile( BinaryReader reader, bool checkOriginal = true ) : base( new( Plugin.ScdManager ) ) {
+            var original = checkOriginal ? FileUtils.GetOriginal( reader ) : null;
+
             Header = new( reader );
             OffsetsHeader = new( reader );
 
@@ -63,7 +65,7 @@ namespace VfxEditor.ScdFormat {
                 Sounds.Add( newSound );
             }
 
-            if( verify ) Verified = FileUtils.Verify( reader, ToBytes(), null );
+            if( checkOriginal ) Verified = FileUtils.CompareFiles( original, ToBytes(), out var _ );
             if( OffsetsHeader.Modded ) Verified = VerifiedStatus.UNSUPPORTED;
 
             AudioSplitView = new( Audio );

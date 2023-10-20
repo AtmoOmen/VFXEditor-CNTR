@@ -6,11 +6,12 @@ using VfxEditor.Data;
 namespace VfxEditor.AvfxFormat {
     public class AvfxIntList : AvfxDrawable {
         public readonly string Name;
-        private int Size;
-        private readonly List<int> Items = new() { 0 };
 
-        public AvfxIntList( string name, string avfxName, int value, int size = 1 ) : this( name, avfxName, size ) {
-            SetItems( value );
+        private int Size;
+        private readonly List<int> Value = new() { 0 };
+
+        public AvfxIntList( string name, string avfxName, int defaultValue, int size = 1 ) : this( name, avfxName, size ) {
+            SetValue( defaultValue );
         }
 
         public AvfxIntList( string name, string avfxName, int size = 1 ) : base( avfxName ) {
@@ -18,44 +19,44 @@ namespace VfxEditor.AvfxFormat {
             Size = size;
         }
 
-        public List<int> GetItems() => Items;
+        public List<int> GetValue() => Value;
 
-        public void SetItems( List<int> value ) {
+        public void SetValue( List<int> value ) {
             SetAssigned( true );
-            Items.Clear();
-            Items.AddRange( value );
-            Size = Items.Count;
+            Value.Clear();
+            Value.AddRange( value );
+            Size = Value.Count;
         }
 
-        public void SetItems( int value ) => SetItems( new List<int> { value } );
+        public void SetValue( int value ) => SetValue( new List<int> { value } );
 
-        public void SetItem( int value, int idx ) {
+        public void SetValue( int value, int idx ) {
             SetAssigned( true );
-            Items[idx] = value;
+            Value[idx] = value;
         }
 
         public void AddItem( int item ) {
             SetAssigned( true );
             Size++;
-            Items.Add( item );
+            Value.Add( item );
         }
 
         public void RemoveItem( int idx ) {
             SetAssigned( true );
             Size--;
-            Items.Remove( idx );
+            Value.Remove( idx );
         }
 
         public override void ReadContents( BinaryReader reader, int size ) {
             Size = size;
-            Items.Clear();
-            for( var i = 0; i < Size; i++ ) Items.Add( reader.ReadByte() );
+            Value.Clear();
+            for( var i = 0; i < Size; i++ ) Value.Add( reader.ReadByte() );
         }
 
         protected override void RecurseChildrenAssigned( bool assigned ) { }
 
-        public override void WriteContents( BinaryWriter writer ) {
-            foreach( var item in Items ) writer.Write( ( byte )item );
+        protected override void WriteContents( BinaryWriter writer ) {
+            foreach( var item in Value ) writer.Write( ( byte )item );
         }
 
         public override void Draw() {
@@ -65,10 +66,10 @@ namespace VfxEditor.AvfxFormat {
 
             // Copy/Paste
             var manager = CopyManager.Avfx;
-            if( manager.IsCopying ) manager.Ints[Name] = Items[0];
+            if( manager.IsCopying ) manager.Ints[Name] = Value[0];
             if( manager.IsPasting && manager.Ints.TryGetValue( Name, out var val ) ) manager.PasteCommand.Add( new AvfxIntListCommand( this, val ) );
 
-            var value = Items[0];
+            var value = Value[0];
             if( ImGui.InputInt( Name, ref value ) ) {
                 CommandManager.Avfx.Add( new AvfxIntListCommand( this, value ) );
             }

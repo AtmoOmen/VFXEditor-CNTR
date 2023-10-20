@@ -40,10 +40,10 @@ namespace VfxEditor.Select.Pap.Job {
                 var drawPath = SelectDataUtils.GetSkeletonPath( skeleton, $"{drawJobId}/resident/sub.pap" );
 
                 var raceGeneral = new Dictionary<string, string>();
-                if( Dalamud.DataManager.FileExists( idlePath ) ) raceGeneral.Add( "闲置动作", idlePath );
-                if( Dalamud.DataManager.FileExists( movePathA ) ) raceGeneral.Add( "移动动作 A", movePathA );
-                if( Dalamud.DataManager.FileExists( movePathB ) ) raceGeneral.Add( "移动动作 B", movePathB );
-                if( Dalamud.DataManager.FileExists( drawPath ) ) raceGeneral.Add( "Draw Weapon", drawPath );
+                if( Plugin.DataManager.FileExists( idlePath ) ) raceGeneral.Add( "闲置动作", idlePath );
+                if( Plugin.DataManager.FileExists( movePathA ) ) raceGeneral.Add( "移动动作 A", movePathA );
+                if( Plugin.DataManager.FileExists( movePathB ) ) raceGeneral.Add( "移动动作 B", movePathB );
+                if( Plugin.DataManager.FileExists( drawPath ) ) raceGeneral.Add( "Draw Weapon", drawPath );
                 general.Add( raceName, raceGeneral );
 
                 // Pose
@@ -51,7 +51,7 @@ namespace VfxEditor.Select.Pap.Job {
                 var start = SelectDataUtils.GetSkeletonPath( skeleton, $"{jobId}/emote/b_pose01_start.pap" );
                 var loop = SelectDataUtils.GetSkeletonPath( skeleton, $"{jobId}/emote/b_pose01_loop.pap" );
 
-                if( Dalamud.DataManager.FileExists( start ) && Dalamud.DataManager.FileExists( loop ) ) {
+                if( Plugin.DataManager.FileExists( start ) && Plugin.DataManager.FileExists( loop ) ) {
                     poses.Add( raceName, new Dictionary<string, string>() {
                         { "开始", start },
                         { "循环", loop }
@@ -65,8 +65,8 @@ namespace VfxEditor.Select.Pap.Job {
                 for( var i = 1; i <= 3; i++ ) {
                     var autoPath = SelectDataUtils.GetSkeletonPath( skeleton, $"{autoJobId}/battle/auto_attack{i}.pap" );
                     var autoShotPath = SelectDataUtils.GetSkeletonPath( skeleton, $"{autoJobId}/battle/auto_attack_shot{i}.pap" );
-                    if( Dalamud.DataManager.FileExists( autoPath ) ) autoPaths.Add( autoPath );
-                    if( Dalamud.DataManager.FileExists( autoShotPath ) ) autoPaths.Add( autoShotPath );
+                    if( Plugin.DataManager.FileExists( autoPath ) ) autoPaths.Add( autoPath );
+                    if( Plugin.DataManager.FileExists( autoShotPath ) ) autoPaths.Add( autoShotPath );
                 }
 
                 var raceAutos = new Dictionary<string, string>();

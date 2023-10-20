@@ -45,18 +45,17 @@ namespace VfxEditor.PapFormat {
             ImGui.Checkbox( "Compress Animation", ref Compress );
 
             var text = AnimationNames.Count == 0 ? "[无]" : AnimationNames[AnimationIndex];
-            using( var combo = ImRaii.Combo( "Animation to Import", text ) ) {
-                if( combo ) {
-                    for( var i = 0; i < AnimationNames.Count; i++ ) {
-                        using var _ = ImRaii.PushId( i );
-                        if( ImGui.Selectable( $"{AnimationNames[i]}##Name", i == AnimationIndex ) ) {
-                            AnimationIndex = i;
-                        }
+            var combo = ImRaii.Combo( "Animation to Import", text );
+            if( combo ) {
+                for( var i = 0; i < AnimationNames.Count; i++ ) {
+                    using var _ = ImRaii.PushId( i );
+                    if( ImGui.Selectable( $"{AnimationNames[i]}##Name", i == AnimationIndex ) ) {
+                        AnimationIndex = i;
                     }
                 }
             }
 
-            using var nodes = ImRaii.TreeNode( "Nodes Being Imported" );
+            var nodes = ImRaii.TreeNode( "Nodes Being Imported" );
             if( nodes ) {
                 using var child = ImRaii.Child( "子级", new( ImGui.GetContentRegionAvail().X, 300 ) );
                 using var _ = ImRaii.PushIndent();

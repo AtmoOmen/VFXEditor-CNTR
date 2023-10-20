@@ -13,7 +13,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) { }
 
-        public override void WriteContents( BinaryWriter writer ) {
+        protected override void WriteContents( BinaryWriter writer ) {
             foreach( var index in Indexes ) index.Write( writer );
         }
     }

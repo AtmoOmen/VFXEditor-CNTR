@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using VfxEditor.AvfxFormat.Dialogs;
+using VfxEditor.AvfxFormat.Nodes;
 using VfxEditor.FileManager;
 using VfxEditor.Ui.Interfaces;
 using VfxEditor.Utils;
@@ -32,11 +33,12 @@ namespace VfxEditor.AvfxFormat {
 
         private readonly HashSet<IUiItem> ForceOpenTabs = new();
 
-        public AvfxFile( BinaryReader reader, bool verify ) : base( new( Plugin.AvfxManager ) ) {
+        public AvfxFile( BinaryReader reader, bool checkOriginal = true ) : base( new( Plugin.AvfxManager ) ) {
+            var original = checkOriginal ? FileUtils.GetOriginal( reader ) : null;
+
             Main = AvfxMain.FromStream( reader );
 
-            var data = ToBytes();
-            if( verify ) Verified = FileUtils.Verify( reader, ToBytes(), new() { (8, data.Length) } );
+            if( checkOriginal ) Verified = FileUtils.CompareFiles( original, ToBytes(), 8, out var _ );
 
             NodeGroupSet = Main.NodeGroupSet;
 
@@ -138,13 +140,13 @@ namespace VfxEditor.AvfxFormat {
         }
 
         private ICommand GetRemoveCommand( AvfxNode node ) {
-            if( node is AvfxTimeline timeline ) return new AvfxNodeViewRemoveCommand<AvfxTimeline>( TimelineView, TimelineView.GetGroup(), timeline );
-            if( node is AvfxEmitter emitter ) return new AvfxNodeViewRemoveCommand<AvfxEmitter>( EmitterView, EmitterView.GetGroup(), emitter );
-            if( node is AvfxParticle particle ) return new AvfxNodeViewRemoveCommand<AvfxParticle>( ParticleView, ParticleView.GetGroup(), particle );
-            if( node is AvfxEffector effector ) return new AvfxNodeViewRemoveCommand<AvfxEffector>( EffectorView, EffectorView.GetGroup(), effector );
-            if( node is AvfxBinder binder ) return new AvfxNodeViewRemoveCommand<AvfxBinder>( BinderView, BinderView.GetGroup(), binder );
-            if( node is AvfxTexture texture ) return new AvfxNodeViewRemoveCommand<AvfxTexture>( TextureView, TextureView.GetGroup(), texture );
-            if( node is AvfxModel model ) return new AvfxNodeViewRemoveCommand<AvfxModel>( ModelView, ModelView.GetGroup(), model );
+            if( node is AvfxTimeline timeline ) return new UiNodeViewRemoveCommand<AvfxTimeline>( TimelineView, TimelineView.GetGroup(), timeline );
+            if( node is AvfxEmitter emitter ) return new UiNodeViewRemoveCommand<AvfxEmitter>( EmitterView, EmitterView.GetGroup(), emitter );
+            if( node is AvfxParticle particle ) return new UiNodeViewRemoveCommand<AvfxParticle>( ParticleView, ParticleView.GetGroup(), particle );
+            if( node is AvfxEffector effector ) return new UiNodeViewRemoveCommand<AvfxEffector>( EffectorView, EffectorView.GetGroup(), effector );
+            if( node is AvfxBinder binder ) return new UiNodeViewRemoveCommand<AvfxBinder>( BinderView, BinderView.GetGroup(), binder );
+            if( node is AvfxTexture texture ) return new UiNodeViewRemoveCommand<AvfxTexture>( TextureView, TextureView.GetGroup(), texture );
+            if( node is AvfxModel model ) return new UiNodeViewRemoveCommand<AvfxModel>( ModelView, ModelView.GetGroup(), model );
             return null;
         }
 

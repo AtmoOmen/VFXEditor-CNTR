@@ -11,7 +11,7 @@ namespace VfxEditor.AvfxFormat {
         public readonly AvfxBool UseScreenCopy = new( "Use Screen Copy", "bUSC" );
         public readonly AvfxEnum<TextureFilterType> TextureFilter = new( "材质筛选器", "TFT" );
         public readonly AvfxEnum<TextureCalculateColor> TextureCalculateColorType = new( "Calculate Color", "TCCT" );
-        public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", value: -1 );
+        public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", defaultValue: -1 );
         public readonly AvfxCurve Rate = new( "Rate", "Rate" );
         public readonly AvfxCurve RPow = new( "强度", "RPow" );
 
@@ -47,7 +47,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
+        protected override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
 
         public override void DrawUnassigned() {
             using var _ = ImRaii.PushId( "TR" );
@@ -65,8 +65,8 @@ namespace VfxEditor.AvfxFormat {
 
         public override string GetDefaultText() => "Texture Reflection";
 
-        public override List<AvfxNodeSelect> GetNodeSelects() => new() {
-            new AvfxNodeSelect<AvfxTexture>( Particle, "材质", Particle.NodeGroups.Textures, TextureIdx )
+        public override List<UiNodeSelect> GetNodeSelects() => new() {
+            new UiNodeSelect<AvfxTexture>( Particle, "材质", Particle.NodeGroups.Textures, TextureIdx )
         };
     }
 }

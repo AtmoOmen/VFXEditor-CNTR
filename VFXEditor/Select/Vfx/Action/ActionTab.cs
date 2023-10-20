@@ -4,7 +4,7 @@ using System.Linq;
 using VfxEditor.Select.Shared;
 
 namespace VfxEditor.Select.Vfx.Action {
-    public class ActionTab : SelectTab<ActionRow, ParsedPaths> {
+    public class ActionTab : SelectTab<ActionRow, ParseAvfx> {
         public ActionTab( SelectDialog dialog, string name ) : this( dialog, name, "Vfx-Action" ) { }
 
         public ActionTab( SelectDialog dialog, string name, string stateId ) : base( dialog, name, stateId, SelectResultType.GameAction ) { }
@@ -12,22 +12,22 @@ namespace VfxEditor.Select.Vfx.Action {
         // ===== LOADING =====
 
         public override void LoadData() {
-            var sheet = Dalamud.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.Action>()
+            var sheet = Plugin.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.Action>()
                 .Where( x => !string.IsNullOrEmpty( x.Name ) && ( x.IsPlayerAction || x.ClassJob.Value != null ) );
             foreach( var item in sheet ) {
-                var action = new ActionRow( item, false );
-                Items.Add( action );
-                if( action.HitAction != null ) Items.Add( action.HitAction );
+                var actionItem = new ActionRow( item, false );
+                if( actionItem.HasVfx ) Items.Add( actionItem );
+                if( actionItem.HitAction != null ) Items.Add( actionItem.HitAction );
             }
         }
 
-        public override void LoadSelection( ActionRow item, out ParsedPaths loaded ) {
-            if( string.IsNullOrEmpty( item.TmbPath ) ) { // no need to get the file
-                loaded = new ParsedPaths();
+        public override void LoadSelection( ActionRow item, out ParseAvfx loaded ) {
+            if( string.IsNullOrEmpty( item.SelfTmbKey ) ) { // no need to get the file
+                loaded = new ParseAvfx();
                 return;
             }
 
-            ParsedPaths.ReadFile( item.TmbPath, SelectDataUtils.AvfxRegex, out loaded );
+            ParseAvfx.ReadFile( item.TmbPath, out loaded );
         }
 
         // ===== DRAWING ======
@@ -51,7 +51,7 @@ namespace VfxEditor.Select.Vfx.Action {
             DrawPath( "咏唱", Selected.CastVfxPath, $"{Selected.Name} 咏唱", true );
             DrawPath( "开始", Selected.StartVfxPath, $"{Selected.Name} 开始", true );
             if( !string.IsNullOrEmpty( Loaded.OriginalPath ) ) {
-                DrawPaths( "VFX", Loaded.Paths, Selected.Name, true );
+                DrawPaths( "VFX", Loaded.VfxPaths, Selected.Name, true );
             }
         }
 

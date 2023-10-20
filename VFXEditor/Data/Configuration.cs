@@ -109,7 +109,6 @@ namespace VfxEditor {
         public bool DocumentPopoutShowSource = false;
 
         public bool PhybSkeletonSplit = true;
-        public bool EidSkeletonSplit = true;
         public bool ShowBoneNames = true;
 
         public BoneDisplay SklbBoneDisplay = BoneDisplay.Blender_Style_Perpendicular;
@@ -132,7 +131,7 @@ namespace VfxEditor {
         public Configuration() : base( "设置", false, 300, 200 ) { }
 
         public void Setup() {
-            Dalamud.PluginInterface.UiBuilder.DisableUserUiHide = !HideWithUI;
+            Plugin.PluginInterface.UiBuilder.DisableUserUiHide = !HideWithUI;
             FileDialogManager.ImagePreview = FilepickerImagePreview;
 
             // Move old configurations over to new
@@ -179,11 +178,9 @@ namespace VfxEditor {
         }
 
         public void Save() {
-            Dalamud.PluginInterface.SavePluginConfig( this );
-            Dalamud.PluginInterface.UiBuilder.DisableUserUiHide = !HideWithUI;
+            Plugin.PluginInterface.SavePluginConfig( this );
+            Plugin.PluginInterface.UiBuilder.DisableUserUiHide = !HideWithUI;
         }
-
-        // =================
 
         public override void DrawBody() {
             using var _ = ImRaii.PushId( "##Settings" );

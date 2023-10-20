@@ -3,7 +3,6 @@ using ImGuiNET;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace VfxEditor.Utils {
@@ -21,12 +20,6 @@ namespace VfxEditor.Utils {
         public static void WriteString( BinaryWriter writer, string str, bool writeNull = false ) {
             writer.Write( Encoding.ASCII.GetBytes( str.Trim().Trim( '\0' ) ) );
             if( writeNull ) writer.Write( ( byte )0 );
-        }
-
-        public static void WriteMagic( BinaryWriter writer, string data ) {
-            var bytes = Encoding.ASCII.GetBytes( Reverse( data ) );
-            writer.Write( bytes );
-            Pad( writer, 4 - bytes.Length );
         }
 
         public static bool ShortInput( string id, ref short value ) {
@@ -49,26 +42,28 @@ namespace VfxEditor.Utils {
             return false;
         }
 
-        private static byte[] GetOriginal( BinaryReader reader ) {
+        public static byte[] GetOriginal( BinaryReader reader ) {
             var savePos = reader.BaseStream.Position;
-            reader.BaseStream.Seek( 0, SeekOrigin.Begin );
+            var res = ReadAllBytes( reader );
+            reader.BaseStream.Seek( savePos, SeekOrigin.Begin );
+            return res;
+        }
 
+        public static byte[] ReadAllBytes( BinaryReader reader ) {
             const int bufferSize = 4096;
             using var ms = new MemoryStream();
             var buffer = new byte[bufferSize];
             int count;
             while( ( count = reader.Read( buffer, 0, buffer.Length ) ) != 0 )
                 ms.Write( buffer, 0, count );
-
-            reader.BaseStream.Seek( savePos, SeekOrigin.Begin );
-
             return ms.ToArray();
-
         }
 
-        public static VerifiedStatus Verify( BinaryReader originalReader, byte[] data, List<(int, int)> ignore ) {
+        public static VerifiedStatus CompareFiles( byte[] original, byte[] data, out int diffIdx ) => CompareFiles( original, data, -1, out diffIdx );
+
+        public static VerifiedStatus CompareFiles( byte[] original, byte[] data, int minIdx, out int diffIdx ) {
+            diffIdx = -1;
             var ret = true;
-            var original = GetOriginal( originalReader );
 
             if( data.Length != original.Length ) {
                 PluginLog.Error( $"Files have different lengths {data.Length:X8} / {original.Length:X8}" );
@@ -76,21 +71,14 @@ namespace VfxEditor.Utils {
             }
 
             for( var idx = 0; idx < Math.Min( data.Length, original.Length ); idx++ ) {
-                if( data[idx] != original[idx] && ( ignore == null || !ignore.Any( x => idx >= x.Item1 && idx < x.Item2 ) ) ) {
+                if( idx > minIdx && data[idx] != original[idx] ) {
+                    diffIdx = idx;
                     PluginLog.Error( $"Files do not match at {idx:X8} : {data[idx]:X8} / {original[idx]:X8}" );
-
-                    if( ignore != null ) {
-                        foreach( var item in ignore ) PluginLog.Error( $">> Ignored [{item.Item1:X8},{item.Item2:X8})" );
-                    }
-
                     return VerifiedStatus.ERROR;
                 }
             }
-
             return ret ? VerifiedStatus.OK : VerifiedStatus.ERROR;
         }
-
-        public static string Reverse( string data ) => new( data.ToCharArray().Reverse().ToArray() );
 
         public static long PadTo( BinaryWriter writer, long multiple ) => PadTo( writer, writer.BaseStream.Position, multiple );
 

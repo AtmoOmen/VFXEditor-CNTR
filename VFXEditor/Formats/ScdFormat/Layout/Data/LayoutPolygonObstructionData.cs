@@ -12,6 +12,7 @@ namespace VfxEditor.ScdFormat {
 
         public LayoutPolygonObstructionData() {
             Parsed = new() {
+                // Positions go here
                 ObstacleFac,
                 HiCutFac,
                 Flags,

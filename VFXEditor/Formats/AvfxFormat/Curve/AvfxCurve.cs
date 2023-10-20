@@ -3,7 +3,6 @@ using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using VfxEditor.Ui.Interfaces;
 using static VfxEditor.AvfxFormat.Enums;
 
@@ -41,7 +40,7 @@ namespace VfxEditor.AvfxFormat {
             CurveEditor = new UiCurveEditor( this, type );
             Display = new() {
                 PreBehavior,
-                PostBehavior,
+                PostBehavior
             };
             if( type != CurveType.Color ) Display.Add( Random );
         }
@@ -53,7 +52,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) {
+        protected override void WriteContents( BinaryWriter writer ) {
             WriteLeaf( writer, "KeyC", 4, Keys.Keys.Count );
             WriteNested( writer, Parsed );
         }
@@ -79,31 +78,13 @@ namespace VfxEditor.AvfxFormat {
         // ======== STATIC DRAW ==========
 
         public static void DrawUnassignedCurves( List<AvfxCurve> curves ) {
-            var first = true;
-            var currentX = 0f;
-            var maxX = ImGui.GetContentRegionAvail().X;
-            var imguiStyle = ImGui.GetStyle();
-            var spacing = imguiStyle.ItemInnerSpacing.X;
-
-            using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( spacing, imguiStyle.ItemSpacing.Y ) );
-
-            foreach( var curve in curves.Where( x => !x.IsAssigned() ) ) {
-                var width = ImGui.CalcTextSize( $"+ {curve.Name}" ).X + imguiStyle.FramePadding.X * 2 + spacing;
-                if( first ) {
-                    currentX += width;
+            var assignedIdx = 0;
+            foreach( var curve in curves ) {
+                if( !curve.IsAssigned() ) {
+                    if( assignedIdx % 5 != 0 ) ImGui.SameLine();
+                    curve.Draw();
+                    assignedIdx++;
                 }
-                else {
-                    if( ( maxX - currentX - width ) > spacing + 4 ) {
-                        currentX += width;
-                        ImGui.SameLine();
-                    }
-                    else {
-                        currentX = width;
-                    }
-                }
-
-                curve.Draw();
-                first = false;
             }
         }
 

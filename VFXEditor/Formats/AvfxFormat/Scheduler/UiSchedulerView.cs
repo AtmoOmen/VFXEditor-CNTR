@@ -1,7 +1,8 @@
 using System.IO;
+using VfxEditor.Ui.Nodes;
 
 namespace VfxEditor.AvfxFormat {
-    public class UiScheduleView : AvfxNodeDropdownView<AvfxScheduler> {
+    public class UiScheduleView : UiNodeDropdownView<AvfxScheduler> {
         public UiScheduleView( AvfxFile file, NodeGroup<AvfxScheduler> group ) : base( file, group, "调度器", false, false, "" ) { }
 
         public override void OnSelect( AvfxScheduler item ) { }

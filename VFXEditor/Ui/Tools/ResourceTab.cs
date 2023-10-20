@@ -7,6 +7,7 @@ using ImGuiNET;
 using System.Collections.Generic;
 using System.Numerics;
 using VfxEditor.Interop;
+using VfxEditor.Utils;
 
 namespace VfxEditor.Ui.Tools {
     public unsafe class ResourceTab {
@@ -21,7 +22,7 @@ namespace VfxEditor.Ui.Tools {
 
         // Adapted from https://github.com/xivdev/Penumbra/blob/7e7e74a5346857328ee161d571c1f1ead6524e9a/Penumbra/UI/MenuTabs/TabResourceManager.cs
         public void Draw() {
-            var resourceHandler = *( ResourceManager** )Dalamud.SigScanner.GetStaticAddressFromSig( Constants.ResourceManagerSig );
+            var resourceHandler = *( ResourceManager** )Plugin.SigScanner.GetStaticAddressFromSig( Constants.ResourceManagerSig );
 
             if( resourceHandler == null ) return;
 
@@ -95,7 +96,7 @@ namespace VfxEditor.Ui.Tools {
             ImGui.TableSetupColumn( "哈希值", ImGuiTableColumnFlags.WidthFixed, 100 * ImGuiHelpers.GlobalScale );
             ImGui.TableSetupColumn( "指针", ImGuiTableColumnFlags.WidthFixed, 100 * ImGuiHelpers.GlobalScale );
             ImGui.TableSetupColumn( "路径", ImGuiTableColumnFlags.WidthFixed,
-                ( ImGui.GetWindowContentRegionMax().X - ImGui.GetWindowContentRegionMin().X ) - 300 * ImGuiHelpers.GlobalScale );
+                UiUtils.GetWindowContentRegionWidth() - 300 * ImGuiHelpers.GlobalScale );
             ImGui.TableSetupColumn( "引用", ImGuiTableColumnFlags.WidthFixed, 30 * ImGuiHelpers.GlobalScale );
             ImGui.TableHeadersRow();
 

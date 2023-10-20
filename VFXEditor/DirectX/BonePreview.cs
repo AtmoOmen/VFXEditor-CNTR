@@ -40,7 +40,7 @@ namespace VfxEditor.DirectX {
                 PS = new PixelShader( Device, CompiledPS );
                 GS = new GeometryShader( Device, CompiledGS );
                 Signature = ShaderSignature.GetInputSignature( CompiledVS );
-                Layout = new InputLayout( Device, Signature, new InputElement[] {
+                Layout = new InputLayout( Device, Signature, new[] {
                     new InputElement("POSITION", 0, Format.R32G32B32A32_Float, 0, 0),
                     new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 16, 0),
                     new InputElement("NORMAL", 0, Format.R32G32B32A32_Float, 32, 0)

@@ -20,7 +20,7 @@ namespace VfxEditor.AvfxFormat {
         public readonly AvfxEnum<TextureBorderType> TextureBorderV = new( "垂直材质边界", "TBVT" );
         public readonly AvfxEnum<TextureCalculateColor> TextureCalculateColor = new( "Calculate Color", "TCCT" );
         public readonly AvfxEnum<TextureCalculateAlpha> TextureCalculateAlpha = new( "Calculate Alpha", "TCAT" );
-        public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", value: -1 );
+        public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", defaultValue: -1 );
 
         private readonly List<AvfxBase> Parsed;
 
@@ -62,7 +62,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
+        protected override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
 
         public override void DrawUnassigned() {
             using var _ = ImRaii.PushId( Name );
@@ -86,8 +86,8 @@ namespace VfxEditor.AvfxFormat {
 
         public override string GetDefaultText() => Name;
 
-        public override List<AvfxNodeSelect> GetNodeSelects() => new() {
-            new AvfxNodeSelect<AvfxTexture>( Particle, "材质", Particle.NodeGroups.Textures, TextureIdx )
+        public override List<UiNodeSelect> GetNodeSelects() => new() {
+            new UiNodeSelect<AvfxTexture>( Particle, "材质", Particle.NodeGroups.Textures, TextureIdx )
         };
     }
 }

@@ -15,6 +15,7 @@ namespace VfxEditor.ScdFormat {
 
         public LayoutPolylineObstructionData() {
             Parsed = new() {
+                // Positions go here
                 Height,
                 ObstacleFac,
                 HiCutFac,

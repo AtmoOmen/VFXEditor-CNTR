@@ -80,7 +80,7 @@ namespace VfxEditor.ScdFormat {
                 Volume
             };
 
-            Type.ExtraCommand = () => {
+            Type.ExtraCommandGenerator = () => {
                 return new ScdLayoutEntryExtraCommand( this );
             };
         }

@@ -1,7 +1,8 @@
 using System.IO;
+using VfxEditor.Ui.Nodes;
 
 namespace VfxEditor.AvfxFormat {
-    public class UiTextureView : AvfxNodeSplitView<AvfxTexture> {
+    public class UiTextureView : UiNodeSplitView<AvfxTexture> {
         public UiTextureView( AvfxFile file, NodeGroup<AvfxTexture> group ) : base( file, group, "材质", true, true, "default_texture.vfxedit2" ) { }
 
         public override void OnSelect( AvfxTexture item ) { }

@@ -4,14 +4,12 @@ using ImGuiNET;
 using OtterGui.Raii;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Numerics;
 using VfxEditor.FileManager;
 using VfxEditor.FileManager.Interfaces;
 using VfxEditor.Select.Lists;
 using VfxEditor.Ui;
-using VfxEditor.Utils;
 
 namespace VfxEditor.Select {
     public enum SelectResultType {
@@ -52,7 +50,7 @@ namespace VfxEditor.Select {
 
     public abstract class SelectDialog : GenericDialog {
         public static readonly uint FavoriteColor = ImGui.GetColorU32( new Vector4( 1.0f, 0.878f, 0.1058f, 1 ) );
-        public static readonly List<string> LoggedFiles = new();
+        public static readonly uint TransparentColor = ImGui.GetColorU32( new Vector4( 0, 0, 0, 0 ) );
 
         public readonly IFileManagerSelect Manager;
         public readonly string Extension;
@@ -65,12 +63,12 @@ namespace VfxEditor.Select {
         protected readonly SelectFavoriteTab FavoritesTab;
         protected readonly SelectPenumbraTab PenumbraTab;
 
-        private string GamePathInput = "";
         private string LocalPathInput = "";
-        private string LoggedFilesSearch = "";
+        private string GamePathInput = "";
 
         public SelectDialog( string name, string extension, FileManagerBase manager, bool showLocal ) : this( name, extension, manager, showLocal,
-                showLocal ? ( ( SelectResult result ) => manager.SetSource( result ) ) : ( ( SelectResult result ) => manager.SetReplace( result ) ) ) { }
+                showLocal ? ( ( SelectResult result ) => manager.SetSource( result ) ) : ( ( SelectResult result ) => manager.SetReplace( result ) )
+            ) { }
 
         public SelectDialog( string name, string extension, IFileManagerSelect manager, bool showLocal, Action<SelectResult> action ) : base( name, false, 800, 500 ) {
             Manager = manager;
@@ -95,128 +93,82 @@ namespace VfxEditor.Select {
             if( !tabBar ) return;
 
             DrawGameTabs();
-            DrawPaths();
-            if( ShowLocal ) PenumbraTab.Draw();
+            DrawGamePath();
+
+            if( ShowLocal ) {
+                DrawLocalPath();
+                PenumbraTab.Draw();
+            }
+
             RecentTab.Draw();
             FavoritesTab.Draw();
         }
 
         // ============= GAME =================
 
-        private void DrawGameTabs() {
+        public void DrawGameTabs() {
             if( GameTabs.Count == 0 ) return;
             using var _ = ImRaii.PushId( "Game" );
 
             using var tabItem = ImRaii.TabItem( "游戏物品" );
             if( !tabItem ) return;
 
-            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
-
             using var tabBar = ImRaii.TabBar( "栏" );
             if( !tabBar ) return;
-
             foreach( var tab in GameTabs ) tab.Draw();
         }
 
-        // ======== PATHS =========
+        // =========== LOCAL ================
 
-        private void DrawPaths() {
-            using var _ = ImRaii.PushId( "Paths" );
+        private void DrawLocalPath() {
+            using var _ = ImRaii.PushId( "Local" );
 
-            using var tabItem = ImRaii.TabItem( "Paths" );
+            using var tabItem = ImRaii.TabItem( "本地文件" );
             if( !tabItem ) return;
 
-            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
+            using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 4, 3 ) );
 
-            ImGui.Text( "游戏路径" );
-            using( var __ = ImRaii.PushId( "Game" ) )
-            using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing ) ) {
-                ImGui.InputTextWithHint( "##Path", $"vfx/common/eff/wp_astro1h.{Extension}", ref GamePathInput, 255 );
-
-                ImGui.SameLine();
-                if( ImGui.Button( "选择" ) ) SelectGamePath( GamePathInput );
-            }
-
-            if( ShowLocal ) {
-                ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
-
-                ImGui.Text( "Local Path" );
-                using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing );
-                using var __ = ImRaii.PushId( "Local" );
-
-                ImGui.SetNextItemWidth( UiUtils.GetOffsetInputSize( UiUtils.GetPaddedIconSize( FontAwesomeIcon.FolderOpen ) ) );
-                ImGui.InputTextWithHint( "##Path", $"C:\\Users\\me\\Desktop\\custom.{Extension}", ref LocalPathInput, 255 );
-
-                ImGui.SameLine();
-                using( var font = ImRaii.PushFont( UiBuilder.IconFont ) ) {
-                    if( ImGui.Button( FontAwesomeIcon.FolderOpen.ToIconString() ) ) {
-                        FileDialogManager.OpenFileDialog( "选择文件", $".{Extension},.*", ( bool ok, string res ) => {
-                            if( !ok ) return;
-                            Invoke( new SelectResult( SelectResultType.Local, "[LOCAL] " + res, res ) );
-                        } );
-                    }
-                }
-
-                ImGui.SameLine();
-                if( ImGui.Button( "选择" ) && Path.IsPathRooted( LocalPathInput ) && File.Exists( LocalPathInput ) ) {
-                    Invoke( new SelectResult( SelectResultType.Local, "[LOCAL] " + LocalPathInput, LocalPathInput ) );
-                    LocalPathInput = "";
-                }
-            }
-
-            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 20 );
-            ImGui.Separator();
-
-            if( ImGui.Checkbox( "记录所有文件", ref Plugin.Configuration.LogAllFiles ) ) Plugin.Configuration.Save();
-
-            using var disabled = ImRaii.Disabled( LoggedFiles.Count == 0 && !Plugin.Configuration.LogAllFiles );
+            ImGui.TextDisabled( $"位于你电脑上的 .{Extension} 文件(如: C:/Users/me/Downloads/awesome.{Extension})" );
+            ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 4 );
+            ;
+            ImGui.InputText( "##Input", ref LocalPathInput, 255 );
 
             ImGui.SameLine();
-            using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing ) ) {
-                ImGui.InputTextWithHint( "##Search", "搜索", ref LoggedFilesSearch, 255 );
-
-                ImGui.SameLine();
-                using var font = ImRaii.PushFont( UiBuilder.IconFont );
-                if( UiUtils.RemoveButton( FontAwesomeIcon.Trash.ToIconString() ) ) LoggedFiles.Clear();
-            }
-
-
-            using var windowPadding = ImRaii.PushStyle( ImGuiStyleVar.WindowPadding, new Vector2( 0, 0 ) );
-            using var child = ImRaii.Child( "子级", new Vector2( -1, -1 ), true );
-
-            var searched = LoggedFiles
-                .Where( x => x.EndsWith( Extension ) && ( string.IsNullOrEmpty( LoggedFilesSearch ) || x.ToLower().Contains( LoggedFilesSearch.ToLower() ) ) )
-                .ToList();
-
-            SelectUiUtils.DisplayVisible( searched.Count, out var preItems, out var showItems, out var postItems, out var itemHeight );
-            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + preItems * itemHeight );
-
-            if( ImGui.BeginTable( "Table", 1, ImGuiTableFlags.RowBg ) ) {
-                ImGui.TableSetupColumn( "##Column", ImGuiTableColumnFlags.WidthStretch );
-
-                var idx = 0;
-                foreach( var file in searched ) {
-                    if( idx < preItems || idx > ( preItems + showItems ) ) { idx++; continue; }
-
-                    ImGui.TableNextColumn();
-                    ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 4 );
-                    ImGui.Selectable( $"{file}##{idx}" );
-                    if( ImGui.IsMouseDoubleClicked( ImGuiMouseButton.Left ) && ImGui.IsItemHovered() ) SelectGamePath( file );
-
-                    idx++;
+            using( var font = ImRaii.PushFont( UiBuilder.IconFont ) ) {
+                var browse = ImGui.Button( FontAwesomeIcon.Search.ToIconString() );
+                if( browse ) {
+                    FileDialogManager.OpenFileDialog( "选择文件", $".{Extension},.*", ( bool ok, string res ) => {
+                        if( !ok ) return;
+                        Invoke( new SelectResult( SelectResultType.Local, "[LOCAL] " + res, res ) );
+                    } );
                 }
-
-                ImGui.EndTable();
             }
 
-            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + postItems * itemHeight );
+            ImGui.SameLine();
+            if( ImGui.Button( "选择" ) ) {
+                Invoke( new SelectResult( SelectResultType.Local, "[LOCAL] " + LocalPathInput, LocalPathInput ) );
+            }
         }
 
-        private void SelectGamePath( string path ) {
-            var cleanedPath = path.Trim().Replace( "\\", "/" );
-            if( Dalamud.DataManager.FileExists( cleanedPath ) ) {
-                Invoke( new SelectResult( SelectResultType.GamePath, "[GAME] " + cleanedPath, cleanedPath ) );
-                GamePathInput = "";
+        // ============== GAME FILE =============
+
+        public void DrawGamePath() {
+            using var _ = ImRaii.PushId( "Path" );
+
+            using var tabItem = ImRaii.TabItem( "游戏路径" );
+            if( !tabItem ) return;
+
+            using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 4, 3 ) );
+
+            ImGui.TextDisabled( $"游戏内 .{Extension} 文件, 例如: vfx/common/eff/wp_astro1h.{Extension}" );
+            ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 4 );
+
+            ImGui.InputText( "##Input", ref GamePathInput, 255 );
+
+            ImGui.SameLine();
+            if( ImGui.Button( "选择" ) ) {
+                var cleanedGamePath = GamePathInput.Replace( "\\", "/" );
+                Invoke( new SelectResult( SelectResultType.GamePath, "[GAME] " + cleanedGamePath, cleanedGamePath ) );
             }
         }
 

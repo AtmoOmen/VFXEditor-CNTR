@@ -44,7 +44,7 @@ namespace VfxEditor.AvfxFormat {
             }
         }
 
-        protected override AvfxFile FileFromReader( BinaryReader reader ) => new( reader, true );
+        protected override AvfxFile FileFromReader( BinaryReader reader ) => new( reader );
 
         public void Import( string path ) {
             if( CurrentFile != null && File.Exists( path ) ) CurrentFile.Import( path );
@@ -69,7 +69,7 @@ namespace VfxEditor.AvfxFormat {
         protected override void DrawExtraColumn() {
             using var framePadding = ImRaii.PushStyle( ImGuiStyleVar.FramePadding, new Vector2( 4, 3 ) );
             using( var group = ImRaii.Group() ) {
-                if( VfxSpawn.Active ) {
+                if( VfxSpawn.Exists ) {
                     if( ImGui.Button( "移除", new Vector2( 60, ImGui.GetFrameHeight() ) ) ) VfxSpawn.Remove();
                 }
                 else {
@@ -93,16 +93,21 @@ namespace VfxEditor.AvfxFormat {
             using( var _ = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( ImGui.GetStyle().ItemSpacing.Y, 4 ) ) ) {
                 ImGui.SameLine();
             }
-            Plugin.TrackerManager.Vfx.DrawEye( new Vector2( 28, height ) );
+            Plugin.Tracker.Vfx.DrawEye( new Vector2( 28, height ) );
 
             framePadding.Pop(); // so it doesn't mess with the popups
 
-            VfxSpawn.DrawPopup( SpawnPath, true );
+            if( ImGui.BeginPopup( "SpawnPopup" ) ) {
+                if( ImGui.Selectable( "在地面" ) ) VfxSpawn.OnGround( SpawnPath, true );
+                if( ImGui.Selectable( "在自身" ) ) VfxSpawn.OnSelf( SpawnPath, true );
+                if( ImGui.Selectable( "在目标" ) ) VfxSpawn.OnTarget( SpawnPath, true );
+                ImGui.EndPopup();
+            }
 
             if( ImGui.BeginPopup( "SettingsPopup" ) ) {
                 if( ImGui.Checkbox( "循环", ref Plugin.Configuration.VfxSpawnLoop ) ) Plugin.Configuration.Save();
                 ImGui.SetNextItemWidth( 150 );
-                if( ImGui.InputFloat( "Delay", ref Plugin.Configuration.VfxSpawnDelay ) ) Plugin.Configuration.Save();
+                if( ImGui.InputFloat( "延迟", ref Plugin.Configuration.VfxSpawnDelay ) ) Plugin.Configuration.Save();
                 ImGui.EndPopup();
             }
         }

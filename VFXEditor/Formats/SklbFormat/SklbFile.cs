@@ -10,18 +10,21 @@ using VfxEditor.Utils;
 
 namespace VfxEditor.SklbFormat {
     public class SklbFile : FileManagerFile {
-        private readonly string HkxTempLocation;
+        public readonly string HkxTempLocation;
 
-        private readonly short Version1;
-        private readonly short Version2;
-        private readonly SklbData Data;
-        private readonly SklbLayers Layers;
-        private readonly int Padding;
+        public readonly short Version1;
+        public readonly short Version2;
 
+        public readonly SklbData Data;
+        public readonly SklbLayers Layers;
         public readonly SklbBones Bones;
 
-        public SklbFile( BinaryReader reader, string hkxTemp, bool verify ) : base( new( Plugin.SklbManager, () => Plugin.SklbManager.CurrentFile?.Updated() ) ) {
+        private readonly int Padding;
+
+        public SklbFile( BinaryReader reader, string hkxTemp, bool checkOriginal = true ) : base( new( Plugin.SklbManager, () => Plugin.SklbManager.CurrentFile?.Updated() ) ) {
             HkxTempLocation = hkxTemp;
+
+            var original = checkOriginal ? FileUtils.GetOriginal( reader ) : null;
 
             reader.ReadInt32(); // Magic
             Version1 = reader.ReadInt16();
@@ -48,7 +51,7 @@ namespace VfxEditor.SklbFormat {
 
             Bones = new( this, HkxTempLocation );
 
-            if( verify ) Verified = FileUtils.Verify( reader, ToBytes(), null );
+            if( checkOriginal ) Verified = FileUtils.CompareFiles( original, ToBytes(), out var _ );
         }
 
         public override void Update() {
@@ -56,7 +59,7 @@ namespace VfxEditor.SklbFormat {
         }
 
         public override void Write( BinaryWriter writer ) {
-            FileUtils.WriteMagic( writer, "sklb" );
+            writer.Write( 0x736B6C62 );
             writer.Write( Version1 );
             writer.Write( Version2 );
 

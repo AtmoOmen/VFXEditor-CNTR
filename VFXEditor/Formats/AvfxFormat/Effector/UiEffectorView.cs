@@ -1,7 +1,9 @@
+using System;
 using System.IO;
+using VfxEditor.Ui.Nodes;
 
 namespace VfxEditor.AvfxFormat {
-    public class UiEffectorView : AvfxNodeDropdownView<AvfxEffector> {
+    public class UiEffectorView : UiNodeDropdownView<AvfxEffector> {
         public UiEffectorView( AvfxFile file, NodeGroup<AvfxEffector> group ) : base( file, group, "效果器", true, true, "default_effector.vfxedit" ) { }
 
         public override void OnSelect( AvfxEffector item ) { }

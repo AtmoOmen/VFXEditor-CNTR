@@ -10,7 +10,7 @@ namespace VfxEditor.Select.Pap.Mount {
         // ===== LOADING =====
 
         public override void LoadData() {
-            var sheet = Dalamud.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.Mount>().Where( x => !string.IsNullOrEmpty( x.Singular ) );
+            var sheet = Plugin.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.Mount>().Where( x => !string.IsNullOrEmpty( x.Singular ) );
             foreach( var item in sheet ) Items.Add( new MountRow( item ) );
         }
 
@@ -19,7 +19,7 @@ namespace VfxEditor.Select.Pap.Mount {
         protected override void OnSelect() => LoadIcon( Selected.Icon );
 
         public override void LoadSelection( MountRow item, out Dictionary<string, Dictionary<string, string>> loaded ) {
-            loaded = new();
+            loaded = new Dictionary<string, Dictionary<string, string>>();
 
             var papPaths = item.GetMountSeatPaps();
             for( var i = 0; i < papPaths.Count; i++ ) {

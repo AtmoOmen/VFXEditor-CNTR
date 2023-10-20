@@ -1,21 +1,15 @@
-using HelixToolkit.SharpDX.Core;
-using HelixToolkit.SharpDX.Core.Animations;
 using ImGuiNET;
-using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
-using System.Numerics;
 using VfxEditor.EidFormat.BindPoint;
 using VfxEditor.FileManager;
-using VfxEditor.Formats.EidFormat.Skeleton;
-using VfxEditor.Interop.Havok.Ui;
 using VfxEditor.Ui.Components;
 using VfxEditor.Utils;
 
 namespace VfxEditor.EidFormat {
     public class EidFile : FileManagerFile {
         public readonly List<EidBindPoint> BindPoints = new();
-        public readonly CommandDropdown<EidBindPoint> Dropdown;
+        public readonly SimpleDropdown<EidBindPoint> Dropdown;
 
         private readonly short Version1;
         private readonly short Version2;
@@ -23,11 +17,12 @@ namespace VfxEditor.EidFormat {
 
         private bool NewData => Version1 == 0x3132;
 
-        public readonly EidSkeletonView Skeleton;
-        public bool BindPointsUpdated = true;
-        private bool SkeletonTabOpen = false;
+        public EidFile( BinaryReader reader, bool checkOriginal = true ) : base( new CommandManager( Plugin.EidManager ) ) {
+            Dropdown = new( "Bind Point", BindPoints,
+                ( EidBindPoint item, int idx ) => $"Bind Point {item.GetId()}", () => new EidBindPointNew(), () => CommandManager.Eid );
 
-        public EidFile( BinaryReader reader, string sourcePath, bool verify ) : base( new CommandManager( Plugin.EidManager, () => Plugin.EidManager.CurrentFile?.Updated() ) ) {
+            var original = checkOriginal ? FileUtils.GetOriginal( reader ) : null;
+
             reader.ReadInt32(); // magic 00656964
             Version1 = reader.ReadInt16();
             Version2 = reader.ReadInt16();
@@ -38,16 +33,11 @@ namespace VfxEditor.EidFormat {
                 BindPoints.Add( NewData ? new EidBindPointNew( reader ) : new EidBindPointOld( reader ) );
             }
 
-            if( verify ) Verified = FileUtils.Verify( reader, ToBytes(), null );
-
-            Dropdown = new( "Bind Point", BindPoints,
-                ( EidBindPoint item, int idx ) => $"Bind Point {item.GetName()}", () => new EidBindPointNew(), () => CommandManager.Eid );
-
-            Skeleton = new( this, Path.IsPathRooted( sourcePath ) ? null : sourcePath );
+            if( checkOriginal ) Verified = FileUtils.CompareFiles( original, ToBytes(), out var _ );
         }
 
         public override void Write( BinaryWriter writer ) {
-            FileUtils.WriteMagic( writer, "eid" );
+            writer.Write( 0x00656964 );
             writer.Write( Version1 );
             writer.Write( Version2 );
             writer.Write( BindPoints.Count );
@@ -57,41 +47,8 @@ namespace VfxEditor.EidFormat {
         }
 
         public override void Draw() {
-            var size = SkeletonView.CalculateSize( SkeletonTabOpen, Plugin.Configuration.EidSkeletonSplit );
-
-            using var style = ImRaii.PushStyle( ImGuiStyleVar.WindowPadding, new Vector2( 0, 0 ) );
-            using( var child = ImRaii.Child( "子级", size, false ) ) {
-                using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
-                if( !tabBar ) return;
-
-                SkeletonTabOpen = false;
-
-                using( var tab = ImRaii.TabItem( "Bind Points" ) ) {
-                    if( tab ) Dropdown.Draw();
-                }
-
-                using( var tab = ImRaii.TabItem( "3D 视图" ) ) {
-                    if( tab ) {
-                        Skeleton.Draw();
-                        SkeletonTabOpen = true;
-                    }
-                }
-            }
-
-            if( !SkeletonTabOpen ) Skeleton.DrawSplit( ref Plugin.Configuration.EidSkeletonSplit );
-        }
-
-        public void AddBindPoints( MeshBuilder mesh, Dictionary<string, Bone> boneMatrixes ) {
-            BindPoints.ForEach( x => x.AddBindPoint( mesh, boneMatrixes ) );
-        }
-
-        public void Updated() {
-            BindPointsUpdated = true;
-        }
-
-        public override void Dispose() {
-            base.Dispose();
-            Skeleton.Dispose();
+            ImGui.Separator();
+            Dropdown.Draw();
         }
     }
 }

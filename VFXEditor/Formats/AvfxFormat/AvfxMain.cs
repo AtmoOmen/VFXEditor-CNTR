@@ -3,8 +3,8 @@ using OtterGui.Raii;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using VfxEditor.AvfxFormat.Nodes;
 using VfxEditor.Ui.Interfaces;
-using VfxEditor.Utils;
 using static VfxEditor.AvfxFormat.Enums;
 
 namespace VfxEditor.AvfxFormat {
@@ -19,7 +19,7 @@ namespace VfxEditor.AvfxFormat {
 
         // ============
 
-        public readonly AvfxInt Version = new( "版本", "Ver", value: 0x20110913 );
+        public readonly AvfxInt Version = new( "版本", "Ver" );
         public readonly AvfxBool IsDelayFastParticle = new( "延迟快速粒子", "bDFP" );
         public readonly AvfxBool IsFitGround = new( "适应地面", "bFG" );
         public readonly AvfxBool IsTranformSkip = new( "跳过变换", "bTS" );
@@ -91,7 +91,7 @@ namespace VfxEditor.AvfxFormat {
         private float ScaleCombined = 1.0f;
 
         public AvfxMain() : base( "AVFX" ) {
-            Parsed = new() {
+            Parsed = new List<AvfxBase> {
                 Version,
                 IsDelayFastParticle,
                 IsFitGround,
@@ -146,6 +146,7 @@ namespace VfxEditor.AvfxFormat {
                 GlobalFogInfluence,
                 LTSEnabled
             };
+            Version.SetValue( 0x20110913 );
 
             NodeGroupSet = new( this );
 
@@ -237,14 +238,14 @@ namespace VfxEditor.AvfxFormat {
                 }
             }, size );
 
-            var versionBytes = BitConverter.GetBytes( Version.Value );
+            var versionBytes = BitConverter.GetBytes( Version.GetValue() );
             for( var i = 0; i < versionBytes.Length; i++ ) UiVersion[i] = versionBytes[i];
-            ScaleCombined = Math.Max( RevisedValuesScaleX.Value, Math.Max( RevisedValuesScaleY.Value, RevisedValuesScaleZ.Value ) );
+            ScaleCombined = Math.Max( RevisedValuesScaleX.GetValue(), Math.Max( RevisedValuesScaleY.GetValue(), RevisedValuesScaleZ.GetValue() ) );
         }
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) {
+        protected override void WriteContents( BinaryWriter writer ) {
             WriteNested( writer, Parsed );
 
             WriteLeaf( writer, "ScCn", 4, Schedulers.Count );
@@ -270,18 +271,18 @@ namespace VfxEditor.AvfxFormat {
             using var _ = ImRaii.PushId( "Avfx" );
             using var child = ImRaii.Child( "子级" );
 
-            ImGui.TextDisabled( $"版本 {UiVersion[0]}.{UiVersion[1]}.{UiVersion[2]}.{UiVersion[3]}" );
+            ImGui.BeginDisabled();
+            ImGui.TextWrapped( "修改后的位置、缩放和旋转仅会作用于未链接绑定器的效果。获取更多信息请查看\"绑定器\"一栏" );
+            ImGui.EndDisabled();
 
             if( ImGui.InputFloat( "修改后缩放(整体)", ref ScaleCombined ) ) {
-                RevisedValuesScaleX.Value = ScaleCombined;
-                RevisedValuesScaleY.Value = ScaleCombined;
-                RevisedValuesScaleZ.Value = ScaleCombined;
+                RevisedValuesScaleX.SetValue( ScaleCombined );
+                RevisedValuesScaleY.SetValue( ScaleCombined );
+                RevisedValuesScaleZ.SetValue( ScaleCombined );
             };
 
-            ImGui.SameLine();
-            UiUtils.HelpMarker( "修改后的位置、缩放和旋转仅会作用于未链接绑定器的效果。获取更多信息请查看\"绑定器\"一栏" );
-
             DrawItems( Display );
+            ImGui.Text( $"VFX 版本: {UiVersion[0]}.{UiVersion[1]}.{UiVersion[2]}.{UiVersion[3]}" );
         }
     }
 }

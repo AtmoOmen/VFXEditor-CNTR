@@ -45,14 +45,14 @@ namespace VfxEditor.TmbFormat.Utils {
                 entry = tmfc;
             }
             else {
-                if( !TmbUtils.ItemTypes.TryGetValue( magic, out var value ) ) {
+                if( !TmbUtils.ItemTypes.ContainsKey( magic ) ) {
                     PluginLog.Log( $"未知条目 {magic}" );
                     verified = VerifiedStatus.ERROR;
                     Reader.ReadBytes( size ); //  skip
                     return;
                 }
 
-                var type = value.Type;
+                var type = TmbUtils.ItemTypes[magic].Type;
                 var constructor = type.GetConstructor( new Type[] { typeof( TmbFile ), typeof( TmbReader ) } );
                 if( constructor == null ) {
                     PluginLog.Log( $"TmbReader 构造函数在 {magic} 处发生错误" );

@@ -12,7 +12,7 @@ namespace VfxEditor.PhybFormat.Simulator {
 
         public readonly List<PhybSimulator> Simulators = new();
 
-        private readonly CommandDropdown<PhybSimulator> SimulatorDropdown;
+        private readonly SimpleDropdown<PhybSimulator> SimulatorDropdown;
 
         public PhybSimulation( PhybFile file, BinaryReader reader, bool isEmpty ) {
             File = file;

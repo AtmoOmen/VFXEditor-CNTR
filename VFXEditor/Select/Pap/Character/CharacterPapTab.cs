@@ -27,16 +27,16 @@ namespace VfxEditor.Select.Pap.IdlePose {
             var idlePath = item.GetPap( "idle" );
             var movePathA = item.GetPap( "move_a" );
             var movePathB = item.GetPap( "move_b" );
-            if( Dalamud.DataManager.FileExists( idlePath ) ) general.Add( "闲置动作", idlePath );
-            if( Dalamud.DataManager.FileExists( movePathA ) ) general.Add( "移动动作 A", movePathA );
-            if( Dalamud.DataManager.FileExists( movePathB ) ) general.Add( "移动动作 B", movePathB );
+            if( Plugin.DataManager.FileExists( idlePath ) ) general.Add( "闲置动作", idlePath );
+            if( Plugin.DataManager.FileExists( movePathA ) ) general.Add( "移动动作 A", movePathA );
+            if( Plugin.DataManager.FileExists( movePathB ) ) general.Add( "移动动作 B", movePathB );
 
             // Poses
             var poses = new Dictionary<string, Dictionary<string, string>>();
             for( var i = 1; i <= SelectDataUtils.MaxChangePoses; i++ ) {
                 var start = item.GetStartPap( i );
                 var loop = item.GetLoopPap( i );
-                if( Dalamud.DataManager.FileExists( start ) && Dalamud.DataManager.FileExists( loop ) ) {
+                if( Plugin.DataManager.FileExists( start ) && Plugin.DataManager.FileExists( loop ) ) {
                     poses.Add( $"姿势 {i}", new Dictionary<string, string>() {
                         { "开始", start },
                         { "循环", loop }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace VfxEditor.AvfxFormat {
-    public class UiTimelineClipSplitView : AvfxItemSplitView<AvfxTimelineClip> {
+    public class UiTimelineClipSplitView : UiItemSplitView<AvfxTimelineClip> {
         public readonly AvfxTimeline Timeline;
 
         public UiTimelineClipSplitView( List<AvfxTimelineClip> items, AvfxTimeline timeline ) : base( "片段", items ) {

@@ -79,19 +79,20 @@ namespace VfxEditor.Utils.Gltf {
         }
 
         public static bool ImportModel( string localPath, out List<AvfxVertex> vertexesOut, out List<AvfxIndex> indexesOut ) {
-            vertexesOut = new();
-            indexesOut = new();
+            vertexesOut = new List<AvfxVertex>();
+            indexesOut = new List<AvfxIndex>();
             var model = SharpGLTF.Schema2.ModelRoot.Load( localPath );
             PluginLog.Log( "Importing GLTF model from: " + localPath );
 
-            var count = 0;
+            if( model.LogicalMeshes.Count > 0 ) {
+                var mesh = model.LogicalMeshes[0];
+                if( mesh.Primitives.Count > 0 ) {
+                    var primitive = mesh.Primitives[0];
 
-            foreach( var mesh in model.LogicalMeshes ) {
-                foreach( var primitive in mesh.Primitives ) {
                     var properties = primitive.VertexAccessors;
                     var hasColor = properties.ContainsKey( "COLOR_0" );
                     var hasUv2 = properties.ContainsKey( "TEXCOORD_1" );
-                    PluginLog.Log( $"Color: {hasColor} UV2: {hasUv2}" );
+                    PluginLog.Log( $"颜色:{hasColor} UV2:{hasUv2}" );
 
                     var positions = primitive.GetVertices( "POSITION" ).AsVector3Array();
                     var normals = primitive.GetVertices( "NORMAL" ).AsVector3Array();
@@ -108,15 +109,13 @@ namespace VfxEditor.Utils.Gltf {
 
                         vertexesOut.Add( GetAvfxVertex( positions[i], normals[i], tangents[i], color, tex1s[i], uv2 ) );
                     }
-                    foreach( var (i1, i2, i3) in triangles ) {
-                        indexesOut.Add( new AvfxIndex( count + i1, count + i2, count + i3 ) );
+                    foreach( var (A, B, C) in triangles ) {
+                        indexesOut.Add( new AvfxIndex( A, B, C ) );
                     }
-
-                    count += positions.Count;
+                    return true;
                 }
             }
-
-            return count > 0;
+            return false;
         }
 
         private struct GltfVertex {

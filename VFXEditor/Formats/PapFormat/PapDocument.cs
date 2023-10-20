@@ -1,4 +1,6 @@
+using Dalamud.Interface;
 using ImGuiNET;
+using System.Collections.Generic;
 using System.IO;
 using VfxEditor.FileManager;
 using VfxEditor.Utils;
@@ -16,7 +18,9 @@ namespace VfxEditor.PapFormat {
             LoadWorkspace( localPath, data.RelativeLocation, data.Name, data.Source, data.Replace, data.Disabled );
         }
 
-        protected override PapFile FileFromReader( BinaryReader reader ) => new( reader, Source.Path, HkxTemp, true );
+        protected override List<string> GetPapIds() => CurrentFile.GetPapIds();
+
+        protected override PapFile FileFromReader( BinaryReader reader ) => new( reader, Source.Path, HkxTemp );
 
         public override WorkspaceMetaBasic GetWorkspaceMeta( string newPath ) => new() {
             Name = Name,
@@ -33,8 +37,15 @@ namespace VfxEditor.PapFormat {
 
         protected override void DrawBody() {
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
-            DrawAnimationWarning();
+            DisplayAnimationWarning();
             base.DrawBody();
+        }
+
+        protected override void DrawExtraColumn() {
+            var iconSize = UiUtils.GetIconSize( FontAwesomeIcon.InfoCircle );
+            ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 126 - iconSize.X - ImGui.GetStyle().FramePadding.X );
+            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + ImGui.GetFrameHeight() / 2 + ImGui.GetStyle().ItemSpacing.Y );
+            UiUtils.HelpMarker( "Loaded .pap resources can be found in File > Tools > Loaded Files" );
         }
     }
 }

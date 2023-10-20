@@ -24,7 +24,6 @@ namespace VfxEditor.Formats.TextureFormat {
         private readonly ManagerConfiguration Configuration;
 
         public TextureManager() : base( "材质", false, 800, 500 ) {
-            LoadLibrary();
             Configuration = Plugin.Configuration.GetManagerConfig( "Tex" );
             View = new( this, Textures );
         }
@@ -76,10 +75,10 @@ namespace VfxEditor.Formats.TextureFormat {
 
             if( Previews.TryGetValue( gamePath, out var preview ) ) return preview;
 
-            if( !Dalamud.DataManager.FileExists( gamePath ) ) return null;
+            if( !Plugin.DataManager.FileExists( gamePath ) ) return null;
 
             try {
-                var data = Dalamud.DataManager.GetFile<TextureDataFile>( gamePath );
+                var data = Plugin.DataManager.GetFile<TextureDataFile>( gamePath );
                 if( !data.ValidFormat ) {
                     PluginLog.Error( $"Invalid format: {data.Header.Format} {gamePath}" );
                     return null;
@@ -129,7 +128,6 @@ namespace VfxEditor.Formats.TextureFormat {
         public void ToDefault() => Dispose();
 
         public void Dispose() {
-            FreeLibrary();
             Textures.ForEach( x => x.Dispose() );
             Previews.Values.ToList().ForEach( x => x.Dispose() );
             Textures.Clear();
@@ -139,7 +137,7 @@ namespace VfxEditor.Formats.TextureFormat {
 
         // =======================
 
-        private static void LoadLibrary() {
+        public static void Setup() {
             // Set paths manually since TexImpNet can be dumb sometimes
             // Using the 32-bit version in all cases because net6, I guess
             var runtimeRoot = Path.Combine( Plugin.RootLocation, "runtimes" );
@@ -165,7 +163,7 @@ namespace VfxEditor.Formats.TextureFormat {
             PluginLog.Log( $"NVT 库路径: {nvtLib.LibraryPath} 已加载库: {nvtLib.IsLibraryLoaded}" );
         }
 
-        private static void FreeLibrary() {
+        public static void BreakDown() {
             TeximpNet.Unmanaged.FreeImageLibrary.Instance.FreeLibrary();
             TeximpNet.Unmanaged.NvTextureToolsLibrary.Instance.FreeLibrary();
             PluginLog.Log( $"已加载 FreeImage 库: {TeximpNet.Unmanaged.FreeImageLibrary.Instance.IsLibraryLoaded}" );

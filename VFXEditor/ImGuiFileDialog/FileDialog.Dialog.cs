@@ -1,7 +1,6 @@
 using Dalamud.Interface;
 using Dalamud.Logging;
 using ImGuiNET;
-using OtterGui.Raii;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -102,16 +101,11 @@ namespace ImGuiFileDialog {
         private void DrawHeader() {
             DrawPathComposer();
 
-            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 1 );
+            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
             ImGui.Separator();
-            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 1 );
+            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
 
             DrawSearchBar();
-
-            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 1 );
-
-            using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 0, 0 ) );
-            ImGui.Separator();
         }
 
         private void DrawPathComposer() {
@@ -132,11 +126,10 @@ namespace ImGuiFileDialog {
                     ImGui.PopItemWidth();
                 }
                 else {
-                    using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing );
-
                     for( var idx = 0; idx < PathDecomposition.Count; idx++ ) {
                         if( idx > 0 ) {
                             ImGui.SameLine();
+                            ImGui.SetCursorPosX( ImGui.GetCursorPosX() - 3 );
                         }
 
                         ImGui.PushID( idx );
@@ -162,26 +155,26 @@ namespace ImGuiFileDialog {
         }
 
         private void DrawSearchBar() {
-            using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing ) ) {
-                ImGui.PushFont( UiBuilder.IconFont );
-                if( ImGui.Button( FontAwesomeIcon.Home.ToIconString() ) ) {
-                    SetPath( "." );
-                }
-                ImGui.PopFont();
-
-                if( ImGui.IsItemHovered() ) {
-                    ImGui.SetTooltip( "重置为当前目录" );
-                }
-
-                ImGui.SameLine();
-
-                DrawDirectoryCreation();
+            ImGui.PushFont( UiBuilder.IconFont );
+            if( ImGui.Button( FontAwesomeIcon.Home.ToIconString() ) ) {
+                SetPath( "." );
             }
+            ImGui.PopFont();
+
+            if( ImGui.IsItemHovered() ) {
+                ImGui.SetTooltip( "重置为当前目录" );
+            }
+
+            ImGui.SameLine();
+
+            DrawDirectoryCreation();
 
             if( !CreateDirectoryMode ) {
                 ImGui.SameLine();
+                ImGui.Text( "搜索 :" );
+                ImGui.SameLine();
                 ImGui.PushItemWidth( ImGui.GetContentRegionAvail().X );
-                var edited = ImGui.InputTextWithHint( "##InputImGuiFileDialogSearchField", "搜索", ref SearchBuffer, 255 );
+                var edited = ImGui.InputText( "##InputImGuiFileDialogSearchField", ref SearchBuffer, 255 );
                 ImGui.PopItemWidth();
                 if( edited ) {
                     ApplyFilteringOnFileList();
@@ -202,21 +195,21 @@ namespace ImGuiFileDialog {
             ImGui.PopFont();
 
             if( ImGui.IsItemHovered() ) {
-                ImGui.SetTooltip( "Create directory" );
+                ImGui.SetTooltip( "新建文件夹" );
             }
 
             if( CreateDirectoryMode ) {
-                var checkSize = UiUtils.GetPaddedIconSize( FontAwesomeIcon.Check );
-                var cancelSize = UiUtils.GetPaddedIconSize( FontAwesomeIcon.Times );
+                ImGui.SameLine();
+                ImGui.Text( "新文件夹名称" );
 
                 ImGui.SameLine();
-                ImGui.SetNextItemWidth( ImGui.GetContentRegionAvail().X - checkSize - cancelSize );
-                ImGui.InputTextWithHint( "##DirectoryFileName", "新文件夹名称", ref CreateDirectoryBuffer, 255 );
-
-                using var font = ImRaii.PushFont( UiBuilder.IconFont );
+                ImGui.PushItemWidth( ImGui.GetContentRegionAvail().X - 100f );
+                ImGui.InputText( "##DirectoryFileName", ref CreateDirectoryBuffer, 255 );
+                ImGui.PopItemWidth();
 
                 ImGui.SameLine();
-                if( ImGui.Button( FontAwesomeIcon.Check.ToIconString() ) ) {
+
+                if( ImGui.Button( "确定" ) ) {
                     if( CreateDir( CreateDirectoryBuffer ) ) {
                         SetPath( Path.Combine( CurrentPath, CreateDirectoryBuffer ) );
                     }
@@ -224,7 +217,8 @@ namespace ImGuiFileDialog {
                 }
 
                 ImGui.SameLine();
-                if( UiUtils.RemoveButton( FontAwesomeIcon.Times.ToIconString() ) ) {
+
+                if( ImGui.Button( "取消" ) ) {
                     CreateDirectoryMode = false;
                 }
             }
@@ -533,14 +527,14 @@ namespace ImGuiFileDialog {
         private static IconColorItem GetIcon( string ext ) {
             if( ICON_MAP == null ) {
                 ICON_MAP = new();
-                AddToIconMap( new string[] { "mp4", "gif", "mov", "avi" }, ( char )FontAwesomeIcon.FileVideo, MISC_TEXT_COLOR );
-                AddToIconMap( new string[] { "pdf" }, ( char )FontAwesomeIcon.FilePdf, MISC_TEXT_COLOR );
-                AddToIconMap( new string[] { "png", "jpg", "jpeg", "tiff", "dds", "atex" }, ( char )FontAwesomeIcon.FileImage, IMAGE_TEXT_COLOR );
-                AddToIconMap( new string[] { "cs", "json", "cpp", "h", "py", "xml", "yaml", "js", "html", "css", "ts", "java" }, ( char )FontAwesomeIcon.FileCode, CODE_TEXT_COLOR );
-                AddToIconMap( new string[] { "txt", "md" }, ( char )FontAwesomeIcon.FileAlt, STANDARD_TEXT_COLOR );
-                AddToIconMap( new string[] { "zip", "7z", "gz", "tar" }, ( char )FontAwesomeIcon.FileArchive, MISC_TEXT_COLOR );
-                AddToIconMap( new string[] { "mp3", "m4a", "ogg", "wav" }, ( char )FontAwesomeIcon.FileAudio, MISC_TEXT_COLOR );
-                AddToIconMap( new string[] { "csv" }, ( char )FontAwesomeIcon.FileCsv, MISC_TEXT_COLOR );
+                AddToIconMap( new[] { "mp4", "gif", "mov", "avi" }, ( char )FontAwesomeIcon.FileVideo, MISC_TEXT_COLOR );
+                AddToIconMap( new[] { "pdf" }, ( char )FontAwesomeIcon.FilePdf, MISC_TEXT_COLOR );
+                AddToIconMap( new[] { "png", "jpg", "jpeg", "tiff", "dds", "atex" }, ( char )FontAwesomeIcon.FileImage, IMAGE_TEXT_COLOR );
+                AddToIconMap( new[] { "cs", "json", "cpp", "h", "py", "xml", "yaml", "js", "html", "css", "ts", "java" }, ( char )FontAwesomeIcon.FileCode, CODE_TEXT_COLOR );
+                AddToIconMap( new[] { "txt", "md" }, ( char )FontAwesomeIcon.FileAlt, STANDARD_TEXT_COLOR );
+                AddToIconMap( new[] { "zip", "7z", "gz", "tar" }, ( char )FontAwesomeIcon.FileArchive, MISC_TEXT_COLOR );
+                AddToIconMap( new[] { "mp3", "m4a", "ogg", "wav" }, ( char )FontAwesomeIcon.FileAudio, MISC_TEXT_COLOR );
+                AddToIconMap( new[] { "csv" }, ( char )FontAwesomeIcon.FileCsv, MISC_TEXT_COLOR );
             }
 
             return ICON_MAP.TryGetValue( ext.ToLower(), out var icon ) ? icon : new IconColorItem {
@@ -686,7 +680,13 @@ namespace ImGuiFileDialog {
         private bool DrawFooter() {
             var posY = ImGui.GetCursorPosY();
 
-            ImGui.TextDisabled( IsDirectoryMode() ? "Directory" : "文件" );
+            if( IsDirectoryMode() ) {
+                ImGui.Text( "目录路径 :" );
+            }
+            else {
+                ImGui.Text( "文件名" );
+            }
+
             ImGui.SameLine();
 
             var width = ImGui.GetContentRegionAvail().X - 100;
@@ -743,7 +743,7 @@ namespace ImGuiFileDialog {
 
             ImGui.SameLine();
 
-            if( UiUtils.RemoveButton( "取消" ) ) {
+            if( ImGui.Button( "取消" ) ) {
                 IsOk = false;
                 res = true;
             }

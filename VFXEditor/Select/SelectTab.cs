@@ -172,10 +172,8 @@ namespace VfxEditor.Select {
 
             if( !ItemsLoaded ) return;
 
-            if( Searched == null ) {
-                Searched = new List<T>();
-                Searched.AddRange( Items );
-            }
+            if( Searched == null ) { Searched = new List<T>(); Searched.AddRange( Items ); }
+            ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
 
             var resetScroll = false;
             DrawExtra();
@@ -238,10 +236,10 @@ namespace VfxEditor.Select {
             Icon = null;
             if( iconId <= 0 ) return;
             try {
-                Icon = Dalamud.TextureProvider.GetIcon( iconId, IconFlags.None );
+                Icon = Plugin.TextureProvider.GetIcon( iconId, IconFlags.None );
             }
             catch( Exception ) {
-                Icon = Dalamud.TextureProvider.GetIcon( 0, IconFlags.None );
+                Icon = Plugin.TextureProvider.GetIcon( 0, IconFlags.None );
             }
         }
 

@@ -22,17 +22,11 @@ namespace VfxEditor.Ui.Tools {
                 ImGui.SameLine();
                 if( ImGui.Button( "解压" ) ) {
                     var cleanedPath = ExtractPath.Replace( "\\", "/" );
-                    if( Dalamud.DataManager.FileExists( cleanedPath ) ) {
+                    if( Plugin.DataManager.FileExists( cleanedPath ) ) {
                         try {
-                            var fileName = cleanedPath.Split( "/" )[^1];
-                            var ext = fileName.Contains( '.' ) ? fileName.Split( "." )[1] : "bin";
-
-                            var file = Dalamud.DataManager.GetFile( cleanedPath );
-                            UiUtils.WriteBytesDialog( $".{ext}",
-                                file.Data,
-                                ext,
-                                fileName.Contains( '.' ) ? fileName.Split( "." )[0] : ""
-                            );
+                            var ext = cleanedPath.Contains( '.' ) ? cleanedPath.Split( "." )[1] : "bin";
+                            var file = Plugin.DataManager.GetFile( cleanedPath );
+                            UiUtils.WriteBytesDialog( $".{ext}", file.Data, ext );
                         }
                         catch( Exception e ) {
                             PluginLog.Error( e, "无法读取文件" );

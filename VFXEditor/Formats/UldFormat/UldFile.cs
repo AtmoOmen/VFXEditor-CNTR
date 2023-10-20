@@ -38,11 +38,13 @@ namespace VfxEditor.UldFormat {
 
         public readonly CommandSplitView<UldTexture> TextureSplitView;
         public readonly CommandSplitView<UldPartList> PartsSplitView;
-        public readonly CommandDropdown<UldComponent> ComponentDropdown;
-        public readonly CommandDropdown<UldTimeline> TimelineDropdown;
-        public readonly CommandDropdown<UldWidget> WidgetDropdown;
+        public readonly SimpleDropdown<UldComponent> ComponentDropdown;
+        public readonly SimpleDropdown<UldTimeline> TimelineDropdown;
+        public readonly SimpleDropdown<UldWidget> WidgetDropdown;
 
-        public UldFile( BinaryReader reader, bool verify ) : base( new CommandManager( Plugin.UldManager ) ) {
+        public UldFile( BinaryReader reader, bool checkOriginal = true ) : base( new CommandManager( Plugin.UldManager ) ) {
+            var original = checkOriginal ? FileUtils.GetOriginal( reader ) : null;
+
             var pos = reader.BaseStream.Position;
             Header = new( reader ); // uldh 0100
 
@@ -97,20 +99,16 @@ namespace VfxEditor.UldFormat {
             Components.ForEach( x => x.Nodes.ForEach( n => n.InitData( reader ) ) );
             Widgets.ForEach( x => x.Nodes.ForEach( n => n.InitData( reader ) ) );
 
-            if( verify ) Verified = FileUtils.Verify( reader, ToBytes(), null );
+            if( checkOriginal ) Verified = FileUtils.CompareFiles( original, ToBytes(), out var _ );
 
             TextureSplitView = new( "材质", Textures, true,
                 ( UldTexture item, int idx ) => item.GetText(), () => new(), () => CommandManager.Uld );
-
             PartsSplitView = new( "Part List", Parts, true,
                 ( UldPartList item, int idx ) => item.GetText(), () => new(), () => CommandManager.Uld );
-
             ComponentDropdown = new( "Component", Components,
                 ( UldComponent item, int idx ) => item.GetText(), () => new( Components ), () => CommandManager.Uld );
-
             TimelineDropdown = new( "时间线", Timelines,
                 ( UldTimeline item, int idx ) => item.GetText(), () => new(), () => CommandManager.Uld );
-
             WidgetDropdown = new( "Widget", Widgets,
                 ( UldWidget item, int idx ) => item.GetText(), () => new( Components ), () => CommandManager.Uld );
         }

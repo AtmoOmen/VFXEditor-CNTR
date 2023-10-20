@@ -26,7 +26,7 @@ namespace VfxEditor.TmbFormat.Entries {
         public override int Size => 0x28;
         public override int ExtraSize => 0;
 
-        private readonly ParsedInt Duration = new( "持续时间", value: 50 );
+        private readonly ParsedInt Duration = new( "持续时间", defaultValue: 50 );
         private readonly ParsedInt Unk1 = new( "未知 1" );
         private readonly ParsedFlag<AnimationFlags> Flags = new( "标识" );
         private readonly ParsedFloat AnimationStart = new( "动画起始帧" );

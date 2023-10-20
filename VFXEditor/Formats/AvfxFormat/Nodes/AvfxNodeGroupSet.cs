@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+using VfxEditor.Ui.Nodes;
 
-namespace VfxEditor.AvfxFormat {
-    public class AvfxNodeGroupSet {
+namespace VfxEditor.AvfxFormat.Nodes {
+    public class AvfxNodeGroupSet : NodeGroupSet {
         public const uint BinderColor = 0xFF5C8A2B;
         public const uint EmitterColor = 0xFF335E9E;
         public const uint ModelColor = 0xFF302B7D;
@@ -20,8 +20,6 @@ namespace VfxEditor.AvfxFormat {
         public readonly NodeGroup<AvfxTimeline> Timelines;
         public readonly NodeGroup<AvfxScheduler> Schedulers;
 
-        private readonly List<AvfxNodeGroup> AllGroups = new();
-
         public AvfxNodeGroupSet( AvfxMain main ) {
             Effectors = new NodeGroup<AvfxEffector>( main.Effectors );
             Emitters = new NodeGroup<AvfxEmitter>( main.Emitters );
@@ -32,7 +30,7 @@ namespace VfxEditor.AvfxFormat {
             Timelines = new NodeGroup<AvfxTimeline>( main.Timelines );
             Schedulers = new NodeGroup<AvfxScheduler>( main.Schedulers );
 
-            AllGroups.AddRange( new AvfxNodeGroup[] {
+            AllGroups.AddRange( new NodeGroup[] {
                 Schedulers,
                 Timelines,
                 Emitters,
@@ -43,23 +41,5 @@ namespace VfxEditor.AvfxFormat {
                 Models
             } );
         }
-
-        public void Initialize() => AllGroups.ForEach( group => group.Initialize() );
-
-        public Dictionary<string, string> GetRenamingMap() {
-            Dictionary<string, string> ret = new();
-            AllGroups.ForEach( group => group.GetRenamingMap( ret ) );
-            return ret;
-        }
-
-        public void ReadRenamingMap( Dictionary<string, string> renamingMap ) {
-            AllGroups.ForEach( group => group.ReadRenamingMap( renamingMap ) );
-        }
-
-        public void PreImport( bool hasDependencies ) => AllGroups.ForEach( group => group.PreImport( hasDependencies ) );
-
-        public void PostImport() => AllGroups.ForEach( group => group.PostImport() );
-
-        public void Dispose() => AllGroups.ForEach( group => group.Dispose() );
     }
 }

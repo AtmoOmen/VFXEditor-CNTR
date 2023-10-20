@@ -1,13 +1,14 @@
 {
-    "Author": "ocealot, AtmoOmen",
+    "Author": "ocealot",
     "Name": "VFXEditorCN",
-    "Punchline": "游戏视觉效果编辑器、查看器 (中文汉化版)",
-    "Description": "游戏内视觉效果、动画与音频编辑插件 | 图标来源: PAPACHIN | 国服本地化: AtmoOmen\n\n任何由于本地化产生的问题 (漏翻、原版插件能用但本地化版用不了)\n请去我的 Github 页面上提交 Issue (点击下方 浏览插件主页 按钮)",
+    "Punchline": "VFX编辑器、查看器 (中文汉化版)",
+    "Description": "游戏内视觉效果、动画与音频编辑插件 | 图标来源: PAPACHIN | 本地化维护: AtmoOmen\n\n使用过程中出现任何问题请直接在獭频 @ 我/点击下方 浏览插件主页 按钮提交 Issue",
     "InternalName": "VFXEditorCN",
-    "AssemblyVersion": "1.7.9.2",
-    "RepoUrl": "https://github.com/AtmoOmen/VFXEditor-CNTR",
+    "AssemblyVersion": "1.7.9.0",
+    "RepoUrl": "https://github.com/AtmoOmen/VFXEditor-CN",
     "ApplicableVersion": "any",
     "Tags": [ "VFX", "AVFX" ],
     "DalamudApiLevel": 8,
-    "LoadPriority": 69
+    "LoadPriority": 69,
+    "Changelog": "- 彻底修复了 .avfx 文件解析错误的问题\n新增了大约 40 条左右翻译"
 }

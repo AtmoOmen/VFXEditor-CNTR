@@ -1,6 +1,7 @@
 using Dalamud.Hooking;
 using Dalamud.Logging;
 using System;
+using System.Text;
 using VfxEditor.Spawn;
 using VfxEditor.Structs.Vfx;
 
@@ -20,12 +21,16 @@ namespace VfxEditor.Interop {
         public StaticVfxRemoveDelegate StaticVfxRemove;
 
         // ======= STATIC HOOKS ========
-        public Hook<StaticVfxCreateDelegate> StaticVfxCreateHook { get; private set; }
+        public delegate IntPtr StaticVfxCreateHookDelegate( char* path, char* pool );
 
-        public Hook<StaticVfxRemoveDelegate> StaticVfxRemoveHook { get; private set; }
+        public Hook<StaticVfxCreateHookDelegate> StaticVfxCreateHook { get; private set; }
+
+        public delegate IntPtr StaticVfxRemoveHookDelegate( IntPtr vfx );
+
+        public Hook<StaticVfxRemoveHookDelegate> StaticVfxRemoveHook { get; private set; }
 
         // ======== ACTOR =============
-        public delegate IntPtr ActorVfxCreateDelegate( string path, IntPtr a2, IntPtr a3, float a4, char a5, ushort a6, char a7 );
+        public delegate IntPtr ActorVfxCreateDelegate( string a1, IntPtr a2, IntPtr a3, float a4, char a5, ushort a6, char a7 );
 
         public ActorVfxCreateDelegate ActorVfxCreate;
 
@@ -34,51 +39,57 @@ namespace VfxEditor.Interop {
         public ActorVfxRemoveDelegate ActorVfxRemove;
 
         // ======== ACTOR HOOKS =============
-        public Hook<ActorVfxCreateDelegate> ActorVfxCreateHook { get; private set; }
+        public delegate IntPtr ActorVfxCreateHookDelegate( char* a1, IntPtr a2, IntPtr a3, float a4, char a5, ushort a6, char a7 );
 
-        public Hook<ActorVfxRemoveDelegate> ActorVfxRemoveHook { get; private set; }
+        public Hook<ActorVfxCreateHookDelegate> ActorVfxCreateHook { get; private set; }
+
+        public delegate IntPtr ActorVfxRemoveHookDelegate( IntPtr vfx, char a2 );
+
+        public Hook<ActorVfxRemoveHookDelegate> ActorVfxRemoveHook { get; private set; }
 
         // ======= TRIGGERS =============
-        public delegate IntPtr VfxUseTriggerDelete( IntPtr vfx, uint triggerId );
+        public delegate IntPtr VfxUseTriggerHookDelete( IntPtr vfx, uint triggerId );
 
-        public Hook<VfxUseTriggerDelete> VfxUseTriggerHook { get; private set; }
+        public Hook<VfxUseTriggerHookDelete> VfxUseTriggerHook { get; private set; }
 
         // ==============================
 
-        private IntPtr StaticVfxNewHandler( string path, string pool ) {
+        private IntPtr StaticVfxNewHandler( char* path, char* pool ) {
+            var vfxPath = Dalamud.Memory.MemoryHelper.ReadString( new IntPtr( path ), Encoding.ASCII, 256 );
             var vfx = StaticVfxCreateHook.Original( path, pool );
-            Plugin.TrackerManager?.Vfx.AddStatic( ( VfxStruct* )vfx, path );
+            Plugin.Tracker?.Vfx.AddStatic( ( VfxStruct* )vfx, vfxPath );
 
-            if( Plugin.Configuration?.LogVfxDebug == true ) PluginLog.Log( $"New Static: {path} {vfx:X8}" );
+            if( Plugin.Configuration?.LogVfxDebug == true ) PluginLog.Log( $"新静态效果: {vfxPath} {vfx:X8}" );
 
             return vfx;
         }
 
         private IntPtr StaticVfxRemoveHandler( IntPtr vfx ) {
             if( VfxSpawn.Vfx != null && vfx == ( IntPtr )VfxSpawn.Vfx.Vfx ) VfxSpawn.InteropRemoved();
-            Plugin.TrackerManager?.Vfx.RemoveStatic( ( VfxStruct* )vfx );
+            Plugin.Tracker?.Vfx.RemoveStatic( ( VfxStruct* )vfx );
             return StaticVfxRemoveHook.Original( vfx );
         }
 
-        private IntPtr ActorVfxNewHandler( string path, IntPtr a2, IntPtr a3, float a4, char a5, ushort a6, char a7 ) {
-            var vfx = ActorVfxCreateHook.Original( path, a2, a3, a4, a5, a6, a7 );
-            Plugin.TrackerManager?.Vfx.AddActor( ( VfxStruct* )vfx, path );
+        private IntPtr ActorVfxNewHandler( char* a1, IntPtr a2, IntPtr a3, float a4, char a5, ushort a6, char a7 ) {
+            var vfxPath = Dalamud.Memory.MemoryHelper.ReadString( new IntPtr( a1 ), Encoding.ASCII, 256 );
+            var vfx = ActorVfxCreateHook.Original( a1, a2, a3, a4, a5, a6, a7 );
+            Plugin.Tracker?.Vfx.AddActor( ( VfxStruct* )vfx, vfxPath );
 
-            if( Plugin.Configuration?.LogVfxDebug == true ) PluginLog.Log( $"New Actor: {path} {vfx:X8}" );
+            if( Plugin.Configuration?.LogVfxDebug == true ) PluginLog.Log( $"新角色: {vfxPath} {vfx:X8}" );
 
             return vfx;
         }
 
         private IntPtr ActorVfxRemoveHandler( IntPtr vfx, char a2 ) {
             if( VfxSpawn.Vfx != null && vfx == ( IntPtr )VfxSpawn.Vfx.Vfx ) VfxSpawn.InteropRemoved();
-            Plugin.TrackerManager?.Vfx.RemoveActor( ( VfxStruct* )vfx );
+            Plugin.Tracker?.Vfx.RemoveActor( ( VfxStruct* )vfx );
             return ActorVfxRemoveHook.Original( vfx, a2 );
         }
 
         private IntPtr VfxUseTriggerHandler( IntPtr vfx, uint triggerId ) {
             var timeline = VfxUseTriggerHook.Original( vfx, triggerId );
 
-            if( Plugin.Configuration?.LogVfxTriggers == true ) PluginLog.Log( $"Trigger {triggerId} on {vfx:X8}, timeline: {timeline:X8}" );
+            if( Plugin.Configuration?.LogVfxTriggers == true ) PluginLog.Log( $"Uses trigger {triggerId} on {vfx:X8}, timeline: {timeline:X8}" );
 
             return timeline;
         }

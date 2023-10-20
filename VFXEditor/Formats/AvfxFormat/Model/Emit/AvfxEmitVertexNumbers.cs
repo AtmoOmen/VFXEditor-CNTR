@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using VfxEditor.Parsing;
@@ -14,7 +15,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) { }
 
-        public override void WriteContents( BinaryWriter writer ) {
+        protected override void WriteContents( BinaryWriter writer ) {
             foreach( var num in VertexNumbers ) num.Write( writer );
         }
     }

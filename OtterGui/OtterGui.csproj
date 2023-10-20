@@ -24,11 +24,13 @@
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugType>full</DebugType>
         <DefineConstants>DEBUG;TRACE;PROFILING</DefineConstants>
+        <NoWarn>1701;1702;MSB3270</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <DebugType>pdbonly</DebugType>
         <DefineConstants>PROFILING</DefineConstants>
+        <NoWarn>1701;1702;MSB3270</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>

@@ -17,13 +17,13 @@ namespace VfxEditor.AvfxFormat {
         public void Execute() { }
 
         public void Redo() {
-            Item.StartTime.Value = StartFinish;
-            Item.EndTime.Value = EndFinish;
+            Item.StartTime.SetValue( StartFinish );
+            Item.EndTime.SetValue( EndFinish );
         }
 
         public void Undo() {
-            Item.StartTime.Value = StartBegin;
-            Item.EndTime.Value = EndBegin;
+            Item.StartTime.SetValue( StartBegin );
+            Item.EndTime.SetValue( EndBegin );
         }
     }
 }

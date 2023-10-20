@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using VfxEditor.AvfxFormat.Model;
+using VfxEditor.AvfxFormat.Nodes;
 using VfxEditor.Utils;
 using VfxEditor.Utils.Gltf;
 using static VfxEditor.DirectX.ModelPreview;
@@ -57,7 +58,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) {
+        protected override void WriteContents( BinaryWriter writer ) {
             EmitVertexes.EmitVertexes.Clear();
             EmitVertexes.EmitVertexes.AddRange( CombinedEmitVertexes.Select( x => x.Vertex ) );
             EmitVertexNumbers.VertexNumbers.Clear();
@@ -81,8 +82,8 @@ namespace VfxEditor.AvfxFormat {
 
                 using( var popup = ImRaii.Popup( "ExportPopup" ) ) {
                     if( popup ) {
-                        if( ImGui.Selectable( ".gltf" ) ) ExportDialog();
-                        if( ImGui.Selectable( ".avfx" ) ) Plugin.AvfxManager.ShowExportDialog( this );
+                        if( ImGui.Selectable( "GLTF" ) ) ExportDialog();
+                        if( ImGui.Selectable( "AVFX" ) ) Plugin.AvfxManager.ShowExportDialog( this );
                     }
                 }
 

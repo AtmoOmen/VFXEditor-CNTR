@@ -1,5 +1,3 @@
-using Dalamud.Interface;
-using Dalamud.Interface.Style;
 using ImGuiNET;
 using ImPlotNET;
 using OtterGui.Raii;
@@ -180,20 +178,11 @@ namespace VfxEditor.AvfxFormat {
         private void DrawControls() {
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
 
-            if( Type == CurveType.Angle ) {
-                if( ImGui.RadioButton( "弧度", !Plugin.Configuration.UseDegreesForAngles ) ) {
-                    Plugin.Configuration.UseDegreesForAngles = false;
-                    Plugin.Configuration.Save();
-                }
-                ImGui.SameLine();
-                if( ImGui.RadioButton( "度", Plugin.Configuration.UseDegreesForAngles ) ) {
-                    Plugin.Configuration.UseDegreesForAngles = true;
-                    Plugin.Configuration.Save();
-                }
-            }
+            ImGui.TextDisabled( "曲线编辑器控制 (?)" );
+            UiUtils.Tooltip( "Ctrl + 左键 以添加一个新的点\n左键 以选择一个点，按住 Shift 键可选择多个点\n右键单击，然后拖拽，最后单击左键执行框选操作" );
 
-            using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing ) ) {
-                if( !DrawOnce || ImGui.SmallButton( "Fit" ) ) {
+            using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 4, 4 ) ) ) {
+                if( !DrawOnce || ImGui.SmallButton( "自适应显示" ) ) {
                     ImPlot.SetNextAxesToFit();
                     DrawOnce = true;
                 }
@@ -223,29 +212,16 @@ namespace VfxEditor.AvfxFormat {
                 }
             }
 
-            ImGui.SameLine();
-            UiUtils.IconText( FontAwesomeIcon.InfoCircle, true );
-            if( ImGui.IsItemHovered() ) {
-                ImGui.BeginTooltip();
-
-                var color = StyleModel.GetFromCurrent().BuiltInColors.ParsedGreen.Value;
-                using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( ImGui.GetStyle().ItemInnerSpacing.X, ImGui.GetStyle().ItemSpacing.Y ) );
-
-                ImGui.TextColored( color, "Ctrl + 左键" );
+            if( Type == CurveType.Angle ) {
+                if( ImGui.RadioButton( "弧度", !Plugin.Configuration.UseDegreesForAngles ) ) {
+                    Plugin.Configuration.UseDegreesForAngles = false;
+                    Plugin.Configuration.Save();
+                }
                 ImGui.SameLine();
-                ImGui.Text( "以添加一个新的点" );
-
-                ImGui.TextColored( color, "单击左键" );
-                ImGui.SameLine();
-                ImGui.Text( "以选择一个点" );
-
-                ImGui.Text( "Hold" );
-                ImGui.SameLine();
-                ImGui.TextColored( color, "按住 Shift 键" );
-                ImGui.SameLine();
-                ImGui.Text( "以多选点" );
-
-                ImGui.EndTooltip();
+                if( ImGui.RadioButton( "度", Plugin.Configuration.UseDegreesForAngles ) ) {
+                    Plugin.Configuration.UseDegreesForAngles = true;
+                    Plugin.Configuration.Save();
+                }
             }
         }
 
@@ -323,8 +299,8 @@ namespace VfxEditor.AvfxFormat {
         // ==========================
 
         private static void GetDrawLine( List<UiCurveEditorPoint> points, bool color, out List<double> xs, out List<double> ys ) {
-            xs = new();
-            ys = new();
+            xs = new List<double>();
+            ys = new List<double>();
 
             if( points.Count > 0 ) {
                 xs.Add( points[0].DisplayX );

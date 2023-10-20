@@ -30,15 +30,15 @@ namespace VfxEditor.SklbFormat {
             // Game file
             foreach( var document in Documents ) {
                 if( document.CurrentFile == null ) continue;
-                if( document.ReplacePath.ToLower().Equals( path.ToLower() ) ) {
+                if( document.ReplacePath.Equals( path ) ) {
                     replaced = true;
                     skeleton = SimpleSklb.LoadFromLocal( document.WriteLocation );
                     return true;
                 }
             }
 
-            if( Dalamud.DataManager.FileExists( path ) ) {
-                skeleton = Dalamud.DataManager.GetFile<SimpleSklb>( path );
+            if( Plugin.DataManager.FileExists( path ) ) {
+                skeleton = Plugin.DataManager.GetFile<SimpleSklb>( path );
                 return true;
             }
 

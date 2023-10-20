@@ -17,6 +17,7 @@ namespace VfxEditor.ScdFormat {
 
         public LayoutPolylineData() {
             Parsed = new() {
+                // Positions go here
                 MaxRange,
                 MinRange,
                 Height,

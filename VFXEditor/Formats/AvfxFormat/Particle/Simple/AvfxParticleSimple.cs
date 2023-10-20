@@ -49,8 +49,8 @@ namespace VfxEditor.AvfxFormat {
         public readonly AvfxInt UvInterval = new( "平面坐标区间", "UvIv" );
         public readonly AvfxInt UvNoRandom = new( "随机平面坐标", "UvNR" );
         public readonly AvfxInt UvNoLoopCount = new( "平面坐标循环数", "UvLC" );
-        public readonly AvfxInt InjectionModelIdx = new( "注入模型索引", "IJMN", value: -1 );
-        public readonly AvfxInt InjectionVertexBindModelIdx = new( "注入模型绑定索引", "VBMN", value: -1 );
+        public readonly AvfxInt InjectionModelIdx = new( "注入模型索引", "IJMN", defaultValue: -1 );
+        public readonly AvfxInt InjectionVertexBindModelIdx = new( "注入模型绑定索引", "VBMN", defaultValue: -1 );
         public readonly AvfxFloat InjectionRadialDir0 = new( "辐射方向注入 - 0", "IRD0" );
         public readonly AvfxFloat InjectionRadialDir1 = new( "辐射方向注入 - 1", "IRD1" );
         public readonly AvfxFloat PivotX = new( "中心点 X", "PvtX" );
@@ -206,7 +206,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
+        protected override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Parsed );
 
         public override void DrawUnassigned() {
             using var _ = ImRaii.PushId( "Simple" );
@@ -229,9 +229,9 @@ namespace VfxEditor.AvfxFormat {
 
         public override string GetDefaultText() => "简易动画";
 
-        public override List<AvfxNodeSelect> GetNodeSelects() => new() {
-            new AvfxNodeSelect<AvfxModel>( Particle, "注入模型", Particle.NodeGroups.Models, InjectionModelIdx ),
-            new AvfxNodeSelect<AvfxModel>( Particle, "注入顶点绑定模型", Particle.NodeGroups.Models, InjectionVertexBindModelIdx )
+        public override List<UiNodeSelect> GetNodeSelects() => new() {
+            new UiNodeSelect<AvfxModel>( Particle, "注入模型", Particle.NodeGroups.Models, InjectionModelIdx ),
+            new UiNodeSelect<AvfxModel>( Particle, "注入顶点绑定模型", Particle.NodeGroups.Models, InjectionVertexBindModelIdx )
         };
     }
 }

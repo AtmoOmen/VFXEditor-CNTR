@@ -10,13 +10,13 @@ namespace VfxEditor.Utils {
 
     public static class MdlUtils {
         public static bool ImportModel( string localPath, out List<AvfxVertex> vertexesOut, out List<AvfxIndex> indexesOut ) {
-            vertexesOut = new();
-            indexesOut = new();
-            if( !Dalamud.DataManager.FileExists( localPath ) ) return false;
+            vertexesOut = new List<AvfxVertex>();
+            indexesOut = new List<AvfxIndex>();
+            if( !Plugin.DataManager.FileExists( localPath ) ) return false;
 
             PluginLog.Log( "导入 MDL 中: " + localPath );
 
-            var file = Dalamud.DataManager.GameData.GetFileFromDisk<MdlFile>( localPath );
+            var file = Plugin.DataManager.GameData.GetFileFromDisk<MdlFile>( localPath );
             var mdl = new Model( file );
 
             foreach( var mesh in mdl.GetMeshesByType( Mesh.MeshType.Main ) ) {

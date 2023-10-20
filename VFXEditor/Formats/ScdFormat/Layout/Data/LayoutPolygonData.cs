@@ -42,7 +42,8 @@ namespace VfxEditor.ScdFormat {
                 VertexCount,
                 Reserved1,
                 RotSpeed,
-                Reserved2
+                Reserved2,
+                // Positions go here
             };
 
             for( var i = 0; i < 32; i++ ) Parsed.Add( new ParsedFloat4( $"Position {i}" ) );

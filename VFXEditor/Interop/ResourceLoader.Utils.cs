@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using VfxEditor.Utils;
 
 namespace VfxEditor.Interop {
     public unsafe partial class ResourceLoader {
@@ -31,24 +30,24 @@ namespace VfxEditor.Interop {
 
         public delegate IntPtr GetFileManagerDelegate();
 
-        private readonly GetFileManagerDelegate GetFileManager;
+        private GetFileManagerDelegate GetFileManager;
 
-        private readonly GetFileManagerDelegate GetFileManager2;
+        private GetFileManagerDelegate GetFileManagerAlt;
 
         [UnmanagedFunctionPointer( CallingConvention.ThisCall )]
         public delegate byte DecRefDelegate( IntPtr resource );
 
-        private readonly DecRefDelegate DecRef;
+        private DecRefDelegate DecRef;
 
         [UnmanagedFunctionPointer( CallingConvention.ThisCall )]
         private delegate void* RequestFileDelegate( IntPtr a1, IntPtr a2, IntPtr a3, byte a4 );
 
-        private readonly RequestFileDelegate RequestFile;
+        private RequestFileDelegate RequestFile;
 
         public void ReRender() {
             if( CurrentRedrawState != RedrawState.None || Plugin.PlayerObject == null ) return;
             CurrentRedrawState = RedrawState.Start;
-            Dalamud.Framework.Update += OnUpdateEvent;
+            Plugin.Framework.Update += OnUpdateEvent;
         }
 
         private void OnUpdateEvent( object framework ) {
@@ -73,7 +72,7 @@ namespace VfxEditor.Interop {
                 case RedrawState.Visible:
                 default:
                     CurrentRedrawState = RedrawState.None;
-                    Dalamud.Framework.Update -= OnUpdateEvent;
+                    Plugin.Framework.Update -= OnUpdateEvent;
                     break;
             }
         }
@@ -101,16 +100,16 @@ namespace VfxEditor.Interop {
             return false;
         }
 
-        public void ReloadPath( string gamePath, string localPath, List<string> papIds, List<short> papTypes ) {
+        public void ReloadPath( string gamePath, string localPath, List<string> papIds = null ) {
             if( string.IsNullOrEmpty( gamePath ) ) return;
 
             var gameResource = GetResource( gamePath, true );
             if( Plugin.Configuration?.LogDebug == true && DoDebug( gamePath ) ) PluginLog.Log( "[ReloadPath] {0} {1} -> {1}", gamePath, localPath, gameResource.ToString( "X8" ) );
 
             if( gameResource != IntPtr.Zero ) {
-                InteropUtils.PrepPap( gameResource, papIds, papTypes );
-                RequestFile( GetFileManager2(), gameResource + Constants.GameResourceOffset, gameResource, 1 );
-                InteropUtils.WritePapIds( gameResource, papIds, papTypes );
+                InteropUtils.PrepPap( gameResource, papIds );
+                RequestFile( GetFileManagerAlt(), gameResource + Constants.GameResourceOffset, gameResource, 1 );
+                InteropUtils.WritePapIds( gameResource, papIds );
             }
 
             if( string.IsNullOrEmpty( localPath ) ) return;
@@ -119,15 +118,19 @@ namespace VfxEditor.Interop {
             if( Plugin.Configuration?.LogDebug == true && DoDebug( gamePath ) ) PluginLog.Log( "[ReloadPath] {0} {1} -> {1}", gamePath, localPath, localGameResource.ToString( "X8" ) );
 
             if( localGameResource != IntPtr.Zero ) {
-                InteropUtils.PrepPap( localGameResource, papIds, papTypes );
-                RequestFile( GetFileManager2(), localGameResource + Constants.GameResourceOffset, localGameResource, 1 );
-                InteropUtils.WritePapIds( localGameResource, papIds, papTypes );
+                InteropUtils.PrepPap( localGameResource, papIds );
+                RequestFile( GetFileManagerAlt(), localGameResource + Constants.GameResourceOffset, localGameResource, 1 );
+                InteropUtils.WritePapIds( localGameResource, papIds );
             }
         }
 
         private IntPtr GetResource( string path, bool original ) {
-            var extension = FileUtils.Reverse( path.Split( '.' )[1] );
-            var typeBytes = Encoding.ASCII.GetBytes( extension );
+            // File type extension
+            var ext = path.Split( '.' )[1];
+            var charArray = ext.ToCharArray();
+            Array.Reverse( charArray );
+            var flip = new string( charArray );
+            var typeBytes = Encoding.ASCII.GetBytes( flip );
             var bType = stackalloc byte[typeBytes.Length + 1];
             Marshal.Copy( typeBytes, 0, new IntPtr( bType ), typeBytes.Length );
             var pResourceType = ( ResourceType* )bType;
@@ -137,14 +140,12 @@ namespace VfxEditor.Interop {
             var categoryString = split[0];
             var categoryBytes = categoryString switch {
                 "bgcommon" => BitConverter.GetBytes( 1u ),
-                "cur" => InteropUtils.GetDatCategory( 3u, split[1] ),
                 "chara" => BitConverter.GetBytes( 4u ),
-                "shader" => BitConverter.GetBytes( 5u ),
                 "ui" => BitConverter.GetBytes( 6u ),
                 "sound" => BitConverter.GetBytes( 7u ),
                 "vfx" => BitConverter.GetBytes( 8u ),
                 "bg" => InteropUtils.GetBgCategory( split[1], split[2] ),
-                "music" => InteropUtils.GetDatCategory( 12u, split[1] ),
+                "music" => InteropUtils.GetMusicCategory( split[1] ),
                 _ => BitConverter.GetBytes( 0u )
             };
             var bCategory = stackalloc byte[categoryBytes.Length + 1];

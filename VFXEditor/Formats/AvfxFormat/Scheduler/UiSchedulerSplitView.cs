@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace VfxEditor.AvfxFormat {
-    public class UiSchedulerSplitView : AvfxItemSplitView<AvfxSchedulerItem> {
+    public class UiSchedulerSplitView : UiItemSplitView<AvfxSchedulerItem> {
         public readonly AvfxScheduler Scheduler;
         public readonly bool IsItem;
 

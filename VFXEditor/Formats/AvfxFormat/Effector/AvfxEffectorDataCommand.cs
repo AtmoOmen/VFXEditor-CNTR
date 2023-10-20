@@ -11,7 +11,7 @@ namespace VfxEditor.AvfxFormat {
         public void Execute() {
             OldData = Item.Data;
             OldData?.Disable();
-            Item.SetData( Item.EffectorVariety.Value );
+            Item.SetData( Item.EffectorVariety.GetValue() );
             NewData = Item.Data;
         }
 

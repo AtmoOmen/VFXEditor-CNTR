@@ -2,6 +2,7 @@ using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
+using VfxEditor.AvfxFormat.Nodes;
 using VfxEditor.Ui.Interfaces;
 
 namespace VfxEditor.AvfxFormat {
@@ -21,7 +22,7 @@ namespace VfxEditor.AvfxFormat {
 
         public readonly AvfxNodeGroupSet NodeGroups;
 
-        public readonly AvfxNodeSelect<AvfxBinder> BinderSelect;
+        public readonly UiNodeSelect<AvfxBinder> BinderSelect;
 
         public readonly UiTimelineClipSplitView ClipSplit;
         public readonly UiTimelineItemSequencer ItemSplit;
@@ -30,7 +31,7 @@ namespace VfxEditor.AvfxFormat {
         public AvfxTimeline( AvfxNodeGroupSet groupSet ) : base( NAME, AvfxNodeGroupSet.TimelineColor ) {
             NodeGroups = groupSet;
 
-            Parsed = new() {
+            Parsed = new List<AvfxBase> {
                 LoopStart,
                 LoopEnd,
                 BinderIdx,
@@ -59,7 +60,7 @@ namespace VfxEditor.AvfxFormat {
                     lastItem = new AvfxTimelineItemContainer( this );
                     lastItem.Read( _reader, _size );
                 }
-                else if( _name == "片段" ) {
+                else if( _name == "Clip" ) {
                     var clip = new AvfxTimelineClip( this );
                     clip.Read( _reader, _size );
                     Clips.Add( clip );
@@ -77,9 +78,9 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) {
-            TimelineCount.Value = Items.Count;
-            ClipCount.Value = Clips.Count;
+        protected override void WriteContents( BinaryWriter writer ) {
+            TimelineCount.SetValue( Items.Count );
+            ClipCount.SetValue( Clips.Count );
             WriteNested( writer, Parsed );
 
             // Item

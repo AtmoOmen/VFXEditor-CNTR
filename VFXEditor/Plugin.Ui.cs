@@ -1,5 +1,4 @@
 using Dalamud.Game.ClientState.Objects.Types;
-using Dalamud.Interface;
 using FFXIVClientStructs.FFXIV.Client.Game.Control;
 using ImGuiNET;
 using OtterGui.Raii;
@@ -13,10 +12,10 @@ using VfxEditor.Utils;
 
 namespace VfxEditor {
     public unsafe partial class Plugin {
-        public static bool InGpose => Dalamud.PluginInterface.UiBuilder.GposeActive;
-        public static GameObject GposeTarget => Dalamud.Objects.CreateObjectReference( new IntPtr( TargetSystem.Instance()->GPoseTarget ) );
-        public static GameObject PlayerObject => InGpose ? GposeTarget : Dalamud.ClientState?.LocalPlayer;
-        public static GameObject TargetObject => InGpose ? GposeTarget : Dalamud.TargetManager?.Target;
+        public static bool InGpose => PluginInterface.UiBuilder.GposeActive;
+        public static GameObject GposeTarget => Objects.CreateObjectReference( new IntPtr( TargetSystem.Instance()->GPoseTarget ) );
+        public static GameObject PlayerObject => InGpose ? GposeTarget : ClientState?.LocalPlayer;
+        public static GameObject TargetObject => InGpose ? GposeTarget : TargetManager?.Target;
 
         public static readonly Dictionary<string, Modal> Modals = new();
 
@@ -29,7 +28,7 @@ namespace VfxEditor {
             TexToolsDialog.Draw();
             PenumbraDialog.Draw();
             ToolsDialog.Draw();
-            TrackerManager.Draw();
+            Tracker.Draw();
             Configuration.Draw();
             LibraryManager.Draw();
 
@@ -59,6 +58,10 @@ namespace VfxEditor {
             using var _ = ImRaii.PushId( "Menu" );
 
             if( ImGui.BeginMenu( "文件" ) ) {
+                ImGui.TextDisabled( "工作区" );
+                ImGui.SameLine();
+                UiUtils.HelpMarker( "A workspace allows you to save multiple vfx replacements at the same time, as well as any imported textures or item renaming (such as particles or emitters)" );
+
                 if( ImGui.MenuItem( "新建" ) ) NewWorkspace();
                 if( ImGui.MenuItem( "打开" ) ) OpenWorkspace();
                 if( ImGui.MenuItem( "保存" ) ) SaveWorkspace();
@@ -91,40 +94,24 @@ namespace VfxEditor {
             ImGui.Separator();
 
             // Manually specify the order since it's different than the load order
-            var managers = new IFileManager[] {
-                AvfxManager,
-                TmbManager,
-                PapManager,
-                ScdManager,
-                UldManager,
-                SklbManager,
-                SkpManager,
-                PhybManager,
-                EidManager,
-                AtchManager,
-                ShpkManager,
-            };
+            DrawManagerMenu( AvfxManager, currentManager );
+            DrawManagerMenu( TmbManager, currentManager );
+            DrawManagerMenu( PapManager, currentManager );
+            DrawManagerMenu( ScdManager, currentManager );
+            DrawManagerMenu( UldManager, currentManager );
+            DrawManagerMenu( PhybManager, currentManager );
+            DrawManagerMenu( SklbManager, currentManager );
 
-            var dropdown = false;
-
-            for( var i = 0; i < managers.Length; i++ ) {
-                var manager = managers[i];
-
-                if( !dropdown && i < ( managers.Length - 1 ) ) { // no need for a dropdown for the last one
-                    var width = ImGui.CalcTextSize( manager.GetId() ).X + ( 2 * ImGui.GetStyle().ItemSpacing.X ) + 10;
-
-                    if( width > ImGui.GetContentRegionAvail().X ) {
-                        dropdown = true;
-                        using var font = ImRaii.PushFont( UiBuilder.IconFont );
-                        if( !ImGui.BeginMenu( FontAwesomeIcon.CaretDown.ToIconString() ) ) return; // Menu hidden, just skip the rest
-                    }
-                }
-
-                using var disabled = ImRaii.Disabled( manager == currentManager );
-                if( ImGui.MenuItem( manager.GetId() ) ) manager.Show();
+            if( ImGui.BeginMenu( "Attach" ) ) {
+                DrawManagerMenu( EidManager, currentManager );
+                DrawManagerMenu( AtchManager, currentManager );
+                ImGui.EndMenu();
             }
+        }
 
-            if( dropdown ) ImGui.EndMenu();
+        private static void DrawManagerMenu( IFileManager manager, IFileManager currentManager ) {
+            using var disabled = ImRaii.Disabled( manager == currentManager );
+            if( ImGui.MenuItem( manager.GetId() ) ) manager.Show();
         }
 
         public static void AddModal( Modal modal ) {

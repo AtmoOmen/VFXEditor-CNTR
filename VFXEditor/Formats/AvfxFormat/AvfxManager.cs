@@ -16,8 +16,8 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void DrawEditMenuExtra() {
             if( ImGui.BeginMenu( "模板" ) ) {
-                if( ImGui.MenuItem( "空白" ) ) ActiveDocument?.OpenTemplate( "default_vfx.avfx" );
-                if( ImGui.MenuItem( "武器" ) ) ActiveDocument?.OpenTemplate( "default_weapon.avfx" );
+                if( ImGui.MenuItem( "空白" ) ) ActiveDocument?.OpenTemplate( @"default_vfx.avfx" );
+                if( ImGui.MenuItem( "武器" ) ) ActiveDocument?.OpenTemplate( @"default_weapon.avfx" );
                 ImGui.EndMenu();
             }
 

@@ -21,7 +21,7 @@ namespace VfxEditor.TmbFormat {
             AnimationId = TmbSpawn.GetIdFromTmbPath( ReplacePath );
         }
 
-        protected override TmbFile FileFromReader( BinaryReader reader ) => new( reader, true );
+        protected override TmbFile FileFromReader( BinaryReader reader ) => new( reader );
 
         public override WorkspaceMetaBasic GetWorkspaceMeta( string newPath ) => new() {
             Name = Name,
@@ -46,12 +46,12 @@ namespace VfxEditor.TmbFormat {
             using( var _ = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( ImGui.GetStyle().ItemSpacing.Y, 4 ) ) ) {
                 ImGui.SameLine();
             }
-            Plugin.TrackerManager.Tmb.DrawEye( new Vector2( 28, height ) );
+            Plugin.Tracker.Tmb.DrawEye( new Vector2( 28, height ) );
         }
 
         protected override void DrawBody() {
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
-            DrawAnimationWarning();
+            DisplayAnimationWarning();
             base.DrawBody();
         }
     }

@@ -2,6 +2,7 @@ using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.Numerics;
+using VfxEditor.Ui.Nodes;
 
 namespace VfxEditor.AvfxFormat.Dialogs {
     public abstract class ExportDialogCategory {
@@ -24,7 +25,7 @@ namespace VfxEditor.AvfxFormat.Dialogs {
         }
 
         public override void Reset() {
-            Selected = new();
+            Selected = new HashSet<AvfxNode>();
         }
 
         public override bool Belongs( AvfxNode node ) => node is T;

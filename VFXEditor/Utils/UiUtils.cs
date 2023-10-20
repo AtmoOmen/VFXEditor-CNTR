@@ -1,5 +1,4 @@
 using Dalamud.Interface;
-using Dalamud.Interface.Style;
 using ImGuiFileDialog;
 using ImGuiNET;
 using OtterGui.Raii;
@@ -78,22 +77,6 @@ namespace VfxEditor.Utils {
             return small ? ImGui.SmallButton( label ) : ImGui.Button( label );
         }
 
-        public static void DrawIntText( string label, int value ) {
-            using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing );
-            ImGui.TextDisabled( label );
-            ImGui.SameLine();
-            var dalamudColors = StyleModel.GetFromCurrent().BuiltInColors;
-            ImGui.Text( $"{value}" );
-        }
-
-        public static void DrawBoolText( string label, bool value ) {
-            using var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing );
-            ImGui.TextDisabled( label );
-            ImGui.SameLine();
-            var dalamudColors = StyleModel.GetFromCurrent().BuiltInColors;
-            ImGui.TextColored( value ? dalamudColors.ParsedGreen.Value : dalamudColors.DalamudRed.Value, $"{value}" );
-        }
-
         public static void HelpMarker( string text ) {
             IconText( FontAwesomeIcon.InfoCircle, true );
             Tooltip( text );
@@ -125,15 +108,15 @@ namespace VfxEditor.Utils {
 
 #nullable enable
         public static void OkNotification( string content, string? title = "VFXEditor" ) {
-            Dalamud.PluginInterface.UiBuilder.AddNotification( content, title, global::Dalamud.Interface.Internal.Notifications.NotificationType.Success );
+            Plugin.PluginInterface.UiBuilder.AddNotification( content, title, Dalamud.Interface.Internal.Notifications.NotificationType.Success );
         }
 
         public static void ErrorNotification( string content, string? title = "VFXEditor" ) {
-            Dalamud.PluginInterface.UiBuilder.AddNotification( content, title, global::Dalamud.Interface.Internal.Notifications.NotificationType.Error );
+            Plugin.PluginInterface.UiBuilder.AddNotification( content, title, Dalamud.Interface.Internal.Notifications.NotificationType.Error );
         }
 
         public static void WarningNotification( string content, string? title = "VFXEditor" ) {
-            Dalamud.PluginInterface.UiBuilder.AddNotification( content, title, global::Dalamud.Interface.Internal.Notifications.NotificationType.Warning );
+            Plugin.PluginInterface.UiBuilder.AddNotification( content, title, Dalamud.Interface.Internal.Notifications.NotificationType.Warning );
         }
 #nullable disable
 
@@ -177,15 +160,14 @@ namespace VfxEditor.Utils {
 
             if( verified == VerifiedStatus.ERROR ) {
                 ImGui.SameLine();
-                using var _ = ImRaii.PushColor( ImGuiCol.Button, RED_COLOR );
-                if( IconButton( FontAwesomeIcon.Bug, "Report" ) ) {
+                if( ColorButton( "上报错误", RED_COLOR, false ) ) {
                     OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/issues/new?assignees=&labels=bug&title=%5BPARSING+ISSUE%5D&body=What%20is%20the%20name%20or%20path%20of%20the%20file%20you%20are%20trying%20to%20open%3F%0A%0AWhat%20type%20of%20file%20is%20it%20(VFX%2C%20TMB%2C%20PAP%2C%20etc.)%3F" );
                 }
             }
         }
 
-        public static void WriteBytesDialog( string filter, byte[] data, string ext, string fileName ) {
-            FileDialogManager.SaveFileDialog( "选择保存位置", filter, fileName, ext, ( bool ok, string res ) => {
+        public static void WriteBytesDialog( string filter, byte[] data, string ext ) {
+            FileDialogManager.SaveFileDialog( "选择保存位置", filter, "", ext, ( bool ok, string res ) => {
                 if( ok ) File.WriteAllBytes( res, data );
             } );
         }
@@ -199,6 +181,16 @@ namespace VfxEditor.Utils {
 
         public static string RandomString( int length ) =>
             new( Enumerable.Repeat( "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", length ).Select( x => x[random.Next( x.Length )] ).ToArray() );
+
+        public static float GetWindowContentRegionWidth() => ImGui.GetWindowContentRegionMax().X - ImGui.GetWindowContentRegionMin().X;
+
+        public static bool MouseOver( Vector2 start, Vector2 end ) => Contains( start, end, ImGui.GetIO().MousePos );
+
+        public static bool MouseClicked() => ImGui.IsMouseClicked( ImGuiMouseButton.Left );
+
+        public static bool DoubleClicked() => ImGui.IsMouseDoubleClicked( ImGuiMouseButton.Left );
+
+        public static bool Contains( Vector2 min, Vector2 max, Vector2 point ) => point.X >= min.X && point.Y >= min.Y && point.X <= max.X && point.Y <= max.Y;
 
         public static float Lerp( float firstFloat, float secondFloat, float by ) => firstFloat * ( 1 - by ) + secondFloat * by;
 
@@ -318,10 +310,14 @@ namespace VfxEditor.Utils {
 
         public static Vector3 ToRadians( Vector3 value ) => new( ToRadians( value.X ), ToRadians( value.Y ), ToRadians( value.Z ) );
 
-        public static float ToRadians( float value ) => ( float )( ( Math.PI / 180 ) * value );
+        public static float ToRadians( float value ) {
+            return ( float )( ( Math.PI / 180 ) * value );
+        }
 
         public static Vector3 ToDegrees( Vector3 value ) => new( ToDegrees( value.X ), ToDegrees( value.Y ), ToDegrees( value.Z ) );
 
-        public static float ToDegrees( float value ) => ( float )( ( 180 / Math.PI ) * value );
+        public static float ToDegrees( float value ) {
+            return ( float )( ( 180 / Math.PI ) * value );
+        }
     }
 }

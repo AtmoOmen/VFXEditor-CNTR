@@ -1,7 +1,5 @@
-using Dalamud.Interface;
 using System.Collections.Generic;
 using VfxEditor.Parsing;
-using VfxEditor.Spawn;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
@@ -14,20 +12,11 @@ namespace VfxEditor.TmbFormat.Entries {
         public override int Size => 0x44;
         public override int ExtraSize => 0;
 
-        private readonly ParsedInt Unk1 = new( "未知 1", value: 1 );
+        private readonly ParsedInt Unk1 = new( "未知 1", defaultValue: 1 );
         private readonly ParsedInt Unk2 = new( "未知 2" );
-        private readonly TmbOffsetString Path = new( "路径", new() {
-            new() {
-                Icon = () => VfxSpawn.Active ? FontAwesomeIcon.Times : FontAwesomeIcon.Eye,
-                Remove = false,
-                Action = ( string path ) => {
-                    if( VfxSpawn.Active ) VfxSpawn.Remove();
-                    else VfxSpawn.OnSelf( path, false );
-                }
-            }
-        } );
-        private readonly ParsedShort BindPoint1 = new( "绑定点 1", value: 1 );
-        private readonly ParsedShort BindPoint2 = new( "绑定点 2", value: 0xFF );
+        private readonly TmbOffsetString Path = new( "路径" );
+        private readonly ParsedShort BindPoint1 = new( "绑定点 1", defaultValue: 1 );
+        private readonly ParsedShort BindPoint2 = new( "绑定点 2", defaultValue: 0xFF );
         private readonly ParsedInt Unk3 = new( "未知 3" );
         private readonly ParsedInt Unk4 = new( "未知 4" );
         private readonly ParsedInt Unk5 = new( "未知 5" );

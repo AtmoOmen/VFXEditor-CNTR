@@ -32,14 +32,16 @@ namespace VfxEditor.TmbFormat {
         private readonly List<Tmtr> UnusedTracks;
         private readonly UiSplitView<Tmtr> UnusedTrackView;
 
-        public TmbFile( BinaryReader binaryReader, bool verify ) : this( binaryReader, new( Plugin.TmbManager ), verify ) { }
+        public TmbFile( BinaryReader binaryReader, bool checkOriginal = true ) :
+            this( binaryReader, new( Plugin.TmbManager ), checkOriginal ) { }
 
-        public TmbFile( BinaryReader binaryReader, CommandManager manager, bool verify ) : base( manager ) {
+        public TmbFile( BinaryReader binaryReader, CommandManager manager, bool checkOriginal = true ) : base( manager ) {
             ActorsDropdown = new( this );
             TmfcDropdown = new( this );
 
             var startPos = binaryReader.BaseStream.Position;
             var reader = new TmbReader( binaryReader );
+            var original = checkOriginal ? FileUtils.GetOriginal( binaryReader ) : null;
 
             reader.ReadInt32(); // TMLB
             var size = reader.ReadInt32();
@@ -59,7 +61,7 @@ namespace VfxEditor.TmbFormat {
 
             RefreshIds();
 
-            if( verify ) Verified = FileUtils.Verify( binaryReader, ToBytes(), null );
+            if( checkOriginal ) Verified = FileUtils.CompareFiles( original, ToBytes(), out var _ );
 
             binaryReader.BaseStream.Seek( startPos + size, SeekOrigin.Begin );
 
@@ -184,7 +186,7 @@ namespace VfxEditor.TmbFormat {
             ImGui.TextWrapped( "更改此文件有被潜在检测的可能性" );
             ImGui.PopStyleColor();
             ImGui.SameLine();
-            if( ImGui.SmallButton( "指南 (英文)" ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki/Notes-on-TMFC" );
+            if( ImGui.SmallButton( "指南" ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki/Notes-on-TMFC" );
         }
 
         public static void GenericWarning() {

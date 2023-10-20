@@ -35,10 +35,12 @@ namespace VfxEditor.PapFormat {
 
         private readonly bool EmptyHavok = false;
 
-        public PapFile( BinaryReader reader, string sourcePath, string hkxTemp, bool verify ) : base( new( Plugin.PapManager ) ) {
+        public PapFile( BinaryReader reader, string sourcePath, string hkxTemp, bool checkOriginal = true ) : base( new( Plugin.PapManager ) ) {
             SourcePath = sourcePath;
             HkxTempLocation = hkxTemp;
             AnimationsDropdown = new( this, Animations );
+
+            var original = checkOriginal ? FileUtils.GetOriginal( reader ) : null;
 
             reader.ReadInt32(); // magic
             reader.ReadInt32(); // version
@@ -78,7 +80,7 @@ namespace VfxEditor.PapFormat {
                 EmptyHavok = true;
             }
 
-            if( verify ) Verified = FileUtils.Verify( reader, ToBytes(), null );
+            if( checkOriginal ) Verified = FileUtils.CompareFiles( original, ToBytes(), out var _ );
         }
 
         public override void Update() {
@@ -170,8 +172,7 @@ namespace VfxEditor.PapFormat {
             AnimationsDropdown.Draw();
         }
 
-        public override List<string> GetPapIds() => Animations.Select( x => x.GetName() ).ToList();
-        public override List<short> GetPapTypes() => Animations.Select( x => x.GetPapType() ).ToList();
+        public List<string> GetPapIds() => Animations.Select( x => x.GetName() ).ToList();
 
         public void RefreshHavokIndexes() {
             for( var i = 0; i < Animations.Count; i++ ) {

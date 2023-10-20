@@ -1,5 +1,4 @@
 using ImGuiNET;
-using System.Collections.Generic;
 using System.IO;
 
 namespace VfxEditor.Parsing.String {
@@ -7,7 +6,7 @@ namespace VfxEditor.Parsing.String {
         private readonly int Length;
         private readonly byte Padding;
 
-        public ParsedPaddedString( string name, string value, int length, byte padding ) : base( name, value ) {
+        public ParsedPaddedString( string name, string defaultValue, int length, byte padding ) : base( name, defaultValue ) {
             Padding = padding;
             Length = length;
         }
@@ -26,26 +25,9 @@ namespace VfxEditor.Parsing.String {
 
         public override void Write( BinaryWriter writer ) {
             base.Write( writer );
-            Pad( writer );
-        }
-
-        public void WriteAndPopulateIgnore( BinaryWriter writer, List<(int, int)> ignore ) {
-            if( ignore == null ) {
-                Write( writer );
-                return;
-            }
-
-            base.Write( writer );
-            var start = ( int )writer.BaseStream.Position;
-            Pad( writer );
-            var end = ( int )writer.BaseStream.Position;
-            ignore.Add( (start, end) );
-        }
-
-        private void Pad( BinaryWriter writer ) {
             for( var i = 0; i < ( Length - Value.Length - 1 ); i++ ) writer.Write( Value.Length == 0 ? ( byte )0 : Padding );
         }
 
-        public override void Draw( CommandManager manager ) => Draw( manager, ( uint )( Length - 1 ), Name, 0, ImGuiInputTextFlags.None );
+        public override void Draw( CommandManager manager ) => Draw( manager, ( uint )( Length - 1 ), Name, ImGuiInputTextFlags.None );
     }
 }

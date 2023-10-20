@@ -13,7 +13,7 @@ namespace VfxEditor.TmbFormat.Entries {
         public override int Size => 0x14;
         public override int ExtraSize => 0;
 
-        private readonly ParsedInt Duration = new( "持续时间", value: 1 );
+        private readonly ParsedInt Duration = new( "持续时间", defaultValue: 1 );
         private readonly ParsedInt Unk1 = new( "未知 1" );
 
         public C125( TmbFile file ) : base( file ) { }

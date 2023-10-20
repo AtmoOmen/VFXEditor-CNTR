@@ -1,5 +1,4 @@
 using ImGuiNET;
-using SharpDX;
 using System.IO;
 using VfxEditor.EidFormat.BindPoint;
 using VfxEditor.Parsing;
@@ -30,7 +29,7 @@ namespace VfxEditor.EidFormat {
             writer.Write( 0 );
         }
 
-        public override string GetName() => $"{Id.Value} ({Name.Value})";
+        public override int GetId() => Id.Value;
 
         public override void Draw() {
             ImGui.TextDisabled( "Data Version: [NEW]" );
@@ -40,11 +39,5 @@ namespace VfxEditor.EidFormat {
             Position.Draw( CommandManager.Eid );
             Rotation.Draw( CommandManager.Eid );
         }
-
-        protected override Vector3 GetOffset() => new( Position.Value.X, Position.Value.Y, Position.Value.Z );
-
-        protected override Quaternion GetRotation() => Quaternion.RotationYawPitchRoll( Rotation.Value.Y, Rotation.Value.X, Rotation.Value.Z );
-
-        protected override string GetBoneName() => Name.Value;
     }
 }

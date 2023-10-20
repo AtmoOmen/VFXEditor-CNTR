@@ -2,6 +2,7 @@ using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
+using VfxEditor.AvfxFormat.Nodes;
 using VfxEditor.Ui.Interfaces;
 
 namespace VfxEditor.AvfxFormat {
@@ -10,11 +11,15 @@ namespace VfxEditor.AvfxFormat {
 
         public readonly AvfxInt ItemCount = new( "物体数", "ItCn" );
         public readonly AvfxInt TriggerCount = new( "触发器数", "TrCn" );
+
         public readonly List<AvfxSchedulerItem> Items = new();
         public readonly List<AvfxSchedulerItem> Triggers = new();
+
         public readonly UiSchedulerSplitView ItemSplit;
         public readonly UiSchedulerSplitView TriggerSplit;
-        public readonly List<AvfxBase> Parsed;
+
+        private readonly List<AvfxBase> Parsed;
+
         public readonly AvfxNodeGroupSet NodeGroups;
 
         public AvfxScheduler( AvfxNodeGroupSet groupSet ) : base( NAME, AvfxNodeGroupSet.SchedColor ) {
@@ -61,9 +66,9 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Parsed, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) {
-            ItemCount.Value = Items.Count;
-            TriggerCount.Value = Triggers.Count;
+        protected override void WriteContents( BinaryWriter writer ) {
+            ItemCount.SetValue( Items.Count );
+            TriggerCount.SetValue( Triggers.Count );
             WriteNested( writer, Parsed );
 
             // Item

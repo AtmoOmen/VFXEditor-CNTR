@@ -55,18 +55,11 @@ namespace VfxEditor.PapFormat {
 
         public string GetName() => Name.Value;
 
-        public short GetPapType() => ( short )Type.Value;
-
         public void Draw() {
             SheetData.InitMotionTimelines();
             if( !string.IsNullOrEmpty( Name.Value ) && SheetData.MotionTimelines.TryGetValue( Name.Value, out var motionData ) ) {
-                UiUtils.DrawIntText( "Blend Group:", motionData.Group );
-                ImGui.SameLine();
-                UiUtils.DrawBoolText( "Loop:", motionData.Loop );
-                ImGui.SameLine();
-                UiUtils.DrawBoolText( "Lips:", motionData.Lip );
-                ImGui.SameLine();
-                UiUtils.DrawBoolText( "Blink:", motionData.Blink );
+                ImGui.TextDisabled( $"Loop: [{motionData.Loop}] Lip: [{motionData.Lip}] Blink: [{motionData.Blink}]" );
+
                 ImGui.SameLine();
                 UiUtils.HelpMarker( "These values are hard-coded in the game's MotionTimeline sheet, and are based on the animation name" );
             }
@@ -94,7 +87,7 @@ namespace VfxEditor.PapFormat {
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
 
             using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 4, 4 ) ) ) {
-                if( ImGui.Button( "导出" ) ) UiUtils.WriteBytesDialog( ".tmb", Tmb.ToBytes(), "tmb", "ExportedTmb" );
+                if( ImGui.Button( "导出" ) ) UiUtils.WriteBytesDialog( ".tmb", Tmb.ToBytes(), "tmb" );
 
                 ImGui.SameLine();
                 if( ImGui.Button( "替换" ) ) {

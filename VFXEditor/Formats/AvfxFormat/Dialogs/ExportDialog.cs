@@ -13,7 +13,7 @@ namespace VfxEditor.AvfxFormat.Dialogs {
 
         public ExportDialog( AvfxFile vfxFile ) : base( "导出", false, 600, 400 ) {
             VfxFile = vfxFile;
-            Categories = new() {
+            Categories = new List<ExportDialogCategory> {
                 new ExportDialogCategory<AvfxTimeline>( vfxFile.NodeGroupSet.Timelines, "时间线" ),
                 new ExportDialogCategory<AvfxEmitter>( vfxFile.NodeGroupSet.Emitters, "发射器" ),
                 new ExportDialogCategory<AvfxParticle>( vfxFile.NodeGroupSet.Particles, "粒子" ),

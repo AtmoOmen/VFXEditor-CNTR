@@ -77,7 +77,7 @@ namespace VfxEditor.FileManager {
         }
 
         protected void LoadGame( string gamePath ) {
-            if( !Dalamud.DataManager.FileExists( gamePath ) ) {
+            if( !Plugin.DataManager.FileExists( gamePath ) ) {
                 PluginLog.Error( $"Game file: [{gamePath}] does not exist" );
                 return;
             }
@@ -88,7 +88,7 @@ namespace VfxEditor.FileManager {
             }
 
             try {
-                var file = Dalamud.DataManager.GetFile( gamePath );
+                var file = Plugin.DataManager.GetFile( gamePath );
                 using var ms = new MemoryStream( file.Data );
                 using var reader = new BinaryReader( ms );
                 CurrentFile?.Dispose();
@@ -134,30 +134,34 @@ namespace VfxEditor.FileManager {
             File.WriteAllBytes( path, CurrentFile.ToBytes() );
         }
 
-        protected void ExportRaw() => UiUtils.WriteBytesDialog( $".{Extension}", CurrentFile.ToBytes(), Extension, "ExportedFile" );
+        protected void ExportRaw() => UiUtils.WriteBytesDialog( "." + Extension, CurrentFile.ToBytes(), Extension );
+
+        protected void Reload( List<string> papIds = null ) {
+            if( CurrentFile == null || ReplacePath.Contains( ".sklb" ) ) return;
+            Plugin.ResourceLoader.ReloadPath( ReplacePath, WriteLocation, papIds );
+        }
 
         public void Update() {
             if( ( DateTime.Now - LastUpdate ).TotalSeconds <= 0.2 ) return;
             LastUpdate = DateTime.Now;
             Unsaved = false;
 
-            CurrentFile?.Update();
-
             if( Plugin.Configuration.UpdateWriteLocation ) {
                 var newWriteLocation = Manager.NewWriteLocation;
+                CurrentFile?.Update();
                 WriteFile( newWriteLocation );
                 WriteLocation = newWriteLocation;
+                Reload( GetPapIds() );
+                Plugin.ResourceLoader.ReRender();
             }
             else {
                 WriteFile( WriteLocation );
+                Reload( GetPapIds() );
+                Plugin.ResourceLoader.ReRender();
             }
-
-            if( CurrentFile != null && !ReplacePath.Contains( ".sklb" ) ) {
-                Plugin.ResourceLoader.ReloadPath( ReplacePath, WriteLocation, CurrentFile.GetPapIds(), CurrentFile.GetPapTypes() );
-            }
-
-            Plugin.ResourceLoader.ReRender();
         }
+
+        protected virtual List<string> GetPapIds() => null;
 
         // =======================
 
@@ -264,7 +268,8 @@ namespace VfxEditor.FileManager {
             var bottomRight = pos + new Vector2( width, height * 1.5f + spacing - 1 );
             var bottomLeft = new Vector2( topLeft.X, bottomRight.Y );
 
-            var hovered = ImGui.IsWindowFocused( ImGuiFocusedFlags.RootWindow ) && ImGui.IsMouseHoveringRect( topLeft - new Vector2( 5, 5 ), bottomRight + new Vector2( 5, 5 ) );
+            var mousePos = ImGui.GetMousePos();
+            var hovered = ImGui.IsWindowFocused( ImGuiFocusedFlags.RootWindow ) && UiUtils.Contains( topLeft - new Vector2( 5, 5 ), bottomRight + new Vector2( 5, 5 ), mousePos );
 
             var color = hovered ?
                 ImGui.ColorConvertFloat4ToU32( UiUtils.YELLOW_COLOR ) :
@@ -386,7 +391,7 @@ namespace VfxEditor.FileManager {
             using( var font = ImRaii.PushFont( UiBuilder.IconFont ) ) {
                 if( ImGui.Button( FontAwesomeIcon.Download.ToIconString() ) ) ExportRaw();
             }
-            UiUtils.Tooltip( "导出为原始文件。\n要导出为 Textools/Penumbra 模组，请使用\"模组导出\" 菜单项" );
+            UiUtils.Tooltip( "Export as a raw file.\nTo export as a Textools/Penumbra mod, use the \"mod export\" menu item" );
 
             ImGui.SameLine();
             UiUtils.ShowVerifiedStatus( Verified );
@@ -478,34 +483,24 @@ namespace VfxEditor.FileManager {
             ImGui.PopStyleColor();
         }
 
-        private static readonly string WarningText = "请 不要 修改移动类技能 (冲刺、后跳等)。尝试修改 .tmb 或 .pap 文件前先阅读指南";
+        private static readonly string Text = "请 不要 修改移动类技能 (冲刺、后跳等)。尝试修改 .tmb 或 .pap 文件前先阅读指南";
 
-        protected static void DrawAnimationWarning() {
+        protected static void DisplayAnimationWarning() {
             using var color = ImRaii.PushColor( ImGuiCol.Border, new Vector4( 1, 0, 0, 0.3f ) );
             color.Push( ImGuiCol.ChildBg, new Vector4( 1, 0, 0, 0.1f ) );
 
             var style = ImGui.GetStyle();
-            var iconSize = UiUtils.GetIconSize( FontAwesomeIcon.Globe ) + 2 * style.FramePadding;
-            var textWidth = ImGui.GetContentRegionAvail().X - ( 2 * style.WindowPadding.X ) - ( 2 * style.ItemSpacing.X ) - iconSize.X;
-            var textSize = ImGui.CalcTextSize( WarningText, textWidth );
+            var textSize = ImGui.CalcTextSize( Text, ImGui.GetContentRegionMax().X - style.WindowPadding.X * 2 - 8 );
 
-            using var child = ImRaii.Child( "Warning", new Vector2( -1, Math.Max( textSize.Y, iconSize.Y ) + ( 2 * style.WindowPadding.Y ) ), true, ImGuiWindowFlags.NoScrollbar );
-            using( var _ = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 0 ) ) ) {
-                ImGui.Columns( 2, "##WarningColumns", false );
-                ImGui.SetColumnWidth( 0, textWidth );
-            }
+            using var child = ImRaii.Child( "AnimationWarningChild", new Vector2( -1,
+                textSize.Y +
+                style.WindowPadding.Y * 2 +
+                style.ItemSpacing.Y +
+                ImGui.GetTextLineHeightWithSpacing()
+            ), true, ImGuiWindowFlags.NoScrollbar );
 
-            using( var textColor = ImRaii.PushColor( ImGuiCol.Text, 0xFF4A67FF ) ) {
-                ImGui.TextWrapped( WarningText );
-            }
-
-            ImGui.NextColumn();
-            ImGui.SetColumnWidth( 1, iconSize.X + ( 2 * style.ItemSpacing.X ) );
-
-            using var font = ImRaii.PushFont( UiBuilder.IconFont );
-            if( ImGui.Button( FontAwesomeIcon.Globe.ToIconString() ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki" );
-
-            ImGui.Columns( 1 );
+            ImGui.TextWrapped( Text );
+            if( ImGui.SmallButton( "指南##Pap" ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki" );
         }
     }
 }

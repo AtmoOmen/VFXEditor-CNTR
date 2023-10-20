@@ -12,18 +12,16 @@ namespace VfxEditor.DirectX {
         public readonly PapPreview PapPreview;
         public readonly BoneNamePreview PhybPreview;
         public readonly BoneNamePreview SklbPreview;
-        public readonly BoneNamePreview EidPreview;
 
         public DirectXManager() {
             var shaderPath = Path.Combine( Plugin.RootLocation, "Shaders" );
-            Device = Dalamud.PluginInterface.UiBuilder.Device;
+            Device = Plugin.PluginInterface.UiBuilder.Device;
             Ctx = Device.ImmediateContext;
             ModelPreview = new( Device, Ctx, shaderPath );
             GradientView = new( Device, Ctx, shaderPath );
             PapPreview = new( Device, Ctx, shaderPath );
             PhybPreview = new( Device, Ctx, shaderPath );
             SklbPreview = new( Device, Ctx, shaderPath );
-            EidPreview = new( Device, Ctx, shaderPath );
         }
 
         public void Dispose() {
@@ -32,7 +30,6 @@ namespace VfxEditor.DirectX {
             PapPreview.Dispose();
             PhybPreview.Dispose();
             SklbPreview.Dispose();
-            EidPreview.Dispose();
 
             Device = null;
             Ctx = null;

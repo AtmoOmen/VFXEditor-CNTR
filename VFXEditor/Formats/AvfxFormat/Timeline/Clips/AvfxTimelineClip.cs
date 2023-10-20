@@ -22,7 +22,7 @@ namespace VfxEditor.AvfxFormat {
         public readonly ParsedInt4 RawInts = new( "Raw Integers" );
         public readonly ParsedFloat4 RawFloats = new( "原始浮点数" );
 
-        public AvfxTimelineClip( AvfxTimeline timeline ) : base( "片段" ) {
+        public AvfxTimelineClip( AvfxTimeline timeline ) : base( "Clip" ) {
             Timeline = timeline;
         }
 
@@ -35,7 +35,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) { }
 
-        public override void WriteContents( BinaryWriter writer ) {
+        protected override void WriteContents( BinaryWriter writer ) {
             Type.Write( writer );
             RawInts.Write( writer );
             RawFloats.Write( writer );

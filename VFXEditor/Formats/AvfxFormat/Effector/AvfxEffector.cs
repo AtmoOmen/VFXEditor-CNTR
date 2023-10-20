@@ -2,6 +2,7 @@ using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
+using VfxEditor.AvfxFormat.Nodes;
 using static VfxEditor.AvfxFormat.Enums;
 
 namespace VfxEditor.AvfxFormat {
@@ -32,7 +33,7 @@ namespace VfxEditor.AvfxFormat {
                 LoopPointEnd
             };
 
-            EffectorVariety.Command = () => {
+            EffectorVariety.Parsed.ExtraCommandGenerator = () => {
                 return new AvfxEffectorDataCommand( this );
             };
 
@@ -49,7 +50,7 @@ namespace VfxEditor.AvfxFormat {
 
         public override void ReadContents( BinaryReader reader, int size ) {
             Peek( reader, Parsed, size );
-            var effectorType = EffectorVariety.Value;
+            var effectorType = EffectorVariety.GetValue();
 
             ReadNested( reader, ( BinaryReader _reader, string _name, int _size ) => {
                 if( _name == "Data" ) {
@@ -64,7 +65,7 @@ namespace VfxEditor.AvfxFormat {
             RecurseAssigned( Data, assigned );
         }
 
-        public override void WriteContents( BinaryWriter writer ) {
+        protected override void WriteContents( BinaryWriter writer ) {
             WriteNested( writer, Parsed );
             Data?.Write( writer );
         }
@@ -106,7 +107,7 @@ namespace VfxEditor.AvfxFormat {
             Data.Draw();
         }
 
-        public override string GetDefaultText() => $"Effector {GetIdx()} ({EffectorVariety.Value})";
+        public override string GetDefaultText() => $"Effector {GetIdx()} ({EffectorVariety.GetValue()})";
 
         public override string GetWorkspaceId() => $"Effct{GetIdx()}";
     }

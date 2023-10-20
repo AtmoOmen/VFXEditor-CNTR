@@ -22,16 +22,11 @@ namespace VfxEditor.Select {
         public static string MiscVfxPath => Path.Combine( Plugin.RootLocation, "Files", "vfx_misc.txt" );
         public static string MiscTmbPath => Path.Combine( Plugin.RootLocation, "Files", "tmb_misc.txt" );
         public static string MiscUldPath => Path.Combine( Plugin.RootLocation, "Files", "uld_misc.txt" );
-        public static string MiscShpkPath => Path.Combine( Plugin.RootLocation, "Files", "shpk_misc.txt" );
         public static string SklbFacesPath => Path.Combine( Plugin.RootLocation, "Files", "sklb_faces.txt" );
 
         [GeneratedRegex( "\\u0000([a-zA-Z0-9\\/_]*?)\\.avfx", RegexOptions.Compiled )]
         private static partial Regex AvfxRegexPattern();
         public static readonly Regex AvfxRegex = AvfxRegexPattern();
-
-        [GeneratedRegex( "\\u0000([a-zA-Z0-9\\/_]*?)\\.scd", RegexOptions.Compiled )]
-        private static partial Regex ScdRegexPattern();
-        public static readonly Regex ScdRegex = ScdRegexPattern();
 
         // https://github.com/imchillin/CMTool/blob/master/ConceptMatrix/Views/SpecialControl.xaml.cs#L365
 
@@ -122,7 +117,7 @@ namespace VfxEditor.Select {
         public static readonly int HairEntries = 100;
 
         public static Dictionary<string, string> FileExistsFilter( Dictionary<string, string> dict ) =>
-            dict.Where( x => Dalamud.DataManager.FileExists( x.Value ) ).ToDictionary( x => x.Key, x => x.Value );
+            dict.Where( x => Plugin.DataManager.FileExists( x.Value ) ).ToDictionary( x => x.Key, x => x.Value );
 
         public static string GetSkeletonPath( string skeletonId, string path ) => $"chara/human/{skeletonId}/animation/a0001/{path}";
 
@@ -157,9 +152,5 @@ namespace VfxEditor.Select {
 
             return RaceAnimationIds.ToDictionary( x => x.Key, x => GetAllFacePaps( x.Value.SkeletonId, path ) );
         }
-
-        public static string ToTmbPath( string key ) => ( string.IsNullOrEmpty( key ) || key.Contains( "[SKL_ID]" ) ) ? string.Empty : $"chara/action/{key}.tmb";
-
-        public static string ToVfxPath( string key ) => string.IsNullOrEmpty( key ) ? string.Empty : $"vfx/common/eff/{key}.avfx";
     }
 }

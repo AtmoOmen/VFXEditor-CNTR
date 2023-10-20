@@ -17,7 +17,7 @@ namespace VfxEditor.SklbFormat {
             LoadWorkspace( localPath, data.RelativeLocation, data.Name, data.Source, data.Replace, data.Disabled );
         }
 
-        protected override SklbFile FileFromReader( BinaryReader reader ) => new( reader, HkxTemp, true );
+        protected override SklbFile FileFromReader( BinaryReader reader ) => new( reader, HkxTemp );
 
         public override WorkspaceMetaBasic GetWorkspaceMeta( string newPath ) => new() {
             Name = Name,
@@ -34,7 +34,7 @@ namespace VfxEditor.SklbFormat {
 
         protected override void DrawExtraColumn() {
             ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 126 - 28 - ImGui.GetStyle().FramePadding.X );
-            Plugin.TrackerManager.Sklb.DrawEye( new Vector2( 28, ImGui.GetFrameHeight() * 2 + ImGui.GetStyle().ItemSpacing.Y ) );
+            Plugin.Tracker.Sklb.DrawEye( new Vector2( 28, ImGui.GetFrameHeight() * 2 + ImGui.GetStyle().ItemSpacing.Y ) );
         }
     }
 }

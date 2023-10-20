@@ -47,7 +47,7 @@ namespace VfxEditor.AvfxFormat {
 
         protected override void RecurseChildrenAssigned( bool assigned ) => RecurseAssigned( Curves, assigned );
 
-        public override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Curves );
+        protected override void WriteContents( BinaryWriter writer ) => WriteNested( writer, Curves );
 
         public override void DrawUnassigned() {
             using var _ = ImRaii.PushId( Name );

@@ -2,6 +2,7 @@ using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
+using VfxEditor.AvfxFormat.Nodes;
 using static VfxEditor.AvfxFormat.Enums;
 
 namespace VfxEditor.AvfxFormat {
@@ -57,7 +58,7 @@ namespace VfxEditor.AvfxFormat {
                 PropGoal
             };
 
-            BinderVariety.Command = () => {
+            BinderVariety.Parsed.ExtraCommandGenerator = () => {
                 return new AvfxBinderDataCommand( this );
             };
 
@@ -89,7 +90,7 @@ namespace VfxEditor.AvfxFormat {
 
         public override void ReadContents( BinaryReader reader, int size ) {
             Peek( reader, Parsed, size );
-            var binderType = BinderVariety.Value;
+            var binderType = BinderVariety.GetValue();
 
             ReadNested( reader, ( BinaryReader _reader, string _name, int _size ) => {
                 if( _name == "Data" ) {
@@ -104,7 +105,7 @@ namespace VfxEditor.AvfxFormat {
             RecurseAssigned( Data, assigned );
         }
 
-        public override void WriteContents( BinaryWriter writer ) {
+        protected override void WriteContents( BinaryWriter writer ) {
             WriteNested( writer, Parsed );
             Data?.Write( writer );
         }
@@ -149,7 +150,7 @@ namespace VfxEditor.AvfxFormat {
             Data.Draw();
         }
 
-        public override string GetDefaultText() => $"Binder {GetIdx()} ({BinderVariety.Value})";
+        public override string GetDefaultText() => $"绑定器 {GetIdx()} ({BinderVariety.GetValue()})";
 
         public override string GetWorkspaceId() => $"Bind{GetIdx()}";
     }

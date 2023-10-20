@@ -1,22 +1,21 @@
-using Dalamud.Interface;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
+using VfxEditor.AvfxFormat.Nodes;
 using VfxEditor.Ui.Interfaces;
-using VfxEditor.Utils;
 using static VfxEditor.AvfxFormat.Enums;
 
 namespace VfxEditor.AvfxFormat {
     public class AvfxEmitter : AvfxNode {
         public const string NAME = "Emit";
 
-        public readonly AvfxString Sound = new( "音效", "SdNm", true, false );
-        public readonly AvfxInt SoundNumber = new( "音频索引", "SdNo" );
+        public readonly AvfxString Sound = new( "音效", "SdNm", showRemoveButton: true );
+        public readonly AvfxInt SoundNumber = new( "音效索引 (无音效则为 -1)", "SdNo" );
         public readonly AvfxInt LoopStart = new( "循环开始", "LpSt" );
         public readonly AvfxInt LoopEnd = new( "循环结束", "LpEd" );
         public readonly AvfxInt ChildLimit = new( "子级限制", "ClCn" );
-        public readonly AvfxInt EffectorIdx = new( "效果器选择", "EfNo", value: -1 );
+        public readonly AvfxInt EffectorIdx = new( "效果器选择", "EfNo", defaultValue: -1 );
         public readonly AvfxBool AnyDirection = new( "任意方向", "bAD", size: 1 );
         public readonly AvfxEnum<EmitterType> EmitterVariety = new( "Type", "EVT" );
         public readonly AvfxEnum<RotationDirectionBase> RotationDirectionBaseType = new( "旋转方向基准", "RBDT" );
@@ -59,7 +58,7 @@ namespace VfxEditor.AvfxFormat {
         private readonly UiNodeGraphView NodeView;
         public readonly AvfxNodeGroupSet NodeGroups;
 
-        public readonly AvfxNodeSelect<AvfxEffector> EffectorSelect;
+        public readonly UiNodeSelect<AvfxEffector> EffectorSelect;
 
         public readonly AvfxDisplaySplitView<AvfxItem> AnimationSplitDisplay;
 
@@ -136,7 +135,7 @@ namespace VfxEditor.AvfxFormat {
             EmitterSplit = new( "创建发射器", Emitters, this, false );
             ParticleSplit = new( "创建粒子", Particles, this, true );
 
-            EmitterVariety.Command = () => {
+            EmitterVariety.Parsed.ExtraCommandGenerator = () => {
                 return new AvfxEmitterDataCommand( this );
             };
 
@@ -151,17 +150,11 @@ namespace VfxEditor.AvfxFormat {
                 CoordComputeOrderType,
                 RotationOrderType
             };
-
-            Sound.Parsed.Icons.Insert( 0, new() {
-                Icon = () => FontAwesomeIcon.VolumeUp,
-                Remove = false,
-                Action = ( string value ) => Plugin.ResourceLoader.PlaySound( value, SoundNumber.Value )
-            } );
         }
 
         public override void ReadContents( BinaryReader reader, int size ) {
             Peek( reader, Parsed, size );
-            var emitterType = EmitterVariety.Value;
+            var emitterType = EmitterVariety.GetValue();
 
             AvfxEmitterItemContainer lastParticle = null;
             AvfxEmitterItemContainer lastEmitter = null;
@@ -204,9 +197,9 @@ namespace VfxEditor.AvfxFormat {
             RecurseAssigned( Data, assigned );
         }
 
-        public override void WriteContents( BinaryWriter writer ) {
-            EmitterCount.Value = Emitters.Count;
-            ParticleCount.Value = Particles.Count;
+        protected override void WriteContents( BinaryWriter writer ) {
+            EmitterCount.SetValue( Emitters.Count );
+            ParticleCount.SetValue( Particles.Count );
             WriteNested( writer, Parsed );
 
             // ItPr
@@ -274,12 +267,8 @@ namespace VfxEditor.AvfxFormat {
 
             NodeView.Draw();
             EffectorSelect.Draw();
-
             Sound.Draw();
             SoundNumber.Draw();
-            ImGui.SameLine();
-            UiUtils.HelpMarker( "-1 if no sound" );
-
             DrawItems( Parameters );
         }
 
@@ -292,7 +281,7 @@ namespace VfxEditor.AvfxFormat {
             Data.Draw();
         }
 
-        public override string GetDefaultText() => $"Emitter {GetIdx()} ({EmitterVariety.Value})";
+        public override string GetDefaultText() => $"发射器 {GetIdx()} ({EmitterVariety.GetValue()})";
 
         public override string GetWorkspaceId() => $"发射{GetIdx()}";
 
@@ -305,5 +294,7 @@ namespace VfxEditor.AvfxFormat {
             Emitters.ForEach( item => IWorkspaceUiItem.ReadRenamingMap( item, renameDict ) );
             Particles.ForEach( item => IWorkspaceUiItem.ReadRenamingMap( item, renameDict ) );
         }
+
+        public bool HasSound => Sound.IsAssigned() && SoundNumber.GetValue() > 0 && Sound.GetValue().Trim( '\0' ).Length > 0;
     }
 }

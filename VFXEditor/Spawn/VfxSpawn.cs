@@ -1,4 +1,3 @@
-using ImGuiNET;
 using System;
 using VfxEditor.Structs.Vfx;
 
@@ -12,7 +11,7 @@ namespace VfxEditor.Spawn {
         }
 
         public static BaseVfx Vfx { get; private set; }
-        public static bool Active => Vfx != null;
+        public static bool Exists => Vfx != null;
 
         private static SpawnType LoopType = SpawnType.None;
         private static string LoopPath = "";
@@ -20,16 +19,7 @@ namespace VfxEditor.Spawn {
         private static bool Removed = false;
         private static DateTime RemoveTime;
 
-        public static void DrawPopup( string path, bool canLoop ) {
-            if( ImGui.BeginPopup( "SpawnPopup" ) ) {
-                if( ImGui.Selectable( "在地面" ) ) OnGround( path, canLoop );
-                if( ImGui.Selectable( "在自身" ) ) OnSelf( path, canLoop );
-                if( ImGui.Selectable( "在目标" ) ) OnTarget( path, canLoop );
-                ImGui.EndPopup();
-            }
-        }
-
-        public static void OnGround( string path, bool canLoop ) {
+        public static void OnGround( string path, bool canLoop = false ) {
             var playerObject = Plugin.PlayerObject;
             if( playerObject == null ) return;
 
@@ -41,7 +31,7 @@ namespace VfxEditor.Spawn {
             Vfx = new StaticVfx( path, playerObject.Position, playerObject.Rotation );
         }
 
-        public static void OnSelf( string path, bool canLoop ) {
+        public static void OnSelf( string path, bool canLoop = false ) {
             var playerObject = Plugin.PlayerObject;
             if( playerObject == null ) return;
 
@@ -53,7 +43,7 @@ namespace VfxEditor.Spawn {
             Vfx = new ActorVfx( playerObject, playerObject, path );
         }
 
-        public static void OnTarget( string path, bool canLoop ) {
+        public static void OnTarget( string path, bool canLoop = false ) {
             var targetObject = Plugin.TargetObject;
             if( targetObject == null ) return;
 
@@ -74,6 +64,7 @@ namespace VfxEditor.Spawn {
             else if( LoopType == SpawnType.Target ) OnTarget( LoopPath, true );
         }
 
+        // Manually removing
         public static void Remove() {
             if( Vfx != null ) {
                 Vfx?.Remove(); // this also calls InteropRemoved()
@@ -98,7 +89,5 @@ namespace VfxEditor.Spawn {
                 Removed = false;
             }
         }
-
-        public static void Dispose() => Remove();
     }
 }

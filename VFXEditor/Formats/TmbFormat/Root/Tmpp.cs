@@ -11,7 +11,7 @@ namespace VfxEditor.TmbFormat {
         public override int ExtraSize => 0;
 
         public bool IsAssigned => Assigned.Value == true;
-        private readonly ParsedByteBool Assigned = new( "使用面部库", value: false );
+        private readonly ParsedByteBool Assigned = new( "使用面部库", defaultValue: false );
         private readonly TmbOffsetString Path = new( "面部库路径" );
 
         public Tmpp( TmbFile file, TmbReader reader ) : base( file, reader ) {

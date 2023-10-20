@@ -39,12 +39,18 @@ namespace VfxEditor.Select.Vfx {
             using var _ = ImRaii.PushId( "Spawn" );
 
             ImGui.SameLine();
-            if( VfxSpawn.Active ) {
+            if( VfxSpawn.Exists ) {
                 if( ImGui.Button( "移除" ) ) VfxSpawn.Remove();
             }
             else {
                 if( ImGui.Button( "生成" ) ) ImGui.OpenPopup( "SpawnPopup" );
-                VfxSpawn.DrawPopup( path, false );
+
+                if( ImGui.BeginPopup( "SpawnPopup" ) ) {
+                    if( ImGui.Selectable( "在地面" ) ) VfxSpawn.OnGround( path );
+                    if( ImGui.Selectable( "在自身" ) ) VfxSpawn.OnSelf( path );
+                    if( ImGui.Selectable( "在目标" ) ) VfxSpawn.OnTarget( path );
+                    ImGui.EndPopup();
+                }
             }
         }
     }

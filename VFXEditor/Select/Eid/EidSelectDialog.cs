@@ -1,13 +1,15 @@
 using VfxEditor.EidFormat;
-using VfxEditor.Select.Shared.Skeleton;
+using VfxEditor.Select.Eid.Character;
+using VfxEditor.Select.Eid.Mount;
+using VfxEditor.Select.Eid.Npc;
 
 namespace VfxEditor.Select.Eid {
     public class EidSelectDialog : SelectDialog {
         public EidSelectDialog( string id, EidManager manager, bool isSourceDialog ) : base( id, "eid", manager, isSourceDialog ) {
             GameTabs.AddRange( new SelectTab[]{
-                new SkeletonNpcTab( this, "NPC", "eid", "eid"),
-                new SkeletonCharacterTab( this, "角色", "eid", "eid", false ),
-                new SkeletonMountTab( this, "坐骑", "eid", "eid"),
+                new NpcEidTab( this, "NPC" ),
+                new CharacterEidTab( this, "角色" ),
+                new MountEidTab( this, "坐骑" ),
             } );
         }
     }

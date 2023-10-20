@@ -20,7 +20,7 @@ namespace VfxEditor.Formats.TextureFormat.Ui {
         private string SearchText = "";
         private ExtractFileType ExtractType = ExtractFileType.Atex_Tex;
 
-        private static readonly TextureFormat[] ValidPngFormat = new TextureFormat[] {
+        private static readonly TextureFormat[] ValidPngFormat = new[] {
             TextureFormat.DXT5,
             TextureFormat.DXT3,
             TextureFormat.DXT1,
@@ -33,7 +33,7 @@ namespace VfxEditor.Formats.TextureFormat.Ui {
             Dds,
         }
 
-        private static readonly ExtractFileType[] ExtractTypes = new ExtractFileType[] {
+        private static readonly ExtractFileType[] ExtractTypes = new[] {
             ExtractFileType.Atex_Tex,
             ExtractFileType.Png,
             ExtractFileType.Dds
@@ -68,20 +68,11 @@ namespace VfxEditor.Formats.TextureFormat.Ui {
                 if( popup ) {
                     using var child = ImRaii.Child( "子级", new Vector2( 500, 500 ) );
 
-                    if( ImGui.InputInt( "Mips", ref Plugin.Configuration.PngMips ) ) Plugin.Configuration.Save();
-                    using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing ) ) {
-                        ImGui.SameLine();
-                    }
-                    ImGui.TextDisabled( "(.png)" );
-
-                    if( UiUtils.EnumComboBox( "Format", ValidPngFormat, Plugin.Configuration.PngFormat, out var newPngFormat ) ) {
+                    if( ImGui.InputInt( ".png Mips", ref Plugin.Configuration.PngMips ) ) Plugin.Configuration.Save();
+                    if( UiUtils.EnumComboBox( ".png Format", ValidPngFormat, Plugin.Configuration.PngFormat, out var newPngFormat ) ) {
                         Plugin.Configuration.PngFormat = newPngFormat;
                         Plugin.Configuration.Save();
                     }
-                    using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing ) ) {
-                        ImGui.SameLine();
-                    }
-                    ImGui.TextDisabled( "(.png)" );
 
                     ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
                     ImGui.Separator();
@@ -165,9 +156,9 @@ namespace VfxEditor.Formats.TextureFormat.Ui {
 
 
         public void Extract( SelectResult result ) {
-            if( !Dalamud.DataManager.FileExists( result.Path ) ) return;
+            if( !Plugin.DataManager.FileExists( result.Path ) ) return;
             var ext = result.Path.Split( '.' )[^1].ToLower();
-            var file = Dalamud.DataManager.GetFile<TextureDataFile>( result.Path );
+            var file = Plugin.DataManager.GetFile<TextureDataFile>( result.Path );
 
             if( ExtractType == ExtractFileType.Dds ) file.SaveDdsDialog();
             else if( ExtractType == ExtractFileType.Png ) file.SavePngDialog();
