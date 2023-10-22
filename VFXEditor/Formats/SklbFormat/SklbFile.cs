@@ -108,7 +108,7 @@ namespace VfxEditor.SklbFormat {
         }
 
         private void DrawLayers() {
-            using var tabItem = ImRaii.TabItem( "Layers" );
+            using var tabItem = ImRaii.TabItem( "层" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Layers" );

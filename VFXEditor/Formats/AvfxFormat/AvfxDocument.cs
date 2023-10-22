@@ -115,7 +115,7 @@ namespace VfxEditor.AvfxFormat {
         protected override string GetWarningText() {
             var invalidTimeline = CurrentFile.TimelineView.Group.Items.Where( timeline => timeline.Items.Any( item => !item.HasValue ) ).FirstOrDefault();
             if( invalidTimeline == null ) return "";
-            return $"Timeline [{invalidTimeline.GetText()}] is Missing a Value";
+            return $"时间线 [{invalidTimeline.GetText()}] 缺少数值";
         }
     }
 }

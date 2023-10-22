@@ -60,7 +60,7 @@ namespace VfxEditor.FileManager {
             }
 
             if( !localPath.EndsWith( $".{Extension}" ) ) {
-                PluginLog.Error( $"{localPath} is the wrong file type" );
+                PluginLog.Error( $"{localPath} 文件类型错误" );
                 return;
             }
 
@@ -68,7 +68,7 @@ namespace VfxEditor.FileManager {
                 using var reader = new BinaryReader( File.Open( localPath, FileMode.Open ) );
                 CurrentFile?.Dispose();
                 CurrentFile = FileFromReader( reader );
-                UiUtils.OkNotification( $"{Id} file loaded" );
+                UiUtils.OkNotification( $"{Id} 文件已加载" );
             }
             catch( Exception e ) {
                 PluginLog.Error( e, "读取文件时发生错误", e );
@@ -78,12 +78,12 @@ namespace VfxEditor.FileManager {
 
         protected void LoadGame( string gamePath ) {
             if( !Plugin.DataManager.FileExists( gamePath ) ) {
-                PluginLog.Error( $"Game file: [{gamePath}] does not exist" );
+                PluginLog.Error( $"游戏文件: [{gamePath}] 不存在" );
                 return;
             }
 
             if( !gamePath.EndsWith( $".{Extension}" ) ) {
-                PluginLog.Error( $"{gamePath} is the wrong file type" );
+                PluginLog.Error( $"{gamePath} 文件类型错误" );
                 return;
             }
 
@@ -93,7 +93,7 @@ namespace VfxEditor.FileManager {
                 using var reader = new BinaryReader( ms );
                 CurrentFile?.Dispose();
                 CurrentFile = FileFromReader( reader );
-                UiUtils.OkNotification( $"{Id} file loaded" );
+                UiUtils.OkNotification( $"{Id} 文件已加载" );
             }
             catch( Exception e ) {
                 PluginLog.Error( e, "读取文件时发生错误" );
@@ -219,7 +219,7 @@ namespace VfxEditor.FileManager {
 
         public void Draw() {
             if( Plugin.Configuration.WriteLocationError ) {
-                ImGui.TextWrapped( $"VFXEditor does not have access to {Plugin.Configuration.WriteLocation}. Please go to [File > Settings] and change it, then restart your game" );
+                ImGui.TextWrapped( $"VFXEditor 没有 {Plugin.Configuration.WriteLocation} 的访问权限. 请到 [文件 > 设置] 更改路径并重启游戏" );
                 return;
             }
 
@@ -391,7 +391,7 @@ namespace VfxEditor.FileManager {
             using( var font = ImRaii.PushFont( UiBuilder.IconFont ) ) {
                 if( ImGui.Button( FontAwesomeIcon.Download.ToIconString() ) ) ExportRaw();
             }
-            UiUtils.Tooltip( "Export as a raw file.\nTo export as a Textools/Penumbra mod, use the \"mod export\" menu item" );
+            UiUtils.Tooltip( "导出为原始文件。\n要导出为 Textools/Penumbra 模组，请使用\"模组导出\" 菜单项" );
 
             ImGui.SameLine();
             UiUtils.ShowVerifiedStatus( Verified );

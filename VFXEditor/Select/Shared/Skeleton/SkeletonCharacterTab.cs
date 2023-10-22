@@ -36,7 +36,7 @@ namespace VfxEditor.Select.Shared.Skeleton {
             }
 
             foreach( var hairId in item.GetHairIds() ) {
-                hairPaths[$"Hair {hairId}"] = $"chara/human/{item.SkeletonId}/skeleton/hair/h{hairId:D4}/{Prefix}_{item.SkeletonId}h{hairId:D4}.{Extension}";
+                hairPaths[$"发型 {hairId}"] = $"chara/human/{item.SkeletonId}/skeleton/hair/h{hairId:D4}/{Prefix}_{item.SkeletonId}h{hairId:D4}.{Extension}";
             }
 
             loaded = new() {
@@ -49,19 +49,19 @@ namespace VfxEditor.Select.Shared.Skeleton {
         // ===== DRAWING ======
 
         protected override void DrawSelected() {
-            DrawPath( "Body", Loaded.BodyPath, Selected.Name );
+            DrawPath( "身体", Loaded.BodyPath, Selected.Name );
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 3 );
 
             using var tabBar = ImRaii.TabBar( "栏" );
             if( !tabBar ) return;
 
-            if( ImGui.BeginTabItem( "Hair" ) ) {
+            if( ImGui.BeginTabItem( "发型" ) ) {
                 DrawPaths( Loaded.HairPaths, Selected.Name );
                 ImGui.EndTabItem();
             }
 
-            if( ImGui.BeginTabItem( "Face" ) ) {
+            if( ImGui.BeginTabItem( "脸型" ) ) {
                 DrawPaths( Loaded.FacePaths, Selected.Name );
                 ImGui.EndTabItem();
             }

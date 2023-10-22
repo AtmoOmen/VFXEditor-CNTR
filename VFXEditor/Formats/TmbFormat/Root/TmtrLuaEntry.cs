@@ -67,9 +67,9 @@ namespace VfxEditor.TmbFormat {
         public readonly TmbFile File;
         public readonly Tmtr Track;
 
-        private readonly ParsedEnum<LuaOperation> Operation = new( "Operation" );
+        private readonly ParsedEnum<LuaOperation> Operation = new( "操作" );
         private readonly ParsedUInt Value = new( "值" );
-        private readonly ParsedFloat FloatValue = new( "Float Value" );
+        private readonly ParsedFloat FloatValue = new( "浮点值" );
 
         public TmtrLuaEntry( TmbFile file, Tmtr track ) {
             File = file;
@@ -209,12 +209,12 @@ namespace VfxEditor.TmbFormat {
 
             var update = false;
 
-            if( ImGui.InputInt( "Pool", ref pool ) ) {
+            if( ImGui.InputInt( "池", ref pool ) ) {
                 if( pool < 0 ) pool = 0;
                 if( pool > 3 ) pool = 3;
                 update = true;
             }
-            if( ImGui.InputInt( "Index", ref value ) ) {
+            if( ImGui.InputInt( "索引", ref value ) ) {
                 update = true;
             }
 
@@ -229,8 +229,8 @@ namespace VfxEditor.TmbFormat {
 
         private static string GetVariableText( int pool, int index ) {
             var luaPool = GetPool( pool );
-            if( luaPool == null ) return $"VAR[{pool},{index}]";
-            return luaPool.Names.TryGetValue( index, out var name ) ? name : $"VAR[{pool},{index}]";
+            if( luaPool == null ) return $"变量[{pool},{index}]";
+            return luaPool.Names.TryGetValue( index, out var name ) ? name : $"变量[{pool},{index}]";
         }
 
 

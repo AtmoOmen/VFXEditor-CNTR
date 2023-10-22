@@ -220,7 +220,7 @@ namespace VfxEditor {
             if( ImGui.Checkbox( "记录所有文件", ref LogAllFiles ) ) Save();
             if( ImGui.Checkbox( "记录 DEBUG 信息", ref LogDebug ) ) Save();
             if( ImGui.Checkbox( "记录视效 DEBUG 信息", ref LogVfxDebug ) ) Save();
-            if( ImGui.Checkbox( "Log Vfx triggers", ref LogVfxTriggers ) ) Save();
+            if( ImGui.Checkbox( "记录 VFX 触发", ref LogVfxTriggers ) ) Save();
 
             if( ImGui.Checkbox( "自动保存工作区", ref AutosaveEnabled ) ) Save();
             using( var autosaveDim = ImRaii.PushStyle( ImGuiStyleVar.Alpha, ImGui.GetStyle().Alpha * 0.5f, !AutosaveEnabled ) )
@@ -249,7 +249,7 @@ namespace VfxEditor {
             ImGui.SetNextItemWidth( 135 );
             if( ImGui.InputInt( "可回退的历史操作步数", ref MaxUndoSize ) ) Save();
 
-            if( ImGui.Checkbox( "Show tab bar", ref ShowTabBar ) ) Save();
+            if( ImGui.Checkbox( "显示标签页栏", ref ShowTabBar ) ) Save();
         }
 
         private void DrawKeybinds() {

@@ -60,7 +60,7 @@ namespace VfxEditor {
             if( ImGui.BeginMenu( "文件" ) ) {
                 ImGui.TextDisabled( "工作区" );
                 ImGui.SameLine();
-                UiUtils.HelpMarker( "A workspace allows you to save multiple vfx replacements at the same time, as well as any imported textures or item renaming (such as particles or emitters)" );
+                UiUtils.HelpMarker( "工作区允许你一次保存多个视效的替换、导入的材质以及物品重命名(如: 粒子效果、触发器)" );
 
                 if( ImGui.MenuItem( "新建" ) ) NewWorkspace();
                 if( ImGui.MenuItem( "打开" ) ) OpenWorkspace();
@@ -102,7 +102,7 @@ namespace VfxEditor {
             DrawManagerMenu( PhybManager, currentManager );
             DrawManagerMenu( SklbManager, currentManager );
 
-            if( ImGui.BeginMenu( "Attach" ) ) {
+            if( ImGui.BeginMenu( "附加" ) ) {
                 DrawManagerMenu( EidManager, currentManager );
                 DrawManagerMenu( AtchManager, currentManager );
                 ImGui.EndMenu();

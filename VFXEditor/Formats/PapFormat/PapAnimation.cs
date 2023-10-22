@@ -16,9 +16,9 @@ namespace VfxEditor.PapFormat {
         public short HavokIndex = 0;
         public readonly string HkxTempLocation;
 
-        private readonly ParsedPaddedString Name = new( "Name", "cbbm_replace_this", 32, 0x00 );
-        private readonly ParsedShort Type = new( "Type" );
-        private readonly ParsedBool Face = new( "Face Animation" );
+        private readonly ParsedPaddedString Name = new( "名称", "cbbm_replace_this", 32, 0x00 );
+        private readonly ParsedShort Type = new( "类型" );
+        private readonly ParsedBool Face = new( "面部动画" );
         public TmbFile Tmb;
 
         public PapAnimation( PapFile file, string hkxPath ) {
@@ -58,10 +58,10 @@ namespace VfxEditor.PapFormat {
         public void Draw() {
             SheetData.InitMotionTimelines();
             if( !string.IsNullOrEmpty( Name.Value ) && SheetData.MotionTimelines.TryGetValue( Name.Value, out var motionData ) ) {
-                ImGui.TextDisabled( $"Loop: [{motionData.Loop}] Lip: [{motionData.Lip}] Blink: [{motionData.Blink}]" );
+                ImGui.TextDisabled( $"循环: [{motionData.Loop}] 嘴部: [{motionData.Lip}] 眼部: [{motionData.Blink}]" );
 
                 ImGui.SameLine();
-                UiUtils.HelpMarker( "These values are hard-coded in the game's MotionTimeline sheet, and are based on the animation name" );
+                UiUtils.HelpMarker( "这些值硬编码于游戏的 MotionTimeline 表格中, 并且基于特定的动画名称" );
             }
 
             Name.Draw( CommandManager.Pap );
@@ -69,7 +69,7 @@ namespace VfxEditor.PapFormat {
             Face.Draw( CommandManager.Pap );
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
-            ImGui.TextDisabled( $"此动画具有 Havok 索引: {HavokIndex}" );
+            ImGui.TextDisabled( $"此动画的 Havok 索引为: {HavokIndex}" );
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );
 
             using var tabBar = ImRaii.TabBar( "动画栏" );
@@ -107,7 +107,7 @@ namespace VfxEditor.PapFormat {
         }
 
         private void DrawMotion() {
-            using var tabItem = ImRaii.TabItem( "Motion" );
+            using var tabItem = ImRaii.TabItem( "动作" );
             if( !tabItem ) return;
 
             File.MotionData.Draw( HavokIndex );

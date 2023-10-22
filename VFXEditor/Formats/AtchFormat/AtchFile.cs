@@ -208,7 +208,7 @@ namespace VfxEditor.Formats.AtchFormat {
 
             ImGui.Separator();
 
-            ImGui.TextDisabled( $"Current Weapons: {weapons.Aggregate( ( x, y ) => x + " | " + y )}" );
+            ImGui.TextDisabled( $"当前武器: {weapons.Aggregate( ( x, y ) => x + " | " + y )}" );
         }
     }
 }

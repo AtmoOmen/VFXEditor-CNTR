@@ -83,7 +83,7 @@ namespace VfxEditor.SklbFormat.Bones {
             }
 
             ImGui.SameLine();
-            if( ImGui.Checkbox( "Show Bone Names", ref Plugin.Configuration.ShowBoneNames ) ) Plugin.Configuration.Save();
+            if( ImGui.Checkbox( "显示骨骼名称", ref Plugin.Configuration.ShowBoneNames ) ) Plugin.Configuration.Save();
 
             ImGui.SameLine();
             ImGui.SetNextItemWidth( 200f );

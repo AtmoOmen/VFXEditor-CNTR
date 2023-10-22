@@ -130,7 +130,7 @@ namespace VfxEditor.ScdFormat {
         }
 
         private void DrawTracks() {
-            using var tabItem = ImRaii.TabItem( "Tracks" );
+            using var tabItem = ImRaii.TabItem( "轨道" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Tracks" );

@@ -149,7 +149,7 @@ namespace VfxEditor.PapFormat {
             ModelType.Draw( Command );
             Variant.Draw( Command );
 
-            if( ImGui.Button( $"Export Havok" ) ) {
+            if( ImGui.Button( $"导出 Havok" ) ) {
                 FileDialogManager.SaveFileDialog( "选择保存位置", ".hkx", "", "hkx", ( bool ok, string res ) => {
                     if( ok ) File.Copy( HkxTempLocation, res, true );
                 } );
@@ -165,7 +165,7 @@ namespace VfxEditor.PapFormat {
             if( !tabItem ) return;
 
             if( EmptyHavok ) {
-                ImGui.TextDisabled( "No Havok data" );
+                ImGui.TextDisabled( "无 Havok 数据" );
                 return;
             }
 

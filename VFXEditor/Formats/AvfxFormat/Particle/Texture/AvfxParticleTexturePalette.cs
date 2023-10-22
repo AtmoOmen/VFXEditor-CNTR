@@ -9,7 +9,7 @@ namespace VfxEditor.AvfxFormat {
     public class AvfxParticleTexturePalette : AvfxParticleAttribute {
         public readonly AvfxBool Enabled = new( "启用", "bEna" );
         public readonly AvfxEnum<TextureFilterType> TextureFilter = new( "材质筛选器", "TFT" );
-        public readonly AvfxEnum<TextureBorderType> TextureBorder = new( "Texture Border", "TBT" );
+        public readonly AvfxEnum<TextureBorderType> TextureBorder = new( "材质边框", "TBT" );
         public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", defaultValue: -1 );
         public readonly AvfxCurve Offset = new( "偏移", "POff" );
 
@@ -47,7 +47,7 @@ namespace VfxEditor.AvfxFormat {
             using var _ = ImRaii.PushId( "TP" );
 
             AssignedCopyPaste( this, GetDefaultText() );
-            if( ImGui.SmallButton( "+ Texture Palette" ) ) Assign();
+            if( ImGui.SmallButton( "+ 材质调色" ) ) Assign();
         }
 
         public override void DrawAssigned() {
@@ -57,7 +57,7 @@ namespace VfxEditor.AvfxFormat {
             DrawNamedItems( DisplayTabs );
         }
 
-        public override string GetDefaultText() => "Texture Palette";
+        public override string GetDefaultText() => "材质调色";
 
         public override List<UiNodeSelect> GetNodeSelects() => new() {
             new UiNodeSelect<AvfxTexture>( Particle, "材质", Particle.NodeGroups.Textures, TextureIdx )

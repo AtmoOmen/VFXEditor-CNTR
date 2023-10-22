@@ -155,7 +155,7 @@ namespace VfxEditor.ScdFormat {
                 Extra.Draw();
                 ImGui.EndTabItem();
             }
-            if( ImGui.BeginTabItem( "Tracks" ) ) {
+            if( ImGui.BeginTabItem( "轨道" ) ) {
                 if( RandomTracksEnabled ) RandomTracks.Draw( Type.Value );
                 else Tracks.Draw();
                 ImGui.EndTabItem();

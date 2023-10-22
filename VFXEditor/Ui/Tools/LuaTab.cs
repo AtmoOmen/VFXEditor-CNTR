@@ -41,11 +41,11 @@ namespace VfxEditor.Ui.Tools {
                 }
             }
 
-            ImGui.TextDisabled( $"Pools: 0x{manager:X8}" );
+            ImGui.TextDisabled( $"池: 0x{manager:X8}" );
             if( ImGui.IsItemClicked() ) ImGui.SetClipboardText( $"{manager:X8}" );
 
             ImGui.SameLine();
-            ImGui.TextDisabled( $"Dynamic: 0x{Plugin.ResourceLoader.LuaActorVariables:X8}" );
+            ImGui.TextDisabled( $"动态: 0x{Plugin.ResourceLoader.LuaActorVariables:X8}" );
             if( ImGui.IsItemClicked() ) ImGui.SetClipboardText( $"{Plugin.ResourceLoader.LuaActorVariables:X8}" );
 
             DrawCombo( objectName );
@@ -54,7 +54,7 @@ namespace VfxEditor.Ui.Tools {
             if( !tabBar ) return;
 
             foreach( var pool in LuaPool.Pools ) {
-                using var tab = ImRaii.TabItem( $"Pool {pool.Id}" );
+                using var tab = ImRaii.TabItem( $"池 {pool.Id}" );
                 if( tab ) DrawPool( pool, manager, objectAddress );
             }
         }
@@ -92,9 +92,9 @@ namespace VfxEditor.Ui.Tools {
             using var table = ImRaii.Table( "Table", 4, ImGuiTableFlags.RowBg );
             if( !table ) return;
 
-            ImGui.TableSetupColumn( "Index", ImGuiTableColumnFlags.WidthFixed, 60 );
-            ImGui.TableSetupColumn( "Name", ImGuiTableColumnFlags.WidthStretch );
-            ImGui.TableSetupColumn( "Current Value", ImGuiTableColumnFlags.WidthStretch );
+            ImGui.TableSetupColumn( "索引", ImGuiTableColumnFlags.WidthFixed, 60 );
+            ImGui.TableSetupColumn( "名称", ImGuiTableColumnFlags.WidthStretch );
+            ImGui.TableSetupColumn( "当前值", ImGuiTableColumnFlags.WidthStretch );
             ImGui.TableSetupColumn( "Hex", ImGuiTableColumnFlags.WidthStretch );
             ImGui.TableHeadersRow();
 

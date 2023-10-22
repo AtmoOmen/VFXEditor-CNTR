@@ -10,7 +10,7 @@ namespace VfxEditor.AvfxFormat {
 
         public readonly AvfxEnum<BindPoint> BindPointType = new( "绑定点类型", "BPT" );
         public readonly AvfxEnum<BindTargetPoint> BindTargetPointType = new( "绑定目标点类型", "BPTP", defaultValue: BindTargetPoint.ByName );
-        public readonly AvfxString BinderName = new( "Name", "Name", showRemoveButton: true );
+        public readonly AvfxString BinderName = new( "名称", "Name", showRemoveButton: true );
         public readonly AvfxInt BindPointId = new( "绑定点 ID", "BPID", defaultValue: 3 );
         public readonly AvfxInt GenerateDelay = new( "生成延迟", "GenD" );
         public readonly AvfxInt CoordUpdateFrame = new( "坐标更新帧", "CoUF", defaultValue: -1 );

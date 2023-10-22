@@ -119,7 +119,7 @@ namespace VfxEditor.Formats.TextureFormat.Textures {
             var width = ImGui.GetContentRegionAvail().X - 50;
 
             ImGui.SetNextItemWidth( width );
-            ImGui.InputTextWithHint( "Name", TrimPath( GamePath ), ref Name, 255 );
+            ImGui.InputTextWithHint( "名称", TrimPath( GamePath ), ref Name, 255 );
 
             ImGui.SetNextItemWidth( width );
             ImGui.InputText( "路径", ref GamePath, 255 );

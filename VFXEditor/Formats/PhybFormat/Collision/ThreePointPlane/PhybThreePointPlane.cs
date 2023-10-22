@@ -6,7 +6,7 @@ using VfxEditor.Parsing.String;
 
 namespace VfxEditor.PhybFormat.Collision.ThreePointPlane {
     public class PhybThreePointPlane : PhybData, IPhysicsObject {
-        public readonly ParsedPaddedString Name = new( "Name", "replace_me", 32, 0xFE );
+        public readonly ParsedPaddedString Name = new( "名称", "replace_me", 32, 0xFE );
         public readonly ParsedPaddedString Bone = new( "骨骼", 32, 0xFE );
         public readonly ParsedFloat4 Unknown1 = new( "未知 1" );
         public readonly ParsedFloat4 Unknown2 = new( "未知 2" );

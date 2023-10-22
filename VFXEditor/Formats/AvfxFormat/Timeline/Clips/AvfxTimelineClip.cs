@@ -19,7 +19,7 @@ namespace VfxEditor.AvfxFormat {
     public class AvfxTimelineClip : AvfxWorkspaceItem {
         public readonly AvfxTimeline Timeline;
         public readonly ParsedEnum<ClipType> Type = new( "Type", ClipType.Kill );
-        public readonly ParsedInt4 RawInts = new( "Raw Integers" );
+        public readonly ParsedInt4 RawInts = new( "原始整数" );
         public readonly ParsedFloat4 RawFloats = new( "原始浮点数" );
 
         public AvfxTimelineClip( AvfxTimeline timeline ) : base( "Clip" ) {
@@ -55,7 +55,7 @@ namespace VfxEditor.AvfxFormat {
             RawFloats.Draw( CommandManager.Avfx );
         }
 
-        public override string GetDefaultText() => $"Clip {GetIdx()} ({Type.Value})";
+        public override string GetDefaultText() => $"片段 {GetIdx()} ({Type.Value})";
 
         public override string GetWorkspaceId() => $"{Timeline.GetWorkspaceId()}/Clip{GetIdx()}";
 
@@ -91,14 +91,14 @@ namespace VfxEditor.AvfxFormat {
 
         private void DrawRandomTrigger() {
             var min = RawInts.Value.X;
-            if( ImGui.InputInt( "Minimum Trigger", ref min ) ) {
+            if( ImGui.InputInt( "最小触发", ref min ) ) {
                 CommandManager.Avfx.Add( new ParsedSimpleCommand<Int4>( RawInts, RawInts.Value with {
                     X = min
                 } ) );
             }
 
             var max = RawInts.Value.Y;
-            if( ImGui.InputInt( "Maximum Trigger", ref max ) ) {
+            if( ImGui.InputInt( "最大触发", ref max ) ) {
                 CommandManager.Avfx.Add( new ParsedSimpleCommand<Int4>( RawInts, RawInts.Value with {
                     Y = max
                 } ) );

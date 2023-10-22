@@ -29,11 +29,11 @@ namespace VfxEditor.Ui.Tools {
                 UtilitiesTab.Draw();
                 ImGui.EndTabItem();
             }
-            if( ImGui.BeginTabItem( "Loaded Files" ) ) {
+            if( ImGui.BeginTabItem( "已加载文件" ) ) {
                 LoadedTab.Draw();
                 ImGui.EndTabItem();
             }
-            if( ImGui.BeginTabItem( "Lua Variables" ) ) {
+            if( ImGui.BeginTabItem( "Lua 变量" ) ) {
                 LuaTab.Draw();
                 ImGui.EndTabItem();
             }

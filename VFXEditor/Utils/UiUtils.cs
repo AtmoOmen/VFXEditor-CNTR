@@ -142,8 +142,8 @@ namespace VfxEditor.Utils {
                 VerifiedStatus.OK => "验证通过",
                 VerifiedStatus.ERROR => "解析出错",
                 VerifiedStatus.WORKSPACE => "工作区",
-                VerifiedStatus.UNKNOWN => "Unknown",
-                VerifiedStatus.UNSUPPORTED => "Unsupported",
+                VerifiedStatus.UNKNOWN => "未知",
+                VerifiedStatus.UNSUPPORTED => "不支持",
                 _ => "[OTHER]"
             };
 
@@ -155,7 +155,7 @@ namespace VfxEditor.Utils {
             ImGui.TextColored( color, text );
 
             if( verified == VerifiedStatus.UNSUPPORTED ) {
-                Tooltip( "Verification is not supported for this file or file type" );
+                Tooltip( "不支持验证此种文件的有效性" );
             }
 
             if( verified == VerifiedStatus.ERROR ) {
@@ -302,7 +302,7 @@ namespace VfxEditor.Utils {
                 Plugin.Configuration.UseDegreesForAngles = !Plugin.Configuration.UseDegreesForAngles;
                 Plugin.Configuration.Save();
             }
-            Tooltip( "Switch between degrees and radians" );
+            Tooltip( "在度和弧度之间转换" );
 
             ImGui.SameLine();
             ImGui.Text( name );

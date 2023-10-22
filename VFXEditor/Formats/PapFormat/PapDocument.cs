@@ -45,7 +45,7 @@ namespace VfxEditor.PapFormat {
             var iconSize = UiUtils.GetIconSize( FontAwesomeIcon.InfoCircle );
             ImGui.SetCursorPosX( ImGui.GetCursorPosX() + 126 - iconSize.X - ImGui.GetStyle().FramePadding.X );
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + ImGui.GetFrameHeight() / 2 + ImGui.GetStyle().ItemSpacing.Y );
-            UiUtils.HelpMarker( "Loaded .pap resources can be found in File > Tools > Loaded Files" );
+            UiUtils.HelpMarker( "已加载的 .pap 资源可以在 文件 > 工具 > 已加载文件 中找到" );
         }
     }
 }

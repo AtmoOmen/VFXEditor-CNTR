@@ -8,7 +8,7 @@ using VfxEditor.Parsing.String;
 
 namespace VfxEditor.PhybFormat.Collision.Capsule {
     public class PhybCapsule : PhybData, IPhysicsObject {
-        public readonly ParsedPaddedString Name = new( "Name", "replace_me", 32, 0xFE );
+        public readonly ParsedPaddedString Name = new( "名称", "replace_me", 32, 0xFE );
         public readonly ParsedPaddedString StartBone = new( "起始骨骼", 32, 0xFE );
         public readonly ParsedPaddedString EndBone = new( "结束骨骼", 32, 0xFE );
         public readonly ParsedFloat3 StartOffset = new( "起始偏移" );

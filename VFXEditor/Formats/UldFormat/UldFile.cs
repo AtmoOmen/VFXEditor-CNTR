@@ -173,7 +173,7 @@ namespace VfxEditor.UldFormat {
         }
 
         private void DrawParts() {
-            using var tabItem = ImRaii.TabItem( "部分列表" );
+            using var tabItem = ImRaii.TabItem( "分部列表" );
             if( !tabItem ) return;
 
             PartList.Draw();

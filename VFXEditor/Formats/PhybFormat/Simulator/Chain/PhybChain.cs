@@ -19,11 +19,11 @@ namespace VfxEditor.PhybFormat.Simulator.Chain {
         public readonly PhybSimulator Simulator;
 
         public readonly ParsedFloat Dampening = new( "阻力" );
-        public readonly ParsedFloat MaxSpeed = new( "Max Speed" );
+        public readonly ParsedFloat MaxSpeed = new( "最大速度" );
         public readonly ParsedFloat Friction = new( "摩擦" );
-        public readonly ParsedFloat CollisionDampening = new( "Collision Dampening" );
-        public readonly ParsedFloat RepulsionStrength = new( "Repulsion Strength" );
-        public readonly ParsedFloat3 LastBoneOffset = new( "Last Bone Offset" );
+        public readonly ParsedFloat CollisionDampening = new( "碰撞阻尼" );
+        public readonly ParsedFloat RepulsionStrength = new( "斥力强度" );
+        public readonly ParsedFloat3 LastBoneOffset = new( "最后骨骼偏移" );
         public readonly ParsedEnum<ChainType> Type = new( "Type" );
 
         public readonly List<PhybCollisionData> Collisions = new();
@@ -40,7 +40,7 @@ namespace VfxEditor.PhybFormat.Simulator.Chain {
 
             // 1-indexed?
             NodeSplitView = new( "Node", Nodes, false,
-                ( PhybNode item, int idx ) => $"Node {idx + 1}", () => new( file, simulator ), () => CommandManager.Phyb, ( PhybNode item ) => File.Updated() );
+                ( PhybNode item, int idx ) => $"节点 {idx + 1}", () => new( file, simulator ), () => CommandManager.Phyb, ( PhybNode item ) => File.Updated() );
         }
 
         public PhybChain( PhybFile file, PhybSimulator simulator, BinaryReader reader, long simulatorStartPos ) : this( file, simulator ) {
@@ -86,7 +86,7 @@ namespace VfxEditor.PhybFormat.Simulator.Chain {
                 }
             }
 
-            using( var tab = ImRaii.TabItem( "Collision Objects" ) ) {
+            using( var tab = ImRaii.TabItem( "碰撞物体" ) ) {
                 if( tab ) CollisionSplitView.Draw();
             }
 

@@ -35,18 +35,18 @@ namespace VfxEditor.UldFormat.Component.Node {
         private readonly List<UldComponent> Components;
         private readonly UldWorkspaceItem Parent;
 
-        public readonly ParsedInt ParentId = new( "Parent Id" );
-        public readonly ParsedInt NextSiblingId = new( "Next Sibling Id" );
-        public readonly ParsedInt PrevSiblingId = new( "Prev Sibling Id" );
-        public readonly ParsedInt ChildNodeId = new( "Child Node Id" );
+        public readonly ParsedInt ParentId = new( "父级 ID" );
+        public readonly ParsedInt NextSiblingId = new( "下一兄弟节点 ID" );
+        public readonly ParsedInt PrevSiblingId = new( "前一兄弟节点 ID" );
+        public readonly ParsedInt ChildNodeId = new( "子级节点 ID" );
 
         public bool IsComponentNode = false;
         public readonly ParsedEnum<NodeType> Type = new( "Type" );
-        public readonly ParsedInt ComponentTypeId = new( "Component Id" );
+        public readonly ParsedInt ComponentTypeId = new( "组件 ID" );
         public UldGenericData Data = null;
 
         private readonly List<ParsedBase> Parsed;
-        public readonly ParsedShort TabIndex = new( "Tab Index" );
+        public readonly ParsedShort TabIndex = new( "标签页索引" );
         public readonly ParsedInt Unk1 = new( "未知 1" );
         public readonly ParsedInt Unk2 = new( "未知 2" );
         public readonly ParsedInt Unk3 = new( "未知 3" );
@@ -57,20 +57,20 @@ namespace VfxEditor.UldFormat.Component.Node {
         public readonly ParsedUInt H = new( "高度", size: 2 );
         public readonly ParsedRadians Rotation = new( "旋转" );
         public readonly ParsedFloat2 Scale = new( "缩放" );
-        public readonly ParsedShort OriginX = new( "Origin X" );
-        public readonly ParsedShort OriginY = new( "Origin Y" );
+        public readonly ParsedShort OriginX = new( "原点 X" );
+        public readonly ParsedShort OriginY = new( "原点 Y" );
         public readonly ParsedUInt Priority = new( "优先级", size: 2 );
         public readonly ParsedFlag<NodeFlags> Flags = new( "标识", size: 1 );
         public readonly ParsedInt Unk7 = new( "未知 7", size: 1 );
-        public readonly ParsedShort MultiplyRed = new( "Multiply Red" );
-        public readonly ParsedShort MultiplyGreen = new( "Multiply Green" );
-        public readonly ParsedShort MultiplyBlue = new( "Multiply Blue" );
-        public readonly ParsedShort AddRed = new( "Add Red" );
-        public readonly ParsedShort AddGreen = new( "Add Green" );
-        public readonly ParsedShort AddBlue = new( "Add Blue" );
+        public readonly ParsedShort MultiplyRed = new( "红色相乘" );
+        public readonly ParsedShort MultiplyGreen = new( "绿色相乘" );
+        public readonly ParsedShort MultiplyBlue = new( "蓝色相乘" );
+        public readonly ParsedShort AddRed = new( "增加红色" );
+        public readonly ParsedShort AddGreen = new( "增加绿色" );
+        public readonly ParsedShort AddBlue = new( "增加蓝色" );
         public readonly ParsedInt Alpha = new( "Alpha", size: 1 );
         public readonly ParsedInt ClipCount = new( "片段数", size: 1 );
-        public readonly ParsedUInt TimelineId = new( "Timeline Id", size: 2 );
+        public readonly ParsedUInt TimelineId = new( "时间线 ID", size: 2 );
 
         // need to wait until all components are initialized, so store this until then
         private readonly long DelayedPosition;
@@ -149,7 +149,7 @@ namespace VfxEditor.UldFormat.Component.Node {
 
             UpdateData();
             if( Data == null && DelayedNodeType > 1 ) {
-                PluginLog.Log( $"Unknown node type {DelayedNodeType} / {DelayedSize} @ {reader.BaseStream.Position:X8}" );
+                PluginLog.Log( $"未知节点类型 {DelayedNodeType} / {DelayedSize} @ {reader.BaseStream.Position:X8}" );
             }
             if( Data is BaseNodeData custom ) custom.Read( reader, DelayedSize );
             else Data?.Read( reader );
@@ -219,7 +219,7 @@ namespace VfxEditor.UldFormat.Component.Node {
             DrawRename();
             Id.Draw( CommandManager.Uld );
 
-            if( ImGui.Checkbox( "Is Component Node", ref IsComponentNode ) ) CommandManager.Uld.Add( new UldNodeDataCommand( this, true ) );
+            if( ImGui.Checkbox( "是否为组件节点", ref IsComponentNode ) ) CommandManager.Uld.Add( new UldNodeDataCommand( this, true ) );
 
             if( IsComponentNode ) {
                 ComponentTypeId.Draw( CommandManager.Uld );
@@ -255,7 +255,7 @@ namespace VfxEditor.UldFormat.Component.Node {
         private void DrawData() {
             if( Data == null ) return;
 
-            using var tabItem = ImRaii.TabItem( "Data" );
+            using var tabItem = ImRaii.TabItem( "数据" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Data" );
@@ -266,7 +266,7 @@ namespace VfxEditor.UldFormat.Component.Node {
 
         public override string GetDefaultText() {
             var suffix = IsComponentNode ? ComponentTypeId.Value.ToString() : Type.Value.ToString();
-            return $"Node {GetIdx()} ({suffix})";
+            return $"节点 {GetIdx()} ({suffix})";
         }
 
         public override string GetWorkspaceId() => $"{Parent.GetWorkspaceId()}/Node{GetIdx()}";

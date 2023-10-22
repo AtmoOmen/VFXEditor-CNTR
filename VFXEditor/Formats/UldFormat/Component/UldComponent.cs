@@ -41,9 +41,9 @@ namespace VfxEditor.UldFormat.Component {
     }
 
     public class UldComponent : UldWorkspaceItem {
-        public readonly ParsedByteBool IgnoreInput = new( "Ignore Input" );
-        public readonly ParsedByteBool DragArrow = new( "Drag Arrow" );
-        public readonly ParsedByteBool DropArrow = new( "Drop Arrow" );
+        public readonly ParsedByteBool IgnoreInput = new( "忽略输入" );
+        public readonly ParsedByteBool DragArrow = new( "拖拽箭头" );
+        public readonly ParsedByteBool DropArrow = new( "放置箭头" );
 
         public readonly ParsedEnum<ComponentType> Type = new( "Type", size: 1 );
         public UldGenericData Data = null;
@@ -150,7 +150,7 @@ namespace VfxEditor.UldFormat.Component {
             DrawRename();
             Id.Draw( CommandManager.Uld );
             Type.Draw( CommandManager.Uld );
-            ImGui.TextDisabled( $"Nodes referencing this component: {NumNodesReferencing}" );
+            ImGui.TextDisabled( $"引用该组件的节点数: {NumNodesReferencing}" );
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
 
             using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
@@ -176,7 +176,7 @@ namespace VfxEditor.UldFormat.Component {
         private void DrawData() {
             if( Data == null ) return;
 
-            using var tabItem = ImRaii.TabItem( "Data" );
+            using var tabItem = ImRaii.TabItem( "数据" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Data" );
@@ -192,7 +192,7 @@ namespace VfxEditor.UldFormat.Component {
             NodeSplitView.Draw();
         }
 
-        public override string GetDefaultText() => $"Component {GetIdx()} ({Type.Value})";
+        public override string GetDefaultText() => $"组件 {GetIdx()} ({Type.Value})";
 
         public override string GetWorkspaceId() => $"Comp{GetIdx()}";
 

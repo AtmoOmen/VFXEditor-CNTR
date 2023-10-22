@@ -34,8 +34,8 @@ namespace VfxEditor.ScdFormat {
         public readonly ParsedFlag<PointFlags> Flag = new( "标识", size: 1 );
         public readonly ParsedReserve Reserved1 = new( 2 );
         public readonly ParsedFloat LowerLimit = new( "下限" );
-        public readonly ParsedShort FadeInTime = new( "Fade In Time" );
-        public readonly ParsedShort FadeOutTime = new( "Fade Out Time" );
+        public readonly ParsedShort FadeInTime = new( "淡入时间" );
+        public readonly ParsedShort FadeOutTime = new( "淡出时间" );
         public readonly ParsedFloat ConvergenceFac = new( "汇聚强度系数" );
         public readonly ParsedReserve Reserved2 = new( 4 );
 

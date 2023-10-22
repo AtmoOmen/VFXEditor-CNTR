@@ -27,7 +27,7 @@ namespace VfxEditor.Library.Texture {
         protected override void DrawTooltip() { }
 
         protected override void DrawEditing() {
-            ImGui.InputText( "Name", ref Name, 255 );
+            ImGui.InputText( "名称", ref Name, 255 );
             ImGui.InputText( "路径", ref Path, 255 );
             ImGui.ColorEdit4( "颜色", ref Color, ImGuiColorEditFlags.DisplayHex | ImGuiColorEditFlags.AlphaPreviewHalf | ImGuiColorEditFlags.AlphaBar );
         }

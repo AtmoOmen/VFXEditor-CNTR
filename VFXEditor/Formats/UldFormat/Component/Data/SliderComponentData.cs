@@ -9,8 +9,8 @@ namespace VfxEditor.UldFormat.Component.Data {
                 new ParsedUInt( "Unknown Node Id 3" ),
                 new ParsedUInt( "Unknown Node Id 4" ),
                 new ParsedByteBool( "Is Vertical" ),
-                new ParsedUInt( "Left Offset", size: 1 ),
-                new ParsedUInt( "Right Offset", size: 1),
+                new ParsedUInt( "左部偏移", size: 1 ),
+                new ParsedUInt( "右部偏移", size: 1),
                 new ParsedInt( "Padding", size: 1)
             } );
         }

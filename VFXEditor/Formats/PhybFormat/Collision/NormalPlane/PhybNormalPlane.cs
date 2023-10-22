@@ -8,7 +8,7 @@ using VfxEditor.Parsing.String;
 
 namespace VfxEditor.PhybFormat.Collision.NormalPlane {
     public class PhybNormalPlane : PhybData, IPhysicsObject {
-        public readonly ParsedPaddedString Name = new( "Name", "replace_me", 32, 0xFE );
+        public readonly ParsedPaddedString Name = new( "名称", "replace_me", 32, 0xFE );
         public readonly ParsedPaddedString Bone = new( "骨骼", 32, 0xFE );
         public readonly ParsedFloat3 BoneOffset = new( "骨骼偏移" );
         public readonly ParsedFloat3 Normal = new( "普通" );

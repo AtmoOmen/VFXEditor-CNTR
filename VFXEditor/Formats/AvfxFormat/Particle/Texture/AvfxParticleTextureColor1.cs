@@ -10,13 +10,13 @@ namespace VfxEditor.AvfxFormat {
     public class AvfxParticleTextureColor1 : AvfxParticleAttribute {
         public readonly AvfxBool Enabled = new( "启用", "bEna" );
         public readonly AvfxBool ColorToAlpha = new( "Color To Alpha", "bC2A" );
-        public readonly AvfxBool UseScreenCopy = new( "Use Screen Copy", "bUSC" );
+        public readonly AvfxBool UseScreenCopy = new( "使用屏幕复制", "bUSC" );
         public readonly AvfxBool PreviousFrameCopy = new( "Previous Frame Copy", "bPFC" );
-        public readonly AvfxInt UvSetIdx = new( "UV Set Index", "UvSN" );
+        public readonly AvfxInt UvSetIdx = new( "平面坐标集索引", "UvSN" );
         public readonly AvfxEnum<TextureFilterType> TextureFilter = new( "材质筛选器", "TFT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorderU = new( "水平材质边界", "TBUT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorderV = new( "垂直材质边界", "TBVT" );
-        public readonly AvfxEnum<TextureCalculateColor> TextureCalculateColor = new( "Calculate Color", "TCCT" );
+        public readonly AvfxEnum<TextureCalculateColor> TextureCalculateColor = new( "颜色计算方式", "TCCT" );
         public readonly AvfxEnum<TextureCalculateAlpha> TextureCalculateAlpha = new( "Calculate Alpha", "TCAT" );
         public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", defaultValue: -1 );
         public readonly AvfxIntList MaskTextureIdx = new( "Mask Index", "TLst", defaultValue: -1 );

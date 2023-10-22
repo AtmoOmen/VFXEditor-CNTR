@@ -8,11 +8,11 @@ using static VfxEditor.AvfxFormat.Enums;
 namespace VfxEditor.AvfxFormat {
     public class AvfxParticleTextureDistortion : AvfxParticleAttribute {
         public readonly AvfxBool Enabled = new( "启用", "bEna" );
-        public readonly AvfxBool TargetUv1 = new( "Distort UV 1", "bT1" );
-        public readonly AvfxBool TargetUv2 = new( "Distort UV 2", "bT2" );
-        public readonly AvfxBool TargetUv3 = new( "Distort UV 3", "bT3" );
-        public readonly AvfxBool TargetUv4 = new( "Distort UV 4", "bT4" );
-        public readonly AvfxInt UvSetIdx = new( "UV Set Index", "UvSN" );
+        public readonly AvfxBool TargetUv1 = new( "UV 扭曲 1", "bT1" );
+        public readonly AvfxBool TargetUv2 = new( "UV 扭曲 2", "bT2" );
+        public readonly AvfxBool TargetUv3 = new( "UV 扭曲 3", "bT3" );
+        public readonly AvfxBool TargetUv4 = new( "UV 扭曲 4", "bT4" );
+        public readonly AvfxInt UvSetIdx = new( "平面坐标集索引", "UvSN" );
         public readonly AvfxEnum<TextureFilterType> TextureFilter = new( "材质筛选器", "TFT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorderU = new( "水平材质边界", "TBUT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorderV = new( "垂直材质边界", "TBVT" );
@@ -65,7 +65,7 @@ namespace VfxEditor.AvfxFormat {
             using var _ = ImRaii.PushId( "TD" );
 
             AssignedCopyPaste( this, GetDefaultText() );
-            if( ImGui.SmallButton( "+ Texture Distortion" ) ) Assign();
+            if( ImGui.SmallButton( "+ 材质扭曲" ) ) Assign();
         }
 
         public override void DrawAssigned() {
@@ -75,7 +75,7 @@ namespace VfxEditor.AvfxFormat {
             DrawNamedItems( DisplayTabs );
         }
 
-        public override string GetDefaultText() => "Texture Distortion";
+        public override string GetDefaultText() => "材质扭曲";
 
         public override List<UiNodeSelect> GetNodeSelects() => new() {
             new UiNodeSelect<AvfxTexture>( Particle, "材质", Particle.NodeGroups.Textures, TextureIdx )

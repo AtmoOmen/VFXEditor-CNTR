@@ -5,7 +5,7 @@ using VfxEditor.TmbFormat.Utils;
 namespace VfxEditor.TmbFormat.Entries {
     public class C009 : TmbEntry {
         public const string MAGIC = "C009";
-        public const string DISPLAY_NAME = "Animation (PAP Only)";
+        public const string DISPLAY_NAME = "动画 (仅 PAP)";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

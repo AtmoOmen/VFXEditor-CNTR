@@ -70,11 +70,11 @@ namespace VfxEditor {
 
         public unsafe void Draw() {
             using( var dimUndo = ImRaii.PushColor( ImGuiCol.Text, *ImGui.GetStyleColorVec4( ImGuiCol.TextDisabled ), !CanUndo ) ) {
-                if( ImGui.MenuItem( "Undo##Menu" ) ) Undo();
+                if( ImGui.MenuItem( "撤销##Menu" ) ) Undo();
             }
 
             using var dimRedo = ImRaii.PushColor( ImGuiCol.Text, *ImGui.GetStyleColorVec4( ImGuiCol.TextDisabled ), !CanRedo );
-            if( ImGui.MenuItem( "Redo##Menu" ) ) Redo();
+            if( ImGui.MenuItem( "重做##Menu" ) ) Redo();
         }
 
         public void Dispose() {

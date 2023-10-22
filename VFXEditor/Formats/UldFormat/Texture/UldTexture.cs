@@ -6,7 +6,7 @@ using VfxEditor.Parsing.String;
 namespace VfxEditor.UldFormat.Texture {
     public class UldTexture : UldWorkspaceItem {
         public readonly ParsedPaddedString Path = new( "路径", 44, 0x00 );
-        public readonly ParsedUInt IconId = new( "Icon Id" );
+        public readonly ParsedUInt IconId = new( "图标 ID" );
         private readonly ParsedUInt Unk1 = new( "未知 1" );
 
         private bool ShowHd = false;
@@ -35,14 +35,14 @@ namespace VfxEditor.UldFormat.Texture {
             Path.Draw( CommandManager.Uld );
 
             if( !string.IsNullOrEmpty( Path.Value ) ) {
-                ImGui.Checkbox( "Show HD", ref ShowHd );
+                ImGui.Checkbox( "显示 HD 素材", ref ShowHd );
                 if( ShowHd ) ImGui.TextDisabled( TexturePath );
                 Plugin.TextureManager.GetTexture( TexturePath )?.Draw();
             }
 
             IconId.Draw( CommandManager.Uld );
             if( IconId.Value > 0 ) {
-                ImGui.Checkbox( "Show HD", ref ShowHd );
+                ImGui.Checkbox( "显示 HD 素材", ref ShowHd );
                 ImGui.TextDisabled( IconPath );
                 Plugin.TextureManager.GetTexture( IconPath )?.Draw();
             }

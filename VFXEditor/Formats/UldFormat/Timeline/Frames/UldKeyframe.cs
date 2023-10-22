@@ -7,7 +7,7 @@ namespace VfxEditor.UldFormat.Timeline.Frames {
     public class UldKeyframe {
         public readonly ParsedUInt Time = new( "时间" );
         public readonly ParsedInt Interpolation = new( "Interpolation", size: 1 );
-        public readonly ParsedInt Unk1 = new( "Unknown", size: 1 );
+        public readonly ParsedInt Unk1 = new( "未知", size: 1 );
         public readonly ParsedFloat Acceleration = new( "加速" );
         public readonly ParsedFloat Deceleration = new( "Deceleration" );
 
@@ -103,12 +103,12 @@ namespace VfxEditor.UldFormat.Timeline.Frames {
                     new ParsedReserve( 1 )
                 },
                 KeyGroupType.Color => new ParsedBase[] {
-                    new ParsedInt( "Multiply Red", size: 2 ),
-                    new ParsedInt( "Multiply Green", size: 2 ),
-                    new ParsedInt( "Multiply Blue", size: 2 ),
-                    new ParsedInt( "Add Red", size: 2 ),
-                    new ParsedInt( "Add Green", size: 2 ),
-                    new ParsedInt( "Add Blue", size: 2 )
+                    new ParsedInt( "红色相乘", size: 2 ),
+                    new ParsedInt( "绿色相乘", size: 2 ),
+                    new ParsedInt( "蓝色相乘", size: 2 ),
+                    new ParsedInt( "增加红色", size: 2 ),
+                    new ParsedInt( "增加绿色", size: 2 ),
+                    new ParsedInt( "增加蓝色", size: 2 )
                 },
                 KeyGroupType.Label => new ParsedBase[] {
                     new ParsedUInt( "Label Id", size: 2 ), new ParsedInt( "Label Command", size: 1 ), new ParsedInt( "Jump Id", size: 1 )

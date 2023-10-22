@@ -36,7 +36,7 @@ namespace VfxEditor.UldFormat.Component.Node.Data {
                 new ParsedUInt( "Text Id", size: 2 ),
                 new ParsedUInt( "未知 1", size: 2 ),
                 new ParsedSheetColor( "颜色" ),
-                new ParsedEnum<AlignmentType>( "Alignment", size: 1 ),
+                new ParsedEnum<AlignmentType>( "对齐", size: 1 ),
                 new ParsedUInt( "未知 2", size: 1 ),
                 new ParsedEnum<FontType>( "Font", size: 1 ),
                 new ParsedInt( "Font Size", size: 1 ),

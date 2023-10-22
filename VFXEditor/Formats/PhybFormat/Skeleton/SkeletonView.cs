@@ -73,7 +73,7 @@ namespace VfxEditor.PhybFormat.Skeleton {
                 }
 
                 ImGui.SameLine();
-                if( ImGui.Checkbox( "Show Bone Names", ref Plugin.Configuration.ShowBoneNames ) ) Plugin.Configuration.Save();
+                if( ImGui.Checkbox( "显示骨骼名称", ref Plugin.Configuration.ShowBoneNames ) ) Plugin.Configuration.Save();
             }
 
             if( Bones == null ) return;
@@ -96,7 +96,7 @@ namespace VfxEditor.PhybFormat.Skeleton {
                 Bones.RemoveReference();
             }
             catch( Exception e ) {
-                PluginLog.Error( e, $"Could not read file: {SklbPreviewPath}" );
+                PluginLog.Error( e, $"无法读取文件: {SklbPreviewPath}" );
             }
         }
 

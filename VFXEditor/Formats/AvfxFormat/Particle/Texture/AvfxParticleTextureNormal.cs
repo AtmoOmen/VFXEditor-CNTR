@@ -8,7 +8,7 @@ using static VfxEditor.AvfxFormat.Enums;
 namespace VfxEditor.AvfxFormat {
     public class AvfxParticleTextureNormal : AvfxParticleAttribute {
         public readonly AvfxBool Enabled = new( "启用", "bEna" );
-        public readonly AvfxInt UvSetIdx = new( "UV Set Index", "UvSN" );
+        public readonly AvfxInt UvSetIdx = new( "平面坐标集索引", "UvSN" );
         public readonly AvfxEnum<TextureFilterType> TextureFilter = new( "材质筛选器", "TFT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorderU = new( "水平材质边界", "TBUT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorderV = new( "垂直材质边界", "TBVT" );

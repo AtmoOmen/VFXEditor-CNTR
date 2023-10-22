@@ -47,19 +47,19 @@ namespace VfxEditor.PhybFormat.Collision {
                 for( var i = 0; i < numSpheres; i++ ) Spheres.Add( new PhybSphere( file, reader ) );
             }
 
-            CapsuleSplitView = new( "胶囊", Capsules, false,
+            CapsuleSplitView = new( "Capsule", Capsules, false,
                 ( PhybCapsule item, int idx ) => item.Name.Value, () => new( File ), () => CommandManager.Phyb, ( PhybCapsule item ) => File.Updated() );
 
-            EllipsoidSplitView = new( "椭球", Ellipsoids, false,
+            EllipsoidSplitView = new( "Ellipsoid", Ellipsoids, false,
                 ( PhybEllipsoid item, int idx ) => item.Name.Value, () => new( File ), () => CommandManager.Phyb, ( PhybEllipsoid item ) => File.Updated() );
 
-            NormalPlaneSplitView = new( "法平面", NormalPlanes, false,
+            NormalPlaneSplitView = new( "Normal Plane", NormalPlanes, false,
                 ( PhybNormalPlane item, int idx ) => item.Name.Value, () => new( File ), () => CommandManager.Phyb, ( PhybNormalPlane item ) => File.Updated() );
 
-            ThreePointPlaneSplitView = new( "三点平面", ThreePointPlanes, false,
+            ThreePointPlaneSplitView = new( "Three-Point Plane", ThreePointPlanes, false,
                 ( PhybThreePointPlane item, int idx ) => item.Name.Value, () => new( File ), () => CommandManager.Phyb, ( PhybThreePointPlane item ) => File.Updated() );
 
-            SphereDropdown = new( "球", Spheres, false,
+            SphereDropdown = new( "Sphere", Spheres, false,
                 ( PhybSphere item, int idx ) => item.Name.Value, () => new PhybSphere( File ), () => CommandManager.Phyb, ( PhybSphere item ) => File.Updated() );
         }
 
@@ -94,23 +94,23 @@ namespace VfxEditor.PhybFormat.Collision {
             using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
             if( !tabBar ) return;
 
-            using( var tab = ImRaii.TabItem( "Capsules" ) ) {
+            using( var tab = ImRaii.TabItem( "胶囊" ) ) {
                 if( tab ) CapsuleSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Ellipsoids" ) ) {
+            using( var tab = ImRaii.TabItem( "椭球" ) ) {
                 if( tab ) EllipsoidSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Normal Planes" ) ) {
+            using( var tab = ImRaii.TabItem( "法平面" ) ) {
                 if( tab ) NormalPlaneSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Three-Point Planes" ) ) {
+            using( var tab = ImRaii.TabItem( "三点平面" ) ) {
                 if( tab ) ThreePointPlaneSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Spheres" ) ) {
+            using( var tab = ImRaii.TabItem( "球" ) ) {
                 if( tab ) SphereDropdown.Draw();
             }
         }

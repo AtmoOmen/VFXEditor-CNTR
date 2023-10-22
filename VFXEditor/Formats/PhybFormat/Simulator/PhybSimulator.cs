@@ -154,35 +154,35 @@ namespace VfxEditor.PhybFormat.Simulator {
                 if( tab ) Params.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Collision Objects" ) ) {
+            using( var tab = ImRaii.TabItem( "碰撞物体" ) ) {
                 if( tab ) CollisionSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Collision Connectors" ) ) {
+            using( var tab = ImRaii.TabItem( "碰撞连接器" ) ) {
                 if( tab ) CollisionConnectorSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Chains" ) ) {
+            using( var tab = ImRaii.TabItem( "链接" ) ) {
                 if( tab ) ChainDropdown.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Connectors" ) ) {
+            using( var tab = ImRaii.TabItem( "连接器" ) ) {
                 if( tab ) ConnectorSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Attracts" ) ) {
+            using( var tab = ImRaii.TabItem( "吸引" ) ) {
                 if( tab ) AttractSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Pins" ) ) {
+            using( var tab = ImRaii.TabItem( "固定" ) ) {
                 if( tab ) PinSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Springs" ) ) {
+            using( var tab = ImRaii.TabItem( "弹簧" ) ) {
                 if( tab ) SpringSplitView.Draw();
             }
 
-            using( var tab = ImRaii.TabItem( "Post Alignments" ) ) {
+            using( var tab = ImRaii.TabItem( "后置对齐" ) ) {
                 if( tab ) PostAlignmentSplitView.Draw();
             }
         }

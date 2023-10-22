@@ -6,7 +6,7 @@ using VfxEditor.UldFormat.Texture;
 
 namespace VfxEditor.UldFormat.PartList {
     public class UldPartItem {
-        public readonly ParsedUInt TextureId = new( "Texture Id" );
+        public readonly ParsedUInt TextureId = new( "材质 Id" );
         private readonly ParsedUInt U = new( "U", size: 2 );
         private readonly ParsedUInt V = new( "V", size: 2 );
         private readonly ParsedUInt W = new( "W", size: 2 );
@@ -37,7 +37,7 @@ namespace VfxEditor.UldFormat.PartList {
         public void Draw() {
             TextureId.Draw( CommandManager.Uld );
 
-            ImGui.Checkbox( "Show HD", ref ShowHd );
+            ImGui.Checkbox( "显示 HD 素材", ref ShowHd );
 
             var currentTexture = CurrentTexture;
             if( currentTexture != null ) {

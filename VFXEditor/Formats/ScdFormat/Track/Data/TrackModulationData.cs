@@ -39,7 +39,7 @@ namespace VfxEditor.ScdFormat {
         public readonly ParsedEnum<VolumeCurveType> Curve = new( "Curve", size: 1 );
         private byte Reserved1;
         public readonly ParsedFloat Depth = new( "Depth" );
-        public readonly ParsedInt Rate = new( "Rate" );
+        public readonly ParsedInt Rate = new( "速率" );
 
         public override void Read( BinaryReader reader ) {
             Carrier.Read( reader );

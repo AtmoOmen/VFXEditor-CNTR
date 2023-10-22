@@ -43,7 +43,7 @@ namespace VfxEditor.ScdFormat {
 
     public class TrackUnknown64Item {
         public readonly ParsedShort BankNumber = new( "Bank Number" );
-        public readonly ParsedShort Index = new( "Index" );
+        public readonly ParsedShort Index = new( "索引" );
         public readonly ParsedInt Unk1 = new( "未知 1" );
         public readonly ParsedFloat Unk2 = new( "未知 2" );
 

@@ -33,7 +33,7 @@ namespace VfxEditor.EidFormat {
         public override int GetId() => Id.Value;
 
         public override void Draw() {
-            ImGui.TextDisabled( "Data Version: [OLD]" );
+            ImGui.TextDisabled( "数据版本: [旧]" );
 
             Name.Draw( CommandManager.Eid );
             Id.Draw( CommandManager.Eid );

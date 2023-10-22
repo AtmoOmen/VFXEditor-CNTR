@@ -80,7 +80,7 @@ namespace VfxEditor.AvfxFormat {
                 BinderRotationType
             } );
 
-            PropSplitDisplay = new AvfxDisplaySplitView<AvfxBinderProperties>( "Properties", new() {
+            PropSplitDisplay = new AvfxDisplaySplitView<AvfxBinderProperties>( "属性", new() {
                 PropStart,
                 Prop1,
                 Prop2,
@@ -136,7 +136,7 @@ namespace VfxEditor.AvfxFormat {
 
             DrawData();
 
-            using( var tab = ImRaii.TabItem( "Properties" ) ) {
+            using( var tab = ImRaii.TabItem( "属性" ) ) {
                 if( tab ) PropSplitDisplay.Draw();
             }
         }
