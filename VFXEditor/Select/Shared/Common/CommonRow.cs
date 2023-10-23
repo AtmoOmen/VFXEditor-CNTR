@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Shared.Common {
+﻿namespace VfxEditor.Select.Shared.Common {
     public class CommonRow {
         public readonly string Name;
         public readonly ushort Icon;

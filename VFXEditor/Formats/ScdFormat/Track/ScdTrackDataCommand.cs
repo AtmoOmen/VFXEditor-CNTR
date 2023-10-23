@@ -1,4 +1,4 @@
-namespace VfxEditor.ScdFormat {
+﻿namespace VfxEditor.ScdFormat {
     public class ScdTrackDataCommand : ICommand {
         private readonly ScdTrackItem Item;
         private ScdTrackData OldData;

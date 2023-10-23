@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace VfxEditor.Formats.TextureFormat.CustomTeximpNet {
     [StructLayout( LayoutKind.Sequential, Pack = 1 )]

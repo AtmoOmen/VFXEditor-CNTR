@@ -1,4 +1,4 @@
-using HelixToolkit.SharpDX.Core.Animations;
+﻿using HelixToolkit.SharpDX.Core.Animations;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;

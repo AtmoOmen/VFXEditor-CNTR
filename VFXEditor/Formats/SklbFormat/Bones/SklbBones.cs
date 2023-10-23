@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using Dalamud.Logging;
 using FFXIVClientStructs.Havok;
 using ImGuiFileDialog;
@@ -124,7 +124,7 @@ namespace VfxEditor.SklbFormat.Bones {
                     ImGui.InputTextWithHint( "##Search", "搜索", ref SearchText, 255 );
                 }
 
-                using var left = ImRaii.Child( "左" );
+                using var left = ImRaii.Child( "Left" );
                 style.Pop();
 
                 using var indent = ImRaii.PushStyle( ImGuiStyleVar.IndentSpacing, 9 );
@@ -149,7 +149,7 @@ namespace VfxEditor.SklbFormat.Bones {
             }
             ImGui.NextColumn();
 
-            using( var right = ImRaii.Child( "右" ) ) {
+            using( var right = ImRaii.Child( "Right" ) ) {
                 // Draw right column
                 if( Selected != null ) {
                     using var font = ImRaii.PushFont( UiBuilder.IconFont );
@@ -174,7 +174,7 @@ namespace VfxEditor.SklbFormat.Bones {
         }
 
         private void DrawParentCombo( SklbBone bone ) {
-            using var combo = ImRaii.Combo( "父级", bone.Parent == null ? "[无]" : bone.Parent.Name.Value );
+            using var combo = ImRaii.Combo( "父级", bone.Parent == null ? "[NONE]" : bone.Parent.Name.Value );
             if( !combo ) return;
 
             if( ImGui.Selectable( "[无]", bone.Parent == null ) ) {

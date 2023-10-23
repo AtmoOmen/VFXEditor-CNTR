@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Tex.Action {
+﻿namespace VfxEditor.Select.Tex.Action {
     public class ActionRow {
         public readonly string Name;
         public readonly int RowId;

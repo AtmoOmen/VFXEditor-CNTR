@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using SharpDX;
 using SharpDX.Direct3D11;

@@ -1,4 +1,4 @@
-using VfxEditor.Parsing;
+﻿using VfxEditor.Parsing;
 
 namespace VfxEditor.ScdFormat {
     public class LayoutPolylineData : ScdLayoutData {

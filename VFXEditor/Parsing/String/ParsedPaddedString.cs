@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System.IO;
 
 namespace VfxEditor.Parsing.String {

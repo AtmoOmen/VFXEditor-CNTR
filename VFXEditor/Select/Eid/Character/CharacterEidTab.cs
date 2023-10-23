@@ -1,4 +1,4 @@
-using VfxEditor.Select.Shared.Character;
+﻿using VfxEditor.Select.Shared.Character;
 
 namespace VfxEditor.Select.Eid.Character {
     public class CharacterEidTab : CharacterTab {

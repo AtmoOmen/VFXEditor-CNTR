@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -80,7 +80,7 @@ namespace VfxEditor.AvfxFormat {
                 BinderRotationType
             } );
 
-            PropSplitDisplay = new AvfxDisplaySplitView<AvfxBinderProperties>( "属性", new() {
+            PropSplitDisplay = new AvfxDisplaySplitView<AvfxBinderProperties>( "Properties", new() {
                 PropStart,
                 Prop1,
                 Prop2,
@@ -144,7 +144,7 @@ namespace VfxEditor.AvfxFormat {
         private void DrawData() {
             if( Data == null ) return;
 
-            using var tabItem = ImRaii.TabItem( "Data" );
+            using var tabItem = ImRaii.TabItem( "数据" );
             if( !tabItem ) return;
 
             Data.Draw();

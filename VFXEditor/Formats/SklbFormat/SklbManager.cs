@@ -1,11 +1,11 @@
-using VfxEditor.FileManager;
+﻿using VfxEditor.FileManager;
 using VfxEditor.Interop.Havok;
 using VfxEditor.Select.Sklb;
 using VfxEditor.Utils;
 
 namespace VfxEditor.SklbFormat {
     public class SklbManager : FileManager<SklbDocument, SklbFile, WorkspaceMetaBasic> {
-        public SklbManager() : base( "骨骼编辑器", "Sklb" ) {
+        public SklbManager() : base( "Sklb Editor", "Sklb" ) {
             SourceSelect = new SklbSelectDialog( "骨骼选择 [加载]", this, true );
             ReplaceSelect = new SklbSelectDialog( "骨骼选择 [替换]", this, false );
         }

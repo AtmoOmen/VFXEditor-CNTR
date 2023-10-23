@@ -1,4 +1,4 @@
-using VfxEditor.Ui.Nodes;
+﻿using VfxEditor.Ui.Nodes;
 
 namespace VfxEditor.AvfxFormat {
     public class UiNodeViewRemoveCommand<T> : ICommand where T : AvfxNode {

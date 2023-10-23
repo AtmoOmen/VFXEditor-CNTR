@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxEmitterDataCommand : ICommand {
         private readonly AvfxEmitter Item;
         private AvfxData OldData;

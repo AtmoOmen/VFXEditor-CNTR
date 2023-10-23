@@ -1,4 +1,4 @@
-using VfxEditor.Ui.Interfaces;
+﻿using VfxEditor.Ui.Interfaces;
 
 namespace VfxEditor.AvfxFormat {
     public abstract class AvfxSelectableItem : AvfxItem, IIndexUiItem {

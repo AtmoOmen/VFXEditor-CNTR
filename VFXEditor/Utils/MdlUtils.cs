@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using Lumina.Data.Files;
 using Lumina.Models.Models;
 using System.Collections.Generic;

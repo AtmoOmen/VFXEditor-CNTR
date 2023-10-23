@@ -1,4 +1,4 @@
-namespace VfxEditor.Interop {
+﻿namespace VfxEditor.Interop {
     public static class Constants {
         public const string ReadFileSig = "E8 ?? ?? ?? ?? 84 C0 0F 84 ?? 00 00 00 4C 8B C3 BA 05";
         public const string ReadSqpackSig = "E8 ?? ?? ?? ?? EB 05 E8 ?? ?? ?? ?? 84 C0 0F 84 ?? 00 00 00 4C 8B C3";

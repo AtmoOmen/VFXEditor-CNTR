@@ -1,4 +1,4 @@
-namespace VfxEditor.TmbFormat.Utils {
+﻿namespace VfxEditor.TmbFormat.Utils {
     public class TmbRefreshIdsCommand : CompoundCommand {
         private readonly TmbFile File;
 

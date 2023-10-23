@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.IO;
 using VfxEditor.Ui.Nodes;

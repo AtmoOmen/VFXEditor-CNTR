@@ -1,10 +1,10 @@
-using VfxEditor.FileManager;
+﻿using VfxEditor.FileManager;
 using VfxEditor.Select.Uld;
 using VfxEditor.Utils;
 
 namespace VfxEditor.UldFormat {
     public unsafe class UldManager : FileManager<UldDocument, UldFile, WorkspaceMetaRenamed> {
-        public UldManager() : base( "界面编辑器", "Uld" ) {
+        public UldManager() : base( "Uld Editor", "Uld" ) {
             SourceSelect = new UldSelectDialog( "选择界面 [加载]", this, true );
             ReplaceSelect = new UldSelectDialog( "选择界面 [替换]", this, false );
         }

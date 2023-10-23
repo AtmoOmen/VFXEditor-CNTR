@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -46,7 +46,7 @@ namespace VfxEditor.AvfxFormat {
         public readonly AvfxCurve InjectionAngleZ = new( "Z 轴注入角度", "IAX", CurveType.Angle );
         public readonly AvfxCurve InjectionAngleRandomZ = new( "随机 Z 轴注入角度", "IAZR", CurveType.Angle );
 
-        public readonly AvfxCurve VelocityRandomX = new( "Velocity Random X", "VRX" );
+        public readonly AvfxCurve VelocityRandomX = new( "随机 X 轴速度", "VRX" );
         public readonly AvfxCurve VelocityRandomZ = new( "随机 Z 轴速度", "VRZ" );
         public AvfxData Data;
 
@@ -107,7 +107,7 @@ namespace VfxEditor.AvfxFormat {
             };
             Sound.SetAssigned( false );
 
-            AnimationSplitDisplay = new( "动画", new() {
+            AnimationSplitDisplay = new( "Animation", new() {
                 Life,
                 CreateCount,
                 CreateCountRandom,
@@ -132,8 +132,8 @@ namespace VfxEditor.AvfxFormat {
 
             EffectorSelect = new( this, "效果器选择", groupSet.Effectors, EffectorIdx );
 
-            EmitterSplit = new( "创建发射器", Emitters, this, false );
-            ParticleSplit = new( "创建粒子", Particles, this, true );
+            EmitterSplit = new( "Create Emitters", Emitters, this, false );
+            ParticleSplit = new( "Create Particles", Particles, this, true );
 
             EmitterVariety.Parsed.ExtraCommandGenerator = () => {
                 return new AvfxEmitterDataCommand( this );
@@ -263,7 +263,7 @@ namespace VfxEditor.AvfxFormat {
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Parameters" );
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
 
             NodeView.Draw();
             EffectorSelect.Draw();
@@ -275,7 +275,7 @@ namespace VfxEditor.AvfxFormat {
         private void DrawData() {
             if( Data == null ) return;
 
-            using var tabItem = ImRaii.TabItem( "Data" );
+            using var tabItem = ImRaii.TabItem( "数据" );
             if( !tabItem ) return;
 
             Data.Draw();
@@ -283,7 +283,7 @@ namespace VfxEditor.AvfxFormat {
 
         public override string GetDefaultText() => $"发射器 {GetIdx()} ({EmitterVariety.GetValue()})";
 
-        public override string GetWorkspaceId() => $"发射{GetIdx()}";
+        public override string GetWorkspaceId() => $"Emit{GetIdx()}";
 
         public override void GetChildrenRename( Dictionary<string, string> renameDict ) {
             Emitters.ForEach( item => IWorkspaceUiItem.GetRenamingMap( item, renameDict ) );

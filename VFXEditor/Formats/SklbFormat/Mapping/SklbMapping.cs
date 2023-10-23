@@ -1,4 +1,4 @@
-using FFXIVClientStructs.Havok;
+﻿using FFXIVClientStructs.Havok;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;

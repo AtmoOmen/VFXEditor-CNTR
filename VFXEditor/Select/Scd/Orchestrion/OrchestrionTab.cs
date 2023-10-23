@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace VfxEditor.Select.Scd.Orchestrion {
     public class OrchestrionTab : SelectTab<OrchestrionRow, OrchestionRowSelected> {

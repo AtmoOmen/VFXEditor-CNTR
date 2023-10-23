@@ -1,10 +1,10 @@
-using VfxEditor.FileManager;
+﻿using VfxEditor.FileManager;
 using VfxEditor.Select.Phyb;
 using VfxEditor.Utils;
 
 namespace VfxEditor.PhybFormat {
     public class PhybManager : FileManager<PhybDocument, PhybFile, WorkspaceMetaBasic> {
-        public PhybManager() : base( "碰撞体编辑器", "Phyb" ) {
+        public PhybManager() : base( "Phyb Editor", "Phyb" ) {
             SourceSelect = new PhybSelectDialog( "碰撞体选择 [加载]", this, true );
             ReplaceSelect = new PhybSelectDialog( "碰撞体选择 [替换]", this, false );
         }

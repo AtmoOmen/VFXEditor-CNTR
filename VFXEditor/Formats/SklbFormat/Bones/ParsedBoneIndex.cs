@@ -1,4 +1,4 @@
-using FFXIVClientStructs.Havok;
+﻿using FFXIVClientStructs.Havok;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
@@ -11,9 +11,9 @@ namespace VfxEditor.SklbFormat.Bones {
 
         public ParsedBoneIndex( string name, int defaultValue ) : base( name, defaultValue ) { }
 
-        public string GetText( List<SklbBone> bones ) => Value == -1 ? "[无]" : ( Value >= bones.Count ? "[未知]" : bones[Value].Name.Value );
+        public string GetText( List<SklbBone> bones ) => Value == -1 ? "[无]" : ( Value >= bones.Count ? "[UNKNOWN]" : bones[Value].Name.Value );
 
-        public string GetText( hkaSkeleton* skeleton ) => Value == -1 ? "[无]" : ( Value >= skeleton->Bones.Length ? "[未知]" : skeleton->Bones[Value].Name.String );
+        public string GetText( hkaSkeleton* skeleton ) => Value == -1 ? "[无]" : ( Value >= skeleton->Bones.Length ? "[UNKNOWN]" : skeleton->Bones[Value].Name.String );
 
         public void Draw( List<SklbBone> bones ) => Draw( bones.Select( x => x.Name.Value ).ToList() );
 
@@ -26,7 +26,7 @@ namespace VfxEditor.SklbFormat.Bones {
         }
 
         public void Draw( List<string> names ) {
-            var text = Value == -1 ? "[无]" : ( Value >= names.Count ? "[未知]" : names[Value] );
+            var text = Value == -1 ? "[无]" : ( Value >= names.Count ? "[UNKNOWN]" : names[Value] );
 
             using var _ = ImRaii.PushId( Name );
             using var combo = ImRaii.Combo( Name, text );

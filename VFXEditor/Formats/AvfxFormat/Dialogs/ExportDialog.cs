@@ -1,4 +1,4 @@
-using ImGuiFileDialog;
+﻿using ImGuiFileDialog;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace VfxEditor.AvfxFormat.Dialogs {
         private readonly List<ExportDialogCategory> Categories;
         private bool ExportDependencies = true;
 
-        public ExportDialog( AvfxFile vfxFile ) : base( "导出", false, 600, 400 ) {
+        public ExportDialog( AvfxFile vfxFile ) : base( "Export", false, 600, 400 ) {
             VfxFile = vfxFile;
             Categories = new List<ExportDialogCategory> {
                 new ExportDialogCategory<AvfxTimeline>( vfxFile.NodeGroupSet.Timelines, "时间线" ),

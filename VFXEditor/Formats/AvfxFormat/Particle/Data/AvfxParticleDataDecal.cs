@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxParticleDataDecal : AvfxData {
         public readonly AvfxFloat ScalingScale = new( "缩放比例", "SS" );
 

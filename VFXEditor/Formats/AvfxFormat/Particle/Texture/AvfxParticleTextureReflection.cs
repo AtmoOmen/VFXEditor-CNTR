@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ namespace VfxEditor.AvfxFormat {
         public readonly AvfxEnum<TextureFilterType> TextureFilter = new( "材质筛选器", "TFT" );
         public readonly AvfxEnum<TextureCalculateColor> TextureCalculateColorType = new( "颜色计算方式", "TCCT" );
         public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", defaultValue: -1 );
-        public readonly AvfxCurve Rate = new( "速率", "速率" );
+        public readonly AvfxCurve Rate = new( "速率", "Rate" );
         public readonly AvfxCurve RPow = new( "强度", "RPow" );
 
         private readonly List<AvfxBase> Parsed;

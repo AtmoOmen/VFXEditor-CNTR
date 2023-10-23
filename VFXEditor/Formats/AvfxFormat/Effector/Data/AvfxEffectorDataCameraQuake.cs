@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxEffectorDataCameraQuake : AvfxData {
         public readonly AvfxCurve Attenuation = new( "衰减", "Att" );
         public readonly AvfxCurve RadiusOut = new( "外半径", "RdO" );

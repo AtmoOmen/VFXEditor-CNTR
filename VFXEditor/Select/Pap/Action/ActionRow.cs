@@ -1,4 +1,4 @@
-using Lumina.Excel.GeneratedSheets;
+﻿using Lumina.Excel.GeneratedSheets;
 
 namespace VfxEditor.Select.Pap.Action {
     public class ActionRow {

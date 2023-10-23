@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Select.Shared.Npc;
 
 namespace VfxEditor.Select.Eid.Npc {

@@ -1,4 +1,4 @@
-namespace VfxEditor.Ui.Interfaces {
+﻿namespace VfxEditor.Ui.Interfaces {
     public interface IUiItem {
         public void Draw();
     }

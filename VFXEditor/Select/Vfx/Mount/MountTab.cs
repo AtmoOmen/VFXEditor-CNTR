@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiNET;
 using Lumina.Data.Files;
 using System;
@@ -55,7 +55,7 @@ namespace VfxEditor.Select.Vfx.Mount {
             ImGui.SameLine();
             SelectUiUtils.DisplayPath( Loaded.ImcPath );
 
-            DrawPath( "VFX", Loaded.VfxPath, Selected.Name, true );
+            DrawPath( "视效", Loaded.VfxPath, Selected.Name, true );
         }
 
         protected override string GetName( MountRow item ) => item.Name;

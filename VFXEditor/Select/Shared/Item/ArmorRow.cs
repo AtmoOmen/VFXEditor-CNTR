@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Shared.Item {
+﻿namespace VfxEditor.Select.Shared.Item {
     public class ArmorRow : ItemRow {
         private readonly string ModelString;
 

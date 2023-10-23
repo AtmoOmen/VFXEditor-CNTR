@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Shared.Npc {
+﻿namespace VfxEditor.Select.Shared.Npc {
     public enum NpcType {
         Demihuman = 2,
         Monster = 3

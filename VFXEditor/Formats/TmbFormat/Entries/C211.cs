@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C211 : TmbEntry {
         public const string MAGIC = "C211";
-        public const string DISPLAY_NAME = "Lock Facing Direction";
+        public const string DISPLAY_NAME = "锁定面向";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

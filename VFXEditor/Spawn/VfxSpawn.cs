@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using VfxEditor.Structs.Vfx;
 
 namespace VfxEditor.Spawn {

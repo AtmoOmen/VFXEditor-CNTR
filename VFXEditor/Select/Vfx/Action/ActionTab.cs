@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Linq;
 using VfxEditor.Select.Shared;
@@ -48,10 +48,10 @@ namespace VfxEditor.Select.Vfx.Action {
                 SelectUiUtils.DisplayPath( Loaded.OriginalPath );
             }
 
-            DrawPath( "咏唱", Selected.CastVfxPath, $"{Selected.Name} 咏唱", true );
-            DrawPath( "开始", Selected.StartVfxPath, $"{Selected.Name} 开始", true );
+            DrawPath( "咏唱", Selected.CastVfxPath, $"{Selected.Name} Cast", true );
+            DrawPath( "开始", Selected.StartVfxPath, $"{Selected.Name} Start", true );
             if( !string.IsNullOrEmpty( Loaded.OriginalPath ) ) {
-                DrawPaths( "VFX", Loaded.VfxPaths, Selected.Name, true );
+                DrawPaths( "视效", Loaded.VfxPaths, Selected.Name, true );
             }
         }
 

@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;

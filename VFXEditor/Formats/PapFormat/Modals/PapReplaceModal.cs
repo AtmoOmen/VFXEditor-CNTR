@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using VfxEditor.Interop.Havok;
 using VfxEditor.PapFormat.Motion;
 using VfxEditor.Ui.Components;

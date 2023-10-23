@@ -1,4 +1,4 @@
-namespace VfxEditor {
+﻿namespace VfxEditor {
     public interface ICommand {
         public void Execute();
 

@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using Penumbra.String;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxParticleDataDecalRing : AvfxData {
         public readonly AvfxCurve Width = new( "宽度", "WID" );
         public readonly AvfxFloat ScalingScale = new( "缩放比例", "SS" );

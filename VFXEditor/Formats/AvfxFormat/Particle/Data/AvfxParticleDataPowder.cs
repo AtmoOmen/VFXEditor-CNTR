@@ -1,4 +1,4 @@
-using static VfxEditor.AvfxFormat.Enums;
+﻿using static VfxEditor.AvfxFormat.Enums;
 
 namespace VfxEditor.AvfxFormat {
     public class AvfxParticleDataPowder : AvfxData {

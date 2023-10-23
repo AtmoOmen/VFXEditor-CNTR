@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxEffectorDataDirectionalLight : AvfxData {
         public readonly AvfxCurveColor Ambient = new( "环境", "Amb" );
         public readonly AvfxCurveColor Color = new( "颜色" );

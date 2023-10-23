@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Scd.Orchestrion {
+﻿namespace VfxEditor.Select.Scd.Orchestrion {
     public class OrchestrionRow {
         public readonly string Name;
         public readonly int RowId;

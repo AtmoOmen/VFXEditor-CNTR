@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using Dalamud.Logging;
 using HelixToolkit.SharpDX.Core;
 using ImGuiFileDialog;

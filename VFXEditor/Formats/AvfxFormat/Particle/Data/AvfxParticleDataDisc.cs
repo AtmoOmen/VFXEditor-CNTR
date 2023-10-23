@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxParticleDataDisc : AvfxData {
         public readonly AvfxInt PartsCount = new( "组件数量", "PrtC" );
         public readonly AvfxInt PartsCountU = new( "水平组件数量", "PCnU" );

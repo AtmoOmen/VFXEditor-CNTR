@@ -1,4 +1,4 @@
-using ImGuiFileDialog;
+﻿using ImGuiFileDialog;
 using System.Collections.Generic;
 using VfxEditor.Interop.Havok;
 using VfxEditor.Ui.Components;
@@ -8,7 +8,7 @@ namespace VfxEditor.PapFormat {
     public unsafe class PapAnimationDropdown : Dropdown<PapAnimation> {
         private readonly PapFile File;
 
-        public PapAnimationDropdown( PapFile file, List<PapAnimation> items ) : base( "动画", items, true, true ) {
+        public PapAnimationDropdown( PapFile file, List<PapAnimation> items ) : base( "Animations", items, true, true ) {
             File = file;
         }
 

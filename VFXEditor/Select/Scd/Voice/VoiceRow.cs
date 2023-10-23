@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Scd.Voice {
+﻿namespace VfxEditor.Select.Scd.Voice {
     public class VoiceRow {
         public readonly string Name;
         public readonly string Id;

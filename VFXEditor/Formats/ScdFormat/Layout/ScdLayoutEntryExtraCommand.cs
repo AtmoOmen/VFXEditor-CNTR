@@ -1,4 +1,4 @@
-namespace VfxEditor.ScdFormat {
+﻿namespace VfxEditor.ScdFormat {
     public class ScdLayoutEntryExtraCommand : ICommand {
         private readonly ScdLayoutEntry Item;
         private ScdLayoutData OldData;

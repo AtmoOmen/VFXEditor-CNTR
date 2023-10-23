@@ -1,4 +1,4 @@
-using VfxEditor.EidFormat;
+﻿using VfxEditor.EidFormat;
 using VfxEditor.Select.Eid.Character;
 using VfxEditor.Select.Eid.Mount;
 using VfxEditor.Select.Eid.Npc;

@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,7 +53,7 @@ namespace VfxEditor.Formats.AtchFormat {
             { "csr", "Carpenter" },
             { "dgr", "Dagger" },
             { "drm", "Drum" },
-            { "ebz", "Reaper Shroud" },
+            { "ebz", "钐镰客魂衣" },
             // { "egp", "" },
             // { "elg", "" },
             // { "fch", "" },

@@ -1,4 +1,4 @@
-using OtterGui.Raii;
+﻿using OtterGui.Raii;
 using System.Numerics;
 
 namespace VfxEditor.AvfxFormat {

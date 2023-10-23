@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Scd.Instance {
+﻿namespace VfxEditor.Select.Scd.Instance {
     public class InstanceRow {
         public readonly string Name;
         public readonly int RowId;

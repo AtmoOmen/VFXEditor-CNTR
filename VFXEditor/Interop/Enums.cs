@@ -1,4 +1,4 @@
-namespace VfxEditor.Interop {
+﻿namespace VfxEditor.Interop {
     public enum ResourceType : uint {
         Unknown = 0,
         Aet = 0x00616574,

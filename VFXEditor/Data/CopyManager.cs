@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System.Collections.Generic;
 using System.Numerics;
 using Int3 = SharpDX.Int3;

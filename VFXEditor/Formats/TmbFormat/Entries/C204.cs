@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C204 : TmbEntry {
         public const string MAGIC = "C204";
-        public const string DISPLAY_NAME = "Reaper Shroud";
+        public const string DISPLAY_NAME = "钐镰客魂衣";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System.IO;
 using VfxEditor.EidFormat.BindPoint;
 using VfxEditor.Parsing;

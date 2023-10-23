@@ -1,4 +1,4 @@
-using VfxEditor.Select.Shared.Item;
+﻿using VfxEditor.Select.Shared.Item;
 
 namespace VfxEditor.Select.Pap.Weapon {
     public class WeaponTab : SelectTab<WeaponRow, string> {

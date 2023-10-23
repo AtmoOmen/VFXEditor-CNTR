@@ -1,4 +1,4 @@
-using VfxEditor.Select.Shared.Mount;
+﻿using VfxEditor.Select.Shared.Mount;
 
 namespace VfxEditor.Select.Shared.Skeleton {
     public class SkeletonMountTab : MountTab {

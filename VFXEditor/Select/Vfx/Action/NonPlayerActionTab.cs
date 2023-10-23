@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace VfxEditor.Select.Vfx.Action {
     public class NonPlayerActionTab : ActionTab {

@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System.IO;
 using VfxEditor.Interop.Havok;
 using VfxEditor.Ui.Components;

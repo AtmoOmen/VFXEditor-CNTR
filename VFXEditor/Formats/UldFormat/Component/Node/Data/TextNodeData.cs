@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using VfxEditor.Parsing;
 using VfxEditor.Parsing.Color;
 using VfxEditor.UldFormat.Widget;

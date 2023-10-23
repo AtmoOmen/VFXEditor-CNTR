@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiFileDialog;
 using Newtonsoft.Json.Linq;
 using System;
@@ -23,7 +23,7 @@ namespace VfxEditor.Formats.TextureFormat {
         private readonly TextureView View;
         private readonly ManagerConfiguration Configuration;
 
-        public TextureManager() : base( "材质", false, 800, 500 ) {
+        public TextureManager() : base( "Textures", false, 800, 500 ) {
             Configuration = Plugin.Configuration.GetManagerConfig( "Tex" );
             View = new( this, Textures );
         }

@@ -1,4 +1,4 @@
-using SharpDX;
+﻿using SharpDX;
 
 namespace VfxEditor.Interop.Havok {
     public static class HavokUtils {

@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using VfxEditor.Parsing;
 using VfxEditor.ScdFormat.Sound.Data;
 

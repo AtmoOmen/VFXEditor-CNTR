@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using Dalamud.Logging;
 using ImGuiFileDialog;
 using ImGuiNET;
@@ -72,7 +72,7 @@ namespace VfxEditor.TmbFormat {
         private void DrawLua() {
             LuaAssigned.Draw( Command );
             ImGui.SameLine();
-            UiUtils.HelpMarker( "The current value of Lua variables can be found in the \"Lua Variables\" tab of File > Tools" );
+            UiUtils.HelpMarker( "Lua 变量的当前值可以在\"文件 > 工具 > Lua 变量\"选项卡中找到" );
 
             if( !LuaAssigned.Value ) return;
 

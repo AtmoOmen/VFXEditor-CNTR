@@ -1,4 +1,4 @@
-using VfxEditor.Parsing;
+﻿using VfxEditor.Parsing;
 using VfxEditor.Parsing.Utils;
 using VfxEditor.TmbFormat.Utils;
 

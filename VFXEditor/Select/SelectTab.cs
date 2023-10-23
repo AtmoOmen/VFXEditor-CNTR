@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiNET;
 using ImGuiScene;
 using OtterGui.Raii;
@@ -219,7 +219,7 @@ namespace VfxEditor.Select {
         }
 
         protected virtual void DrawInner() {
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
 
             ImGui.Text( GetName( Selected ) );
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
@@ -279,7 +279,7 @@ namespace VfxEditor.Select {
 
         protected override void DrawInner() {
             if( Loaded != null ) {
-                using var child = ImRaii.Child( "子级" );
+                using var child = ImRaii.Child( "Child" );
                 ImGui.Text( GetName( Selected ) );
                 ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
                 DrawSelected();

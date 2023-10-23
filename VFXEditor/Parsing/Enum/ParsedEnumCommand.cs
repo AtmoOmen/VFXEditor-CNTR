@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace VfxEditor.Parsing {
     public class ParsedEnumCommand<T> : ICommand where T : Enum {

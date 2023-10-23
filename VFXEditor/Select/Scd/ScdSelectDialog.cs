@@ -1,4 +1,4 @@
-using VfxEditor.ScdFormat;
+﻿using VfxEditor.ScdFormat;
 using VfxEditor.Select.Scd.Bgm;
 using VfxEditor.Select.Scd.BgmQuest;
 using VfxEditor.Select.Scd.Common;

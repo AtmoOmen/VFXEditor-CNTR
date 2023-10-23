@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Vfx.Housing {
+﻿namespace VfxEditor.Select.Vfx.Housing {
     public class HousingRow {
         public readonly string Name;
         public readonly string SgbPath;

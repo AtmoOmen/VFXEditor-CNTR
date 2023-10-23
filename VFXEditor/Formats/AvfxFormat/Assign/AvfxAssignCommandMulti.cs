@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     internal class AvfxAssignCommandMulti : ICommand {
         private readonly AvfxBase Item;
         private readonly bool Assigned;

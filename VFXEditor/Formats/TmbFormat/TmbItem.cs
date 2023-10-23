@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 using VfxEditor.Utils;

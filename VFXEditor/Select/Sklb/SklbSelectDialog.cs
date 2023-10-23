@@ -1,4 +1,4 @@
-using VfxEditor.Select.Shared.Skeleton;
+﻿using VfxEditor.Select.Shared.Skeleton;
 using VfxEditor.SklbFormat;
 
 namespace VfxEditor.Select.Sklb {

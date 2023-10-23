@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using VfxEditor.Ui.Interfaces;
 
 namespace VfxEditor.EidFormat.BindPoint {

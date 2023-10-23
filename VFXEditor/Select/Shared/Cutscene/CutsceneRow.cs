@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Shared.Cutscene {
+﻿namespace VfxEditor.Select.Shared.Cutscene {
     public class CutsceneRow {
         public readonly string Name;
         public readonly int RowId;

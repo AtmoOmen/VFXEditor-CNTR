@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using FFXIVClientStructs.Havok;
 using HelixToolkit.SharpDX.Core.Animations;
 using ImGuiFileDialog;

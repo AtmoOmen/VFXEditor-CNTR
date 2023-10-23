@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using Lumina.Excel.GeneratedSheets;
 using OtterGui.Raii;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace VfxEditor.Select.Vfx.Gimmick {
                 ImGui.SameLine();
                 SelectUiUtils.DisplayPath( Selected.TmbPath );
 
-                DrawPaths( "VFX", Loaded.VfxPaths, Selected.Name, true );
+                DrawPaths( "视效", Loaded.VfxPaths, Selected.Name, true );
             }
         }
 

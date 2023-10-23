@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Scd.Bgm {
+﻿namespace VfxEditor.Select.Scd.Bgm {
     public class BgmRow {
         public readonly string Name;
         public readonly int RowId;

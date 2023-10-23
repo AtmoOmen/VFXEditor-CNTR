@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using VfxEditor.Select.Tmb.Action;
 using VfxEditor.Select.Tmb.Common;

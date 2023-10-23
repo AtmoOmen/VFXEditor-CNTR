@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C192 : TmbEntry {
         public const string MAGIC = "C192";
-        public const string DISPLAY_NAME = "Voiceline";
+        public const string DISPLAY_NAME = "语音台词";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
         public override DangerLevel Danger => DangerLevel.Yellow;

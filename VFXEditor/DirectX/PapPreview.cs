@@ -1,4 +1,4 @@
-using HelixToolkit.SharpDX.Core;
+﻿using HelixToolkit.SharpDX.Core;
 using SharpDX.Direct3D11;
 using VfxEditor.PapFormat;
 using VfxEditor.PapFormat.Motion;

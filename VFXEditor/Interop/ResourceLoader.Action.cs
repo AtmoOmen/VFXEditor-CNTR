@@ -1,4 +1,4 @@
-using Dalamud.Hooking;
+﻿using Dalamud.Hooking;
 using System;
 
 namespace VfxEditor.Interop {

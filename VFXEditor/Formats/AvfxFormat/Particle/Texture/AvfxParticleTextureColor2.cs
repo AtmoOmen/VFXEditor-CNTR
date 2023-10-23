@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -11,15 +11,15 @@ namespace VfxEditor.AvfxFormat {
         public readonly string Name;
 
         public readonly AvfxBool Enabled = new( "启用", "bEna" );
-        public readonly AvfxBool ColorToAlpha = new( "Color To Alpha", "bC2A" );
+        public readonly AvfxBool ColorToAlpha = new( "颜色值转透明度", "bC2A" );
         public readonly AvfxBool UseScreenCopy = new( "使用屏幕复制", "bUSC" );
-        public readonly AvfxBool PreviousFrameCopy = new( "Previous Frame Copy", "bPFC" );
+        public readonly AvfxBool PreviousFrameCopy = new( "复制前一帧", "bPFC" );
         public readonly AvfxInt UvSetIdx = new( "平面坐标集索引", "UvSN" );
         public readonly AvfxEnum<TextureFilterType> TextureFilter = new( "材质筛选器", "TFT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorderU = new( "水平材质边界", "TBUT" );
         public readonly AvfxEnum<TextureBorderType> TextureBorderV = new( "垂直材质边界", "TBVT" );
         public readonly AvfxEnum<TextureCalculateColor> TextureCalculateColor = new( "颜色计算方式", "TCCT" );
-        public readonly AvfxEnum<TextureCalculateAlpha> TextureCalculateAlpha = new( "Calculate Alpha", "TCAT" );
+        public readonly AvfxEnum<TextureCalculateAlpha> TextureCalculateAlpha = new( "透明度计算方式", "TCAT" );
         public readonly AvfxInt TextureIdx = new( "材质索引", "TxNo", defaultValue: -1 );
 
         private readonly List<AvfxBase> Parsed;
@@ -75,7 +75,7 @@ namespace VfxEditor.AvfxFormat {
             using var _ = ImRaii.PushId( Name );
 
             AssignedCopyPaste( this, Name );
-            if( AvfxName != "TC2" && UiUtils.RemoveButton( $"Delete {Name}", small: true ) ) {
+            if( AvfxName != "TC2" && UiUtils.RemoveButton( $"删除 {Name}", small: true ) ) {
                 Unassign();
                 return;
             }

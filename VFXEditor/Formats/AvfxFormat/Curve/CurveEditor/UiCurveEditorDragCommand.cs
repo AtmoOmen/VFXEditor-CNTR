@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class UiCurveEditorDragCommand : ICommand {
         private readonly UiCurveEditor Item;
         private readonly UiCurveEditorState PrevState;

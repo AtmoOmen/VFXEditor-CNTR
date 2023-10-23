@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using VfxEditor.Formats.TextureFormat;
 using VfxEditor.Select.Tex.Action;
 using VfxEditor.Select.Tex.Status;

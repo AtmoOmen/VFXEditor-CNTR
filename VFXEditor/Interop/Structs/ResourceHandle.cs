@@ -1,4 +1,4 @@
-using FFXIVClientStructs.FFXIV.Client.System.Resource;
+﻿using FFXIVClientStructs.FFXIV.Client.System.Resource;
 using Penumbra.String;
 using Penumbra.String.Classes;
 using System;

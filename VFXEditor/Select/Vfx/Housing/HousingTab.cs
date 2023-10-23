@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using Lumina.Excel.GeneratedSheets;
 using System.Linq;
 using VfxEditor.Select.Shared;
@@ -29,7 +29,7 @@ namespace VfxEditor.Select.Vfx.Housing {
             ImGui.SameLine();
             SelectUiUtils.DisplayPath( Selected.SgbPath );
 
-            DrawPaths( "VFX", Loaded.VfxPaths, Selected.Name, true );
+            DrawPaths( "视效", Loaded.VfxPaths, Selected.Name, true );
         }
 
         protected override string GetName( HousingRow item ) => item.Name;

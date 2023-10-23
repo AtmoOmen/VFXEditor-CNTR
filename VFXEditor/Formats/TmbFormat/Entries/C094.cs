@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace VfxEditor.TmbFormat.Entries {
 
     public class C094 : TmbEntry {
         public const string MAGIC = "C094";
-        public const string DISPLAY_NAME = "Invisibility";
+        public const string DISPLAY_NAME = "不可见";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

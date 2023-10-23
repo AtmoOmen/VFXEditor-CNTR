@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiNET;
 using System.Linq;
 using VfxEditor.Utils;
@@ -25,7 +25,7 @@ namespace VfxEditor.Select.Tmb.Action {
         protected override void DrawSelected() {
             SelectUiUtils.DrawIcon( Icon );
 
-            DrawPath( "开始", Selected.Start.Path, $"{Selected.Name} 开始", true );
+            DrawPath( "开始", Selected.Start.Path, $"{Selected.Name} Start", true );
             DrawMovementCancel( Selected.Start );
 
             DrawPath( "结束", Selected.End.Path, $"{Selected.Name} End", true );

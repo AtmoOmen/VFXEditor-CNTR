@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using VfxEditor.Interop.Havok.Structs;
 
 namespace VfxEditor.Interop {

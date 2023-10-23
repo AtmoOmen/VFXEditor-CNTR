@@ -1,4 +1,4 @@
-using Dalamud.Game.ClientState.Keys;
+﻿using Dalamud.Game.ClientState.Keys;
 using Dalamud.Interface;
 using ImGuiNET;
 using OtterGui.Raii;

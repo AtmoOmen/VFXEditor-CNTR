@@ -1,4 +1,4 @@
-using ImGuiFileDialog;
+﻿using ImGuiFileDialog;
 using Lumina.Data.Parsing.Tex;
 using Lumina.Extensions;
 using System;

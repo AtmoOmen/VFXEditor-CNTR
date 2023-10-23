@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ namespace VfxEditor.ScdFormat {
         public readonly ParsedReserve Reserved = new( 1 );
         public readonly ParsedShort AttributeId = new( "属性 ID" );
         public readonly ParsedShort SearchAttributeId = new( "搜索属性 ID" );
-        public readonly ParsedByte ConditionFirst = new( "第一情况" );
+        public readonly ParsedByte ConditionFirst = new( "第一条件" );
         public readonly ParsedByte ArgumentCount = new( "参数数量" );
         public readonly ParsedInt SoundLabelLow = new( "低音标签" );
         public readonly ParsedInt SoundLabelHigh = new( "高音标签" );

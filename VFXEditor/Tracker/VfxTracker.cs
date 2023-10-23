@@ -1,4 +1,4 @@
-using SharpDX;
+﻿using SharpDX;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

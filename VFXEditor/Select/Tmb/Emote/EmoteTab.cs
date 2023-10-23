@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace VfxEditor.Select.Tmb.Emote {
     public class EmoteTab : SelectTab<EmoteRow> {

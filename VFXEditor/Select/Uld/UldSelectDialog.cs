@@ -1,4 +1,4 @@
-using VfxEditor.Select.Uld.Common;
+﻿using VfxEditor.Select.Uld.Common;
 using VfxEditor.UldFormat;
 
 namespace VfxEditor.Select.Uld {

@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using TeximpNet.DDS;
 
 namespace VfxEditor.Formats.TextureFormat.CustomTeximpNet {

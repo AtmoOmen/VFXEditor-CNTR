@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace VfxEditor.Formats.TextureFormat.CustomTeximpNet {
     internal enum CustomD3D10ResourceDimension : uint {

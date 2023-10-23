@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C002 : TmbEntry {
         public const string MAGIC = "C002";
-        public const string DISPLAY_NAME = "TMB";
+        public const string DISPLAY_NAME = "时间线";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

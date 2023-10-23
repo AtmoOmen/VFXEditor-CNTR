@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System.Collections.Generic;
 using VfxEditor.Select.Shared.Npc;
 
@@ -8,7 +8,7 @@ namespace VfxEditor.Select.Vfx.Npc {
 
         protected override void DrawSelected() {
             ImGui.Text( "分支: " + Selected.Variant );
-            DrawPaths( "VFX", Loaded, Selected.Name, true );
+            DrawPaths( "视效", Loaded, Selected.Name, true );
         }
 
         protected override void GetLoadedFiles( NpcFilesStruct files, out List<string> loaded ) {

@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class UiTimelineItemRemoveCommand : ICommand {
         private readonly UiTimelineItemSequencer View;
         private readonly AvfxTimelineItem Item;

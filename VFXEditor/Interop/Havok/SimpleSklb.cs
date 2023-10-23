@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 
 namespace VfxEditor.Interop.Havok {
     public class SimpleSklb : Lumina.Data.FileResource {

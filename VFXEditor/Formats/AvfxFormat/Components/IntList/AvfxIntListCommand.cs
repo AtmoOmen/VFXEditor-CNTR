@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxIntListCommand : ICommand {
         private readonly AvfxIntList Item;
         private readonly int State;

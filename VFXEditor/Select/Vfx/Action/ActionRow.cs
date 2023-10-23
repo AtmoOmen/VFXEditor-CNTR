@@ -1,4 +1,4 @@
-using Lumina.Text;
+﻿using Lumina.Text;
 using System.Text;
 
 namespace VfxEditor.Select.Vfx.Action {

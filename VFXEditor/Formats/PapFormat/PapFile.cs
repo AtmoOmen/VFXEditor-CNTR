@@ -1,4 +1,4 @@
-using ImGuiFileDialog;
+﻿using ImGuiFileDialog;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;

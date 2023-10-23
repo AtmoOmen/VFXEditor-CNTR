@@ -1,4 +1,4 @@
-using Dalamud.Game.ClientState.Conditions;
+﻿using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Interface;
 using FFXIVClientStructs.FFXIV.Client.Game.Control;
 using ImGuiNET;

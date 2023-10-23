@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace VfxEditor.Formats.TextureFormat.Ui {
             ExtractFileType.Dds
         };
 
-        public TextureView( TextureManager manager, List<TextureReplace> textures ) : base( "材质" ) {
+        public TextureView( TextureManager manager, List<TextureReplace> textures ) : base( "Textures" ) {
             Textures = textures;
             InitialWidth = 300;
             ExtractSelect = new( "Texture Extract", manager, false, Extract );

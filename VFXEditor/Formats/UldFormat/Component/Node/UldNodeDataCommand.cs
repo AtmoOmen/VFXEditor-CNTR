@@ -1,4 +1,4 @@
-namespace VfxEditor.UldFormat.Component.Node {
+﻿namespace VfxEditor.UldFormat.Component.Node {
     public class UldNodeDataCommand : ICommand {
         private readonly UldNode Item;
         private UldGenericData OldData;

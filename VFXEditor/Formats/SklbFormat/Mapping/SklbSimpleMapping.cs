@@ -1,4 +1,4 @@
-using FFXIVClientStructs.Havok;
+﻿using FFXIVClientStructs.Havok;
 using VfxEditor.Interop.Structs.Animation;
 using VfxEditor.Parsing;
 using VfxEditor.SklbFormat.Bones;

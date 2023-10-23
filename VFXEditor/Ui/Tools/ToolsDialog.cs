@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 
 namespace VfxEditor.Ui.Tools {
@@ -8,7 +8,7 @@ namespace VfxEditor.Ui.Tools {
         private readonly LoadedTab LoadedTab;
         private readonly LuaTab LuaTab;
 
-        public ToolsDialog() : base( "工具", false, 300, 400 ) {
+        public ToolsDialog() : base( "Tools", false, 300, 400 ) {
             ResourceTab = new ResourceTab();
             UtilitiesTab = new UtilitiesTab();
             LoadedTab = new LoadedTab();

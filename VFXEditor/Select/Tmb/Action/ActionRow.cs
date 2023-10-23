@@ -1,4 +1,4 @@
-using Lumina.Excel.GeneratedSheets;
+﻿using Lumina.Excel.GeneratedSheets;
 
 namespace VfxEditor.Select.Tmb.Action {
     public readonly struct ActionTmbData {

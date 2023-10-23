@@ -1,4 +1,4 @@
-using VfxEditor.PapFormat;
+﻿using VfxEditor.PapFormat;
 using VfxEditor.Select.Pap.Action;
 using VfxEditor.Select.Pap.Emote;
 using VfxEditor.Select.Pap.IdlePose;

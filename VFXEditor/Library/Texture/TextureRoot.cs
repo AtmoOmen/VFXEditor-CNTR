@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiFileDialog;
 using ImGuiNET;
 using OtterGui.Raii;
@@ -26,7 +26,7 @@ namespace VfxEditor.Library.Node {
 
                 ImGui.SameLine();
                 if( ImGui.Button( FontAwesomeIcon.Save.ToIconString() ) ) {
-                    FileDialogManager.SaveFileDialog( "选择保存位置", ".txt", "材质", "txt", ( bool ok, string res ) => {
+                    FileDialogManager.SaveFileDialog( "选择保存位置", ".txt", "Textures", "txt", ( bool ok, string res ) => {
                         if( !ok ) return;
                         library.ExportTextures( res );
                     } );

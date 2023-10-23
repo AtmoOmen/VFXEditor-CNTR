@@ -1,4 +1,4 @@
-using FFXIVClientStructs.Havok;
+﻿using FFXIVClientStructs.Havok;
 using System.Runtime.InteropServices;
 
 namespace VfxEditor.Interop.Havok.Structs {

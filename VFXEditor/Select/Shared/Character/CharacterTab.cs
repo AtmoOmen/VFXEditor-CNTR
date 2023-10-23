@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Shared.Character {
+﻿namespace VfxEditor.Select.Shared.Character {
     public abstract class CharacterTab : SelectTab<CharacterRow> {
         public CharacterTab( SelectDialog dialog, string name ) : base( dialog, name, "Character-Shared", SelectResultType.GameCharacter ) { }
 

@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
@@ -166,7 +166,7 @@ namespace VfxEditor.UldFormat.Component {
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Parameters" );
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
 
             IgnoreInput.Draw( CommandManager.Uld );
             DragArrow.Draw( CommandManager.Uld );
@@ -180,7 +180,7 @@ namespace VfxEditor.UldFormat.Component {
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Data" );
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
 
             Data.Draw();
         }

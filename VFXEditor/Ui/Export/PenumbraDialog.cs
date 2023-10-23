@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiFileDialog;
 using Newtonsoft.Json;
 using System;

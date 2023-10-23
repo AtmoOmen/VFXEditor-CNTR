@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C033 : TmbEntry {
         public const string MAGIC = "C033";
-        public const string DISPLAY_NAME = "Crafting Delay";
+        public const string DISPLAY_NAME = "生产延迟";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

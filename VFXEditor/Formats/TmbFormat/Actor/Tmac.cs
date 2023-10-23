@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
@@ -60,7 +60,7 @@ namespace VfxEditor.TmbFormat.Actor {
 
             // Left column
 
-            using( var left = ImRaii.Child( "左" ) ) {
+            using( var left = ImRaii.Child( "Left" ) ) {
                 using( var font = ImRaii.PushFont( UiBuilder.IconFont ) ) {
                     if( ImGui.Button( FontAwesomeIcon.Plus.ToIconString() ) ) { // NEW
                         var newTrack = new Tmtr( File );
@@ -110,7 +110,7 @@ namespace VfxEditor.TmbFormat.Actor {
 
             ImGui.NextColumn();
 
-            using( var right = ImRaii.Child( "右" ) ) {
+            using( var right = ImRaii.Child( "Right" ) ) {
                 if( SelectedTrack != null ) {
                     using var _ = ImRaii.PushId( selectedIndex );
                     SelectedTrack.Draw();

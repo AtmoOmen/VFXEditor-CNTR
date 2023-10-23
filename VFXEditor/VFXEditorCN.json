@@ -10,5 +10,5 @@
     "Tags": [ "VFX", "AVFX" ],
     "DalamudApiLevel": 8,
     "LoadPriority": 69,
-    "Changelog": "- 新增了约 140 条字符串翻译，并完成了 EID 编辑器界面的翻译"
+    "Changelog": "- 新增了大约 30 条翻译"
 }

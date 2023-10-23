@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace VfxEditor.AvfxFormat.Model {
     public class AvfxModelImportCommand : ICommand {

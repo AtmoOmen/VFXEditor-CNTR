@@ -1,4 +1,4 @@
-using Dalamud.Configuration;
+﻿using Dalamud.Configuration;
 using Dalamud.Interface;
 using Dalamud.Logging;
 using ImGuiFileDialog;
@@ -128,7 +128,7 @@ namespace VfxEditor {
         [NonSerialized]
         public bool WriteLocationError = false;
 
-        public Configuration() : base( "设置", false, 300, 200 ) { }
+        public Configuration() : base( "Settings", false, 300, 200 ) { }
 
         public void Setup() {
             Plugin.PluginInterface.UiBuilder.DisableUserUiHide = !HideWithUI;

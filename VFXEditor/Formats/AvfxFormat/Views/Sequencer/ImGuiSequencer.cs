@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiNET;
 using OtterGui.Raii;
 using System;
@@ -461,7 +461,7 @@ namespace VfxEditor.AvfxFormat {
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
             if( Selected != null ) {
-                using var child = ImRaii.Child( "子级" );
+                using var child = ImRaii.Child( "Child" );
                 Selected.Draw();
             }
             else {

@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using ImPlotNET;
 using OtterGui.Raii;
 using System;
@@ -179,7 +179,7 @@ namespace VfxEditor.AvfxFormat {
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 5 );
 
             ImGui.TextDisabled( "曲线编辑器控制 (?)" );
-            UiUtils.Tooltip( "Ctrl + 左键 以添加一个新的点\n左键 以选择一个点，按住 Shift 键可选择多个点\n右键单击，然后拖拽，最后单击左键执行框选操作" );
+            UiUtils.Tooltip( "Ctrl + 左键 以添加一个新的点\n左键 以选择一个点，按住 Shift 键可选择多个点\n右键单击，然后拖拽，最后单击左键以执行框选操作" );
 
             using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 4, 4 ) ) ) {
                 if( !DrawOnce || ImGui.SmallButton( "自适应显示" ) ) {

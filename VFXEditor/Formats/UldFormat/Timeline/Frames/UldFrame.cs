@@ -1,4 +1,4 @@
-using OtterGui.Raii;
+﻿using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;

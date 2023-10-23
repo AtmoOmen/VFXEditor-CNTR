@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace VfxEditor.Select.Vfx.JournalCutscene {
 
                 if( ImGui.CollapsingHeader( $"Cutscene {idx}" ) ) {
                     using var indent = ImRaii.PushIndent( 10f );
-                    DrawPaths( "VFX", Loaded[idx].VfxPaths, $"{Selected.Name} {idx}", true );
+                    DrawPaths( "视效", Loaded[idx].VfxPaths, $"{Selected.Name} {idx}", true );
                 }
             }
         }

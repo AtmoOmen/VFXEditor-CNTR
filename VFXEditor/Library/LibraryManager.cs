@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using Dalamud.Logging;
 using ImGuiNET;
 using OtterGui.Raii;
@@ -23,7 +23,7 @@ namespace VfxEditor.Library {
 
         private string ComboSearchInput = string.Empty;
 
-        public LibraryManager() : base( "库", false, 500, 750 ) {
+        public LibraryManager() : base( "Library", false, 500, 750 ) {
             NodeRoot = new( Plugin.Configuration.VFXNodeLibraryItems );
             TextureRoot = new( Plugin.Configuration.VfxTextureLibraryItems );
             RootPath = Plugin.Configuration.WriteLocation;

@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiNET;
 using System.Numerics;
 using VfxEditor.Ui.Interfaces;

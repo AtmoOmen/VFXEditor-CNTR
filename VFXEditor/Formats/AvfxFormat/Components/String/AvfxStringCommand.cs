@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxStringCommand : ICommand {
         private readonly AvfxString Item;
         private readonly string State;

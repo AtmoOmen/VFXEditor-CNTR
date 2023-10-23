@@ -1,4 +1,4 @@
-using Lumina.Excel.GeneratedSheets;
+﻿using Lumina.Excel.GeneratedSheets;
 using System.Linq;
 using VfxEditor.Select.Scd.BgmQuest;
 

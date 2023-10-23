@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System.Linq;
 using VfxEditor.Select.Shared;
 using VfxEditor.Select.Shared.Cutscene;
@@ -19,7 +19,7 @@ namespace VfxEditor.Select.Vfx.Cutscene {
             ImGui.SameLine();
             SelectUiUtils.DisplayPath( Selected.Path );
 
-            DrawPaths( "VFX", Loaded.VfxPaths, Selected.Name, true );
+            DrawPaths( "视效", Loaded.VfxPaths, Selected.Name, true );
         }
 
         protected override string GetName( CutsceneRow item ) => item.Name;

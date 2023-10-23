@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiNET;
 using Lumina.Data.Files;
 using System;
@@ -47,7 +47,7 @@ namespace VfxEditor.Select.Vfx.Item {
             ImGui.SameLine();
             SelectUiUtils.DisplayPath( Loaded.ImcPath );
 
-            DrawPaths( "VFX", Loaded.VfxPaths, Selected.Name, true );
+            DrawPaths( "视效", Loaded.VfxPaths, Selected.Name, true );
 
             if( Loaded.VfxPaths.Count == 0 ) SelectUiUtils.DisplayNoVfx();
         }

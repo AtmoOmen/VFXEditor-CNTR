@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace VfxEditor.Select.Vfx.Status {
     public class StatusTab : SelectTab<StatusRow> {

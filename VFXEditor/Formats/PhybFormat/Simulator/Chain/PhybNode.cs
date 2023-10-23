@@ -1,4 +1,4 @@
-using HelixToolkit.SharpDX.Core.Animations;
+﻿using HelixToolkit.SharpDX.Core.Animations;
 using System.Collections.Generic;
 using System.IO;
 using VfxEditor.Parsing;

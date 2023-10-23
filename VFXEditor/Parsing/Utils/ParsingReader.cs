@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using VfxEditor.Utils;
 
 namespace VfxEditor.Parsing.Utils {

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Select.Shared.Item;
 
 namespace VfxEditor.Select.Shared.Skeleton {

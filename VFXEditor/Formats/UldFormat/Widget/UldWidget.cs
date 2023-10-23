@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -87,7 +87,7 @@ namespace VfxEditor.UldFormat.Widget {
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Parameters" );
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
 
             AlignmentType.Draw( CommandManager.Uld );
             X.Draw( CommandManager.Uld );

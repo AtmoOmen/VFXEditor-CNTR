@@ -1,4 +1,4 @@
-using Dalamud.Hooking;
+﻿using Dalamud.Hooking;
 using Dalamud.Logging;
 using System;
 using System.Text;

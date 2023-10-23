@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System;
 using System.Collections.Generic;
@@ -269,7 +269,7 @@ namespace VfxEditor.AvfxFormat {
 
         public override void Draw() {
             using var _ = ImRaii.PushId( "Avfx" );
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
 
             ImGui.BeginDisabled();
             ImGui.TextWrapped( "修改后的位置、缩放和旋转仅会作用于未链接绑定器的效果。获取更多信息请查看\"绑定器\"一栏" );

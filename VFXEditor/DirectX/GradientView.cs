@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using SharpDX;
 using SharpDX.D3DCompiler;
 using SharpDX.Direct3D;

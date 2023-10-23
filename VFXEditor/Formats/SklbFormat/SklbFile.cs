@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.IO;
@@ -98,7 +98,7 @@ namespace VfxEditor.SklbFormat {
         }
 
         private void DrawData() {
-            using var tabItem = ImRaii.TabItem( "Data" );
+            using var tabItem = ImRaii.TabItem( "数据" );
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( "Data" );

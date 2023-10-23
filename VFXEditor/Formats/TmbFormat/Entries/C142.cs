@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C142 : TmbEntry {
         public const string MAGIC = "C142";
-        public const string DISPLAY_NAME = "Freeze Position";
+        public const string DISPLAY_NAME = "冻结位置";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

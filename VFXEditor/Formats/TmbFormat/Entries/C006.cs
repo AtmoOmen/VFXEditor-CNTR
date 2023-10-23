@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C006 : TmbEntry {
         public const string MAGIC = "C006";
-        public const string DISPLAY_NAME = "Fly Text Settings";
+        public const string DISPLAY_NAME = "漂浮文本设置";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

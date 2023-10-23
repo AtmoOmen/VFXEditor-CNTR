@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Numerics;
 
@@ -27,7 +27,7 @@ namespace VfxEditor.Ui.Components.SplitViews {
                 ImGui.Columns( 2, "Columns", true );
                 DrawPreLeft();
 
-                using var left = ImRaii.Child( "左" );
+                using var left = ImRaii.Child( "Left" );
                 style.Pop();
 
                 DrawLeftColumn();
@@ -39,7 +39,7 @@ namespace VfxEditor.Ui.Components.SplitViews {
             }
             ImGui.NextColumn();
 
-            using( var right = ImRaii.Child( "右" ) ) {
+            using( var right = ImRaii.Child( "Right" ) ) {
                 DrawRightColumn();
             }
 

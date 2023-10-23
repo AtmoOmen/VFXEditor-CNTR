@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiFileDialog;
 using ImGuiNET;
 using System;
@@ -46,7 +46,7 @@ namespace VfxEditor.Formats.TextureFormat.Textures {
         }
 
         protected void ImportDialog() {
-            FileDialogManager.OpenFileDialog( "选择文件", "图片文件{.png,." + GameExtension + ",.dds},.*", ( bool ok, string res ) => {
+            FileDialogManager.OpenFileDialog( "选择文件", "Image files{.png,." + GameExtension + ",.dds},.*", ( bool ok, string res ) => {
                 if( !ok ) return;
                 try {
                     OnReplace( res );

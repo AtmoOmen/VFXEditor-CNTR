@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Tex.Status {
+﻿namespace VfxEditor.Select.Tex.Status {
     public class StatusRow {
         public readonly string Name;
         public readonly int RowId;

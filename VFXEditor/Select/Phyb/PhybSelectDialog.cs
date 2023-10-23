@@ -1,4 +1,4 @@
-using VfxEditor.PhybFormat;
+﻿using VfxEditor.PhybFormat;
 using VfxEditor.Select.Shared.Skeleton;
 
 namespace VfxEditor.Select.Phyb {

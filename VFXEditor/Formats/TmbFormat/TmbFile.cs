@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System;
 using System.Collections.Generic;
@@ -141,7 +141,7 @@ namespace VfxEditor.TmbFormat {
             using var tabItem = ImRaii.TabItem( "未使用" );
             if( !tabItem ) return;
 
-            ImGui.TextDisabled( "剩下的音轨，从未被触发，仅做研究用" );
+            ImGui.TextDisabled( "以下为游戏内部遗留的音轨，它们从未被实际触发过，此处仅做研究用" );
             ImGui.Separator();
             UnusedTrackView.Draw();
         }

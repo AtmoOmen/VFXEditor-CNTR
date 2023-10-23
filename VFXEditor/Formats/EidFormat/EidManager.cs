@@ -1,10 +1,10 @@
-using VfxEditor.FileManager;
+﻿using VfxEditor.FileManager;
 using VfxEditor.Select.Eid;
 using VfxEditor.Utils;
 
 namespace VfxEditor.EidFormat {
     public unsafe class EidManager : FileManager<EidDocument, EidFile, WorkspaceMetaBasic> {
-        public EidManager() : base( "角色编辑器", "Eid" ) {
+        public EidManager() : base( "Eid Editor", "Eid" ) {
             SourceSelect = new EidSelectDialog( "选择角色 [替换]", this, true );
             ReplaceSelect = new EidSelectDialog( "选择角色 [替换]", this, false );
 

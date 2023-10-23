@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
@@ -12,7 +12,7 @@ namespace VfxEditor.TmbFormat.Entries {
 
     public class C012 : TmbEntry {
         public const string MAGIC = "C012";
-        public const string DISPLAY_NAME = "VFX";
+        public const string DISPLAY_NAME = "视效";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

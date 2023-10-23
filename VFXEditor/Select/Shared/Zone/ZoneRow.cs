@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Shared.Zone {
+﻿namespace VfxEditor.Select.Shared.Zone {
     public class ZoneRow {
         public readonly string Name;
         public readonly int RowId;

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace VfxEditor.SklbFormat.Bones {
     public class SklbBonesImportCommand : ICommand {

@@ -1,4 +1,4 @@
-using OtterGui.Raii;
+﻿using OtterGui.Raii;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +28,7 @@ namespace VfxEditor.AvfxFormat {
 
         public override void Draw() {
             using var _ = ImRaii.PushId( Name );
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
             DrawItems( Display );
         }
 

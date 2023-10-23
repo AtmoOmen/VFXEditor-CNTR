@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using SharpGLTF.Schema2;
 using System.Collections.Generic;

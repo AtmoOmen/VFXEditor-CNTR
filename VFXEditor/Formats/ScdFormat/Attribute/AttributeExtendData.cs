@@ -1,4 +1,4 @@
-using OtterGui.Raii;
+﻿using OtterGui.Raii;
 using System;
 using System.IO;
 using VfxEditor.Parsing;
@@ -37,8 +37,8 @@ namespace VfxEditor.ScdFormat {
     }
 
     public class AttributeExtendData {
-        public readonly ParsedEnum<ConditionType1st> FirstCondition = new( "第一情况", size: 1 );
-        public readonly ParsedEnum<ConditionType2nd> SecondCondition = new( "第二情况", size: 1 );
+        public readonly ParsedEnum<ConditionType1st> FirstCondition = new( "第一条件", size: 1 );
+        public readonly ParsedEnum<ConditionType2nd> SecondCondition = new( "第二条件", size: 1 );
         public readonly ParsedEnum<JoinType> JoinTypeSelect = new( "连接类型", size: 1 );
         public readonly ParsedByte NumberOfConditions = new( "情况数" );
         public readonly ParsedInt SelfArgument = new( "自引用参数" );

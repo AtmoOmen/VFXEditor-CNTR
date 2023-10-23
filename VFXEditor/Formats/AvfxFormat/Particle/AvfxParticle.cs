@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -199,7 +199,7 @@ namespace VfxEditor.AvfxFormat {
                 DepthOffset
             } );
 
-            AnimationSplitDisplay = new( "动画", new() {
+            AnimationSplitDisplay = new( "Animation", new() {
                 Life,
                 Simple,
                 Gravity,
@@ -220,7 +220,7 @@ namespace VfxEditor.AvfxFormat {
 
             UvView = new( UvSets );
 
-            TextureDisplaySplit = new( "材质", new() {
+            TextureDisplaySplit = new( "Textures", new() {
                 TC1,
                 TC2,
                 TC3,
@@ -323,7 +323,7 @@ namespace VfxEditor.AvfxFormat {
         private void DrawData() {
             if( Data == null ) return;
 
-            using var tabItem = ImRaii.TabItem( "Data" );
+            using var tabItem = ImRaii.TabItem( "数据" );
             if( !tabItem ) return;
 
             Data.Draw();

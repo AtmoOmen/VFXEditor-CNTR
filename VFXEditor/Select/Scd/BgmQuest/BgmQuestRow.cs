@@ -1,4 +1,4 @@
-namespace VfxEditor.Select.Scd.BgmQuest {
+﻿namespace VfxEditor.Select.Scd.BgmQuest {
     public class BgmQuestRow {
         public readonly string Name;
         public readonly int RowId;

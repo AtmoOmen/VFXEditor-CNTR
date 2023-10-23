@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class UiTimelineItemDragCommand : ICommand {
         private readonly AvfxTimelineItem Item;
         private readonly int StartBegin;

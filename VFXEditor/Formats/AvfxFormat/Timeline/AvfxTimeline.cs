@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -116,7 +116,7 @@ namespace VfxEditor.AvfxFormat {
             using var tabItem = ImRaii.TabItem( "参数" );
             if( !tabItem ) return;
 
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
             BinderSelect.Draw();
             DrawItems( Display );
         }

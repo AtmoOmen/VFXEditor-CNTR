@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using Lumina.Extensions;
 using OtterGui.Raii;
 using System.Collections.Generic;
@@ -101,13 +101,13 @@ namespace VfxEditor.UldFormat {
 
             if( checkOriginal ) Verified = FileUtils.CompareFiles( original, ToBytes(), out var _ );
 
-            TextureSplitView = new( "材质", Textures, true,
+            TextureSplitView = new( "Texture", Textures, true,
                 ( UldTexture item, int idx ) => item.GetText(), () => new(), () => CommandManager.Uld );
             PartsSplitView = new( "Part List", Parts, true,
                 ( UldPartList item, int idx ) => item.GetText(), () => new(), () => CommandManager.Uld );
             ComponentDropdown = new( "Component", Components,
                 ( UldComponent item, int idx ) => item.GetText(), () => new( Components ), () => CommandManager.Uld );
-            TimelineDropdown = new( "时间线", Timelines,
+            TimelineDropdown = new( "Timeline", Timelines,
                 ( UldTimeline item, int idx ) => item.GetText(), () => new(), () => CommandManager.Uld );
             WidgetDropdown = new( "Widget", Widgets,
                 ( UldWidget item, int idx ) => item.GetText(), () => new( Components ), () => CommandManager.Uld );

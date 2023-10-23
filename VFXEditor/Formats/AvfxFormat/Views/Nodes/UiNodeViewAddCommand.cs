@@ -1,4 +1,4 @@
-using VfxEditor.Ui.Nodes;
+﻿using VfxEditor.Ui.Nodes;
 
 namespace VfxEditor.AvfxFormat {
     public class UiNodeViewAddCommand<T> : ICommand where T : AvfxNode {

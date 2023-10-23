@@ -1,4 +1,4 @@
-using VfxEditor.Parsing;
+﻿using VfxEditor.Parsing;
 using VfxEditor.Parsing.Color;
 
 namespace VfxEditor.UldFormat.Component.Data {

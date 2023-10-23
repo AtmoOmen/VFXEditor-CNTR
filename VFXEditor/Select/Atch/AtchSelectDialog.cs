@@ -1,4 +1,4 @@
-using VfxEditor.Formats.AtchFormat;
+﻿using VfxEditor.Formats.AtchFormat;
 using VfxEditor.Select.Atch.Character;
 using VfxEditor.Select.Atch.Npc;
 

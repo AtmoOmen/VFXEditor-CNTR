@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C015 : TmbEntry {
         public const string MAGIC = "C015";
-        public const string DISPLAY_NAME = "Weapon Size";
+        public const string DISPLAY_NAME = "武器大小";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

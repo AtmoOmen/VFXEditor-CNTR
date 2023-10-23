@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.IO;
 using System.Numerics;
@@ -11,7 +11,7 @@ namespace VfxEditor.AvfxFormat {
     public class AvfxTexture : AvfxNode {
         public const string NAME = "Tex";
 
-        public readonly AvfxString Path = new( "路径", "路径" );
+        public readonly AvfxString Path = new( "路径", "Path" );
         public readonly UiNodeGraphView NodeView;
 
         public AvfxTexture() : base( NAME, AvfxNodeGroupSet.TextureColor ) {

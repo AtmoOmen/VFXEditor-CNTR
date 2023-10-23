@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C042 : TmbEntry {
         public const string MAGIC = "C042";
-        public const string DISPLAY_NAME = "Footstep";
+        public const string DISPLAY_NAME = "脚步";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

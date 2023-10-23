@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.Numerics;
@@ -10,7 +10,7 @@ namespace VfxEditor.FileManager {
         private readonly FileManager<T, R, S> Manager;
         private static bool ShowSourceColumn => Plugin.Configuration.DocumentPopoutShowSource;
 
-        public FileManagerDocumentWindow( string name, FileManager<T, R, S> manager ) : base( $"{name} [文档]", false, 600, 400 ) {
+        public FileManagerDocumentWindow( string name, FileManager<T, R, S> manager ) : base( $"{name} [DOCUMENTS]", false, 600, 400 ) {
             Manager = manager;
         }
 

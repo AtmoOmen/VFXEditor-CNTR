@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace VfxEditor.Structs.Animation {
     public enum CharacterModes : byte {

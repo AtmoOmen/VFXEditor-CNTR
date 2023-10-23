@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -70,7 +70,7 @@ namespace VfxEditor.UldFormat.Timeline {
             if( !tabItem ) return;
 
             using var _ = ImRaii.PushId( name );
-            using var child = ImRaii.Child( "子级" );
+            using var child = ImRaii.Child( "Child" );
             view.Draw();
         }
 

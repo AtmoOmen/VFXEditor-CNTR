@@ -1,4 +1,4 @@
-using FFXIVClientStructs.Havok;
+﻿using FFXIVClientStructs.Havok;
 using HelixToolkit.SharpDX.Core.Animations;
 using SharpDX;
 using System.Collections.Generic;

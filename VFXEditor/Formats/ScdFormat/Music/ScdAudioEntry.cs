@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using VfxEditor.ScdFormat.Music.Data;
 using VfxEditor.Ui.Interfaces;

@@ -1,4 +1,4 @@
-namespace VfxEditor.Parsing {
+﻿namespace VfxEditor.Parsing {
     public class ParsedSimpleCommand<S> : ICommand {
         private readonly ParsedSimpleBase<S> Item;
         private readonly S State;

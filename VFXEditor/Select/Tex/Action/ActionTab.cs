@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using static Dalamud.Plugin.Services.ITextureProvider;
 
 namespace VfxEditor.Select.Tex.Action {

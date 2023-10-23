@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using OtterGui.Raii;
 using System.Collections.Generic;
 using System.IO;
@@ -53,7 +53,7 @@ namespace VfxEditor.AvfxFormat {
             using var _ = ImRaii.PushId( "TN" );
 
             AssignedCopyPaste( this, GetDefaultText() );
-            if( ImGui.SmallButton( "+ 普通材质" ) ) Assign();
+            if( ImGui.SmallButton( "+ 法线材质" ) ) Assign();
         }
 
         public override void DrawAssigned() {
@@ -63,7 +63,7 @@ namespace VfxEditor.AvfxFormat {
             DrawNamedItems( DisplayTabs );
         }
 
-        public override string GetDefaultText() => "普通材质";
+        public override string GetDefaultText() => "法线材质";
 
         public override List<UiNodeSelect> GetNodeSelects() => new() {
             new UiNodeSelect<AvfxTexture>( Particle, "材质", Particle.NodeGroups.Textures, TextureIdx )

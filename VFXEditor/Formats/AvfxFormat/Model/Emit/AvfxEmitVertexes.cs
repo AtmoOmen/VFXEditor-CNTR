@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using VfxEditor.Parsing;
 
@@ -21,7 +21,7 @@ namespace VfxEditor.AvfxFormat {
 
     public class AvfxEmitVertex {
         public readonly ParsedFloat3 Position = new( "位置" );
-        public readonly ParsedFloat3 Normal = new( "普通" );
+        public readonly ParsedFloat3 Normal = new( "法线" );
         public readonly ParsedIntColor Color = new( "颜色" );
 
         public AvfxEmitVertex() { }

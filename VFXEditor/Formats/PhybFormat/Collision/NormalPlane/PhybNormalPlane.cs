@@ -1,4 +1,4 @@
-using HelixToolkit.SharpDX.Core;
+﻿using HelixToolkit.SharpDX.Core;
 using HelixToolkit.SharpDX.Core.Animations;
 using SharpDX;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace VfxEditor.PhybFormat.Collision.NormalPlane {
         public readonly ParsedPaddedString Name = new( "名称", "replace_me", 32, 0xFE );
         public readonly ParsedPaddedString Bone = new( "骨骼", 32, 0xFE );
         public readonly ParsedFloat3 BoneOffset = new( "骨骼偏移" );
-        public readonly ParsedFloat3 Normal = new( "普通" );
+        public readonly ParsedFloat3 Normal = new( "法线" );
         public readonly ParsedFloat Thickness = new( "厚度" );
 
         public PhybNormalPlane( PhybFile file ) : base( file ) { }

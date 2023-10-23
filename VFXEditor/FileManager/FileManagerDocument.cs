@@ -1,4 +1,4 @@
-using Dalamud.Interface;
+﻿using Dalamud.Interface;
 using Dalamud.Logging;
 using ImGuiNET;
 using OtterGui.Raii;
@@ -483,7 +483,7 @@ namespace VfxEditor.FileManager {
             ImGui.PopStyleColor();
         }
 
-        private static readonly string Text = "请 不要 修改移动类技能 (冲刺、后跳等)。尝试修改 .tmb 或 .pap 文件前先阅读指南";
+        private static readonly string Text = "请 不要 修改移动类技能 (冲刺、后跳等)。尝试修改 .tmb 或 .pap 文件前请先阅读指南";
 
         protected static void DisplayAnimationWarning() {
             using var color = ImRaii.PushColor( ImGuiCol.Border, new Vector4( 1, 0, 0, 0.3f ) );

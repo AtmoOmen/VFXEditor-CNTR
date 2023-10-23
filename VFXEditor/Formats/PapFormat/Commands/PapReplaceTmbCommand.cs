@@ -1,4 +1,4 @@
-using VfxEditor.TmbFormat;
+﻿using VfxEditor.TmbFormat;
 
 namespace VfxEditor.PapFormat {
     public class PapReplaceTmbCommand : ICommand {

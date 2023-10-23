@@ -1,4 +1,4 @@
-using Dalamud.Hooking;
+﻿using Dalamud.Hooking;
 using Dalamud.Logging;
 using Penumbra.String;
 using Penumbra.String.Classes;

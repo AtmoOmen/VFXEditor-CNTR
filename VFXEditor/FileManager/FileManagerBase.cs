@@ -1,4 +1,4 @@
-using VfxEditor.Data;
+﻿using VfxEditor.Data;
 using VfxEditor.FileManager.Interfaces;
 using VfxEditor.Select;
 using VfxEditor.Ui;

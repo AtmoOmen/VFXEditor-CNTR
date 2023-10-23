@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using VfxEditor.Parsing;
 
 namespace VfxEditor.UldFormat.Component.Node.Data {

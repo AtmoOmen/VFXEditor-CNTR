@@ -1,4 +1,4 @@
-using HelixToolkit.SharpDX.Core.Animations;
+﻿using HelixToolkit.SharpDX.Core.Animations;
 using SharpDX;
 using System;
 using System.Collections.Generic;

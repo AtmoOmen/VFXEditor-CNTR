@@ -1,4 +1,4 @@
-namespace VfxEditor.AvfxFormat {
+﻿namespace VfxEditor.AvfxFormat {
     public class AvfxParticleDataLightModel : AvfxData {
         public readonly AvfxInt ModelIdx = new( "模型索引", "MNO", size: 1 );
 

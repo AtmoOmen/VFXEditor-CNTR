@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using VfxEditor.FileManager;
 using VfxEditor.Utils;
 

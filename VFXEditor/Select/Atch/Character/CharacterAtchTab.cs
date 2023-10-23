@@ -1,4 +1,4 @@
-using VfxEditor.Select.Shared.Character;
+﻿using VfxEditor.Select.Shared.Character;
 
 namespace VfxEditor.Select.Atch.Character {
     public class CharacterAtchTab : CharacterTab {

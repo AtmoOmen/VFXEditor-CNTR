@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VfxEditor.Parsing;
 using VfxEditor.TmbFormat.Utils;
 
 namespace VfxEditor.TmbFormat.Entries {
     public class C131 : TmbEntry {
         public const string MAGIC = "C131";
-        public const string DISPLAY_NAME = "Animation Cancelled by Movement";
+        public const string DISPLAY_NAME = "被移动取消的动画";
         public override string DisplayName => DISPLAY_NAME;
         public override string Magic => MAGIC;
 

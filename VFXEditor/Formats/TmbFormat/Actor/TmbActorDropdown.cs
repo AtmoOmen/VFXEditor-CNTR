@@ -1,4 +1,4 @@
-using System.Numerics;
+﻿using System.Numerics;
 using VfxEditor.FileManager;
 using VfxEditor.TmbFormat.Entries;
 using VfxEditor.TmbFormat.Utils;

@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using ImGuiFileDialog;
 using ImGuiNET;
 using OtterGui.Raii;
@@ -160,7 +160,7 @@ namespace VfxEditor.AvfxFormat {
             }
 
             ImGui.SameLine();
-            if( ImGui.RadioButton( "普通", ref Mode, ( int )RenderMode.Normal ) ) {
+            if( ImGui.RadioButton( "法线", ref Mode, ( int )RenderMode.Normal ) ) {
                 Plugin.DirectXManager.ModelPreview.LoadModel( this, RenderMode.Normal );
             }
 

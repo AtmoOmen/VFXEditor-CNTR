@@ -1,4 +1,4 @@
-using ImGuiFileDialog;
+﻿using ImGuiFileDialog;
 using ImGuiNET;
 using OtterGui.Raii;
 using System.IO;
@@ -17,7 +17,7 @@ namespace VfxEditor.PapFormat {
         public readonly string HkxTempLocation;
 
         private readonly ParsedPaddedString Name = new( "名称", "cbbm_replace_this", 32, 0x00 );
-        private readonly ParsedShort Type = new( "类型" );
+        private readonly ParsedShort Type = new( "Type" );
         private readonly ParsedBool Face = new( "面部动画" );
         public TmbFile Tmb;
 
@@ -61,7 +61,7 @@ namespace VfxEditor.PapFormat {
                 ImGui.TextDisabled( $"循环: [{motionData.Loop}] 嘴部: [{motionData.Lip}] 眼部: [{motionData.Blink}]" );
 
                 ImGui.SameLine();
-                UiUtils.HelpMarker( "这些值硬编码于游戏的 MotionTimeline 表格中, 并且基于特定的动画名称" );
+                UiUtils.HelpMarker( "这些值基于特定的动画名称硬编码于游戏的 MotionTimeline 表格中" );
             }
 
             Name.Draw( CommandManager.Pap );
@@ -81,7 +81,7 @@ namespace VfxEditor.PapFormat {
         }
 
         private void DrawTmb() {
-            using var tabItem = ImRaii.TabItem( "TMB" );
+            using var tabItem = ImRaii.TabItem( "时间线" );
             if( !tabItem ) return;
 
             ImGui.SetCursorPosY( ImGui.GetCursorPosY() + 2 );

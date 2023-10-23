@@ -1,10 +1,10 @@
-using VfxEditor.FileManager;
+﻿using VfxEditor.FileManager;
 using VfxEditor.Select.Atch;
 using VfxEditor.Utils;
 
 namespace VfxEditor.Formats.AtchFormat {
     public unsafe class AtchManager : FileManager<AtchDocument, AtchFile, WorkspaceMetaBasic> {
-        public AtchManager() : base( "武器状态编辑器", "Atch" ) {
+        public AtchManager() : base( "Atch Editor", "Atch" ) {
             SourceSelect = new AtchSelectDialog( "武器状态选择 [选择]", this, true );
             ReplaceSelect = new AtchSelectDialog( "武器状态选择 [替换]", this, false );
         }

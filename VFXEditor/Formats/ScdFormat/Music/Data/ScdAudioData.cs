@@ -1,4 +1,4 @@
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using System.IO;
 
 namespace VfxEditor.ScdFormat.Music.Data {

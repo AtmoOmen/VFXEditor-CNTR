@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace VfxEditor.Select.Shared.Mount {
     public abstract class MountTab : SelectTab<MountRow> {

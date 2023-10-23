@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System.Collections.Generic;
 using VfxEditor.PapFormat.Motion;
 using VfxEditor.Ui.Components;

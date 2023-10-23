@@ -1,4 +1,4 @@
-using VfxEditor.Parsing;
+﻿using VfxEditor.Parsing;
 
 namespace VfxEditor.UldFormat.Component.Node.Data.Component {
     public class GaugeNodeData : UldNodeComponentData {

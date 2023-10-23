@@ -1,4 +1,4 @@
-using ImGuiNET;
+﻿using ImGuiNET;
 using System.Linq;
 using VfxEditor.Select.Shared;
 
@@ -26,7 +26,7 @@ namespace VfxEditor.Select.Vfx.Emote {
             SelectUiUtils.DrawIcon( Icon );
             ImGui.TextDisabled( Selected.Command );
 
-            DrawPaths( "VFX", Loaded.VfxPaths, Selected.Name, true );
+            DrawPaths( "视效", Loaded.VfxPaths, Selected.Name, true );
         }
 
         protected override string GetName( EmoteRow item ) => item.Name;
