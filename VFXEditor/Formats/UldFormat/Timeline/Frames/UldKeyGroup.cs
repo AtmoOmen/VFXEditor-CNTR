@@ -51,8 +51,8 @@ namespace VfxEditor.UldFormat.Timeline {
     }
 
     public class UldKeyGroup : IUiItem {
-        public readonly ParsedEnum<KeyUsage> Usage = new( "Usage", size: 2 );
-        public readonly ParsedEnum<KeyGroupType> Type = new( "Type", size: 2 );
+        public readonly ParsedEnum<KeyUsage> Usage = new( "使用", size: 2 );
+        public readonly ParsedEnum<KeyGroupType> Type = new( "类型", size: 2 );
 
         public readonly List<UldKeyframe> Keyframes = new();
 
@@ -111,7 +111,7 @@ namespace VfxEditor.UldFormat.Timeline {
 
         private bool DrawKeyframe( UldKeyframe item, int idx ) {
             using var _ = ImRaii.PushId( idx );
-            if( ImGui.CollapsingHeader( $"Keyframe {idx}" ) ) {
+            if( ImGui.CollapsingHeader( $"关键帧 {idx}" ) ) {
                 using var indent = ImRaii.PushIndent();
 
                 if( UiUtils.RemoveButton( $"删除", true ) ) { // REMOVE

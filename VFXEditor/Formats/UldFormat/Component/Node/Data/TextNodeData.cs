@@ -33,18 +33,18 @@ namespace VfxEditor.UldFormat.Component.Node.Data {
     public class TextNodeData : UldGenericData {
         public TextNodeData() {
             Parsed.AddRange( new ParsedBase[] {
-                new ParsedUInt( "Text Id", size: 2 ),
+                new ParsedUInt( "文本 ID", size: 2 ),
                 new ParsedUInt( "未知 1", size: 2 ),
                 new ParsedSheetColor( "颜色" ),
                 new ParsedEnum<AlignmentType>( "对齐", size: 1 ),
                 new ParsedUInt( "未知 2", size: 1 ),
                 new ParsedEnum<FontType>( "Font", size: 1 ),
-                new ParsedInt( "Font Size", size: 1 ),
-                new ParsedSheetColor( "Edge Color" ),
+                new ParsedInt( "字体大小", size: 1 ),
+                new ParsedSheetColor( "边缘颜色" ),
                 new ParsedFlag<TextFlags>( "标识", size: 1 ),
-                new ParsedEnum<SheetType>( "Sheet Type", size: 1 ),
-                new ParsedInt( "Character Spacing", size: 1 ),
-                new ParsedInt( "Line Spacing", size: 1 ),
+                new ParsedEnum<SheetType>( "表格类型", size: 1 ),
+                new ParsedInt( "字符间距", size: 1 ),
+                new ParsedInt( "行间距", size: 1 ),
                 new ParsedUInt( "未知 3", size: 2 ),
                 new ParsedUInt( "未知 4", size: 2 ),
             } );

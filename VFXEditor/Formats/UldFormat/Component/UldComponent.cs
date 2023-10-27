@@ -45,7 +45,7 @@ namespace VfxEditor.UldFormat.Component {
         public readonly ParsedByteBool DragArrow = new( "拖拽箭头" );
         public readonly ParsedByteBool DropArrow = new( "放置箭头" );
 
-        public readonly ParsedEnum<ComponentType> Type = new( "Type", size: 1 );
+        public readonly ParsedEnum<ComponentType> Type = new( "类型", size: 1 );
         public UldGenericData Data = null;
 
         public readonly List<UldNode> Nodes = new();
@@ -75,7 +75,7 @@ namespace VfxEditor.UldFormat.Component {
 
             UpdateData();
             if( Data == null ) {
-                PluginLog.Log( $"Unknown component type {( int )Type.Value} / {pos + offset - reader.BaseStream.Position} @ {reader.BaseStream.Position:X8}" );
+                PluginLog.Log( $"未知组件类型 {( int )Type.Value} / {pos + offset - reader.BaseStream.Position} @ {reader.BaseStream.Position:X8}" );
             }
 
             if( Data is BaseComponentData custom ) custom.Read( reader, offset - 16 );

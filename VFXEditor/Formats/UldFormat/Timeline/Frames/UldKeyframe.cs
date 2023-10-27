@@ -6,34 +6,40 @@ using VfxEditor.Parsing;
 namespace VfxEditor.UldFormat.Timeline.Frames {
     public class UldKeyframe {
         public readonly ParsedUInt Time = new( "时间" );
-        public readonly ParsedInt Interpolation = new( "Interpolation", size: 1 );
+        public readonly ParsedInt Interpolation = new( "插值", size: 1 );
         public readonly ParsedInt Unk1 = new( "未知", size: 1 );
         public readonly ParsedFloat Acceleration = new( "加速" );
-        public readonly ParsedFloat Deceleration = new( "Deceleration" );
+        public readonly ParsedFloat Deceleration = new( "减速" );
 
         public readonly List<ParsedBase> Data = new();
 
         public UldKeyframe( KeyGroupType groupType ) {
             Data.AddRange( groupType switch {
                 KeyGroupType.Float1 => new ParsedBase[] {
-                    new ParsedFloat( "Value 1" )
+                    new ParsedFloat( "值 1" )
                 },
                 KeyGroupType.Float2 => new ParsedBase[] {
-                    new ParsedFloat( "Value 1" ), new ParsedFloat( "Value 2" )
+                    new ParsedFloat( "值 1" ), 
+                    new ParsedFloat( "值 2" )
                 },
                 KeyGroupType.Float3 => new ParsedBase[] {
-                    new ParsedFloat( "Value 1" ), new ParsedFloat( "Value 2" ), new ParsedFloat( "Value 3" )
+                    new ParsedFloat( "值 1" ), 
+                    new ParsedFloat( "值 2" ), 
+                    new ParsedFloat( "值 3" )
                 },
                 KeyGroupType.SByte1 => new ParsedBase[] {
-                    new ParsedSByte( "Value 1" ),
+                    new ParsedSByte( "值 1" ),
                     new ParsedReserve( 3 )
                 },
                 KeyGroupType.SByte2 => new ParsedBase[] {
-                    new ParsedSByte( "Value 1" ), new ParsedSByte( "Value 2" ),
+                    new ParsedSByte( "值 1" ), 
+                    new ParsedSByte( "值 2" ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.SByte3 => new ParsedBase[] {
-                    new ParsedSByte( "Value 1" ), new ParsedSByte( "Value 2" ), new ParsedSByte( "Value 3" ),
+                    new ParsedSByte( "值 1" ), 
+                    new ParsedSByte( "值 2" ), 
+                    new ParsedSByte( "值 3" ),
                     new ParsedReserve( 1 )
                 },
                 KeyGroupType.Byte1 => new ParsedBase[] {
@@ -41,65 +47,83 @@ namespace VfxEditor.UldFormat.Timeline.Frames {
                     new ParsedReserve( 3 )
                 },
                 KeyGroupType.Byte2 => new ParsedBase[] {
-                    new ParsedInt( "Value 1", size: 1 ), new ParsedInt( "Value 2", size: 1 ),
+                    new ParsedInt( "值 1", size: 1 ), 
+                    new ParsedInt( "值 2", size: 1 ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.Byte3 => new ParsedBase[] {
-                    new ParsedInt( "Value 1", size: 1 ), new ParsedInt( "Value 2", size: 1 ), new ParsedInt( "Value 3", size: 1 ),
+                    new ParsedInt( "值 1", size: 1 ), 
+                    new ParsedInt( "值 2", size: 1 ), 
+                    new ParsedInt( "值 3", size: 1 ),
                     new ParsedReserve( 1 )
                 },
                 KeyGroupType.Short1 => new ParsedBase[] {
-                    new ParsedShort( "Value 1" ),
+                    new ParsedShort( "值 1" ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.Short2 => new ParsedBase[] {
-                    new ParsedShort( "Value 1" ), new ParsedShort( "Value 2" ),
+                    new ParsedShort( "值 1" ), 
+                    new ParsedShort( "值 2" ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.Short3 => new ParsedBase[] {
-                    new ParsedShort( "Value 1" ), new ParsedShort( "Value 2" ), new ParsedShort( "Value 3" ),
+                    new ParsedShort( "值 1" ), 
+                    new ParsedShort( "值 2" ), 
+                    new ParsedShort( "值 3" ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.UShort1 => new ParsedBase[] {
-                    new ParsedUInt( "Value 1", size: 2 ),
+                    new ParsedUInt( "值 1", size: 2 ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.UShort2 => new ParsedBase[] {
-                    new ParsedUInt( "Value 1", size: 2 ), new ParsedUInt( "Value 2", size: 2 ),
+                    new ParsedUInt( "值 1", size: 2 ), 
+                    new ParsedUInt( "值 2", size: 2 ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.UShort3 => new ParsedBase[] {
-                    new ParsedUInt( "Value 1", size: 2 ), new ParsedUInt( "Value 2", size: 2 ), new ParsedUInt( "Value 3", size: 2 ),
+                    new ParsedUInt( "值 1", size: 2 ), 
+                    new ParsedUInt( "值 2", size: 2 ), 
+                    new ParsedUInt( "值 3", size: 2 ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.Int1 => new ParsedBase[] {
-                    new ParsedInt( "Value 1" )
+                    new ParsedInt( "值 1" )
                 },
                 KeyGroupType.Int2 => new ParsedBase[] {
-                    new ParsedInt( "Value 1" ), new ParsedInt( "Value 2" )
+                    new ParsedInt( "值 1" ), 
+                    new ParsedInt( "值 2" )
                 },
                 KeyGroupType.Int3 => new ParsedBase[] {
-                    new ParsedInt( "Value 1" ), new ParsedInt( "Value 2" ), new ParsedInt( "Value 3" )
+                    new ParsedInt( "值 1" ), 
+                    new ParsedInt( "值 2" ), 
+                    new ParsedInt( "值 3" )
                 },
                 KeyGroupType.UInt1 => new ParsedBase[] {
-                    new ParsedUInt( "Value 1" )
+                    new ParsedUInt( "值 1" )
                 },
                 KeyGroupType.UInt2 => new ParsedBase[] {
-                    new ParsedUInt( "Value 1" ), new ParsedUInt( "Value 2" )
+                    new ParsedUInt( "值 1" ), 
+                    new ParsedUInt( "值 2" )
                 },
                 KeyGroupType.UInt3 => new ParsedBase[] {
-                    new ParsedUInt( "Value 1" ), new ParsedUInt( "Value 2" ), new ParsedUInt( "Value 3" )
+                    new ParsedUInt( "值 1" ), 
+                    new ParsedUInt( "值 2" ), 
+                    new ParsedUInt( "值 3" )
                 },
                 KeyGroupType.Bool1 => new ParsedBase[] {
-                    new ParsedByteBool( "Value 1" ),
+                    new ParsedByteBool( "值 1" ),
                     new ParsedReserve( 3 )
                 },
                 KeyGroupType.Bool2 => new ParsedBase[] {
-                    new ParsedByteBool( "Value 1" ), new ParsedByteBool( "Value 2" ),
+                    new ParsedByteBool( "值 1" ), 
+                    new ParsedByteBool( "值 2" ),
                     new ParsedReserve( 2 )
                 },
                 KeyGroupType.Bool3 => new ParsedBase[] {
-                    new ParsedByteBool( "Value 1" ), new ParsedByteBool( "Value 2" ), new ParsedByteBool( "Value 3" ),
+                    new ParsedByteBool( "值 1" ), 
+                    new ParsedByteBool( "值 2" ), 
+                    new ParsedByteBool( "值 3" ),
                     new ParsedReserve( 1 )
                 },
                 KeyGroupType.Color => new ParsedBase[] {
@@ -111,7 +135,9 @@ namespace VfxEditor.UldFormat.Timeline.Frames {
                     new ParsedInt( "增加蓝色", size: 2 )
                 },
                 KeyGroupType.Label => new ParsedBase[] {
-                    new ParsedUInt( "Label Id", size: 2 ), new ParsedInt( "Label Command", size: 1 ), new ParsedInt( "Jump Id", size: 1 )
+                    new ParsedUInt( "标签 ID", size: 2 ), 
+                    new ParsedInt( "标签命令", size: 1 ), 
+                    new ParsedInt( "跳跃 ID", size: 1 )
                 },
                 _ => Array.Empty<ParsedBase>()
             } );

@@ -5,11 +5,11 @@ namespace VfxEditor.UldFormat.Component.Node.Data.Component {
         public NumericInputNodeData() : base() {
             Parsed.AddRange( new ParsedBase[] {
                 new ParsedInt( "值" ),
-                new ParsedInt( "Max" ),
-                new ParsedInt( "Min" ),
-                new ParsedInt( "Add" ),
+                new ParsedInt( "最大值" ),
+                new ParsedInt( "最小值" ),
+                new ParsedInt( "新增" ),
                 new ParsedUInt( "未知 1" ),
-                new ParsedByteBool( "Comma" ),
+                new ParsedByteBool( "逗号" ),
                 new ParsedReserve( 3 ),
             } );
         }

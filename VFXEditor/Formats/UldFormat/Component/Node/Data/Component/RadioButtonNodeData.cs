@@ -4,8 +4,8 @@ namespace VfxEditor.UldFormat.Component.Node.Data.Component {
     public class RadioButtonNodeData : UldNodeComponentData {
         public RadioButtonNodeData() : base() {
             Parsed.AddRange( new ParsedBase[] {
-                new ParsedUInt( "Text Id" ),
-                new ParsedUInt( "Group Id" ),
+                new ParsedUInt( "文本 ID" ),
+                new ParsedUInt( "组 ID" ),
             } );
         }
     }

@@ -227,7 +227,7 @@ namespace VfxEditor.FileManager {
 
             using( var style = ImRaii.PushStyle( ImGuiStyleVar.WindowPadding, new Vector2( 0 ) ) )
             using( var _ = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 0 ) ) ) {
-                ImGui.Columns( 3, "Columns", false );
+                ImGui.Columns( 3, "列", false );
                 ImGui.SetColumnWidth( 0, 160 );
             }
             DrawInputTextColumn();

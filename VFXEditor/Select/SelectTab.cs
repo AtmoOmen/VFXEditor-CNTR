@@ -187,7 +187,7 @@ namespace VfxEditor.Select {
             // Navigate through items using the up and down arrow buttons
             if( KeybindConfiguration.NavigateUpDown( Searched, Selected, out var newSelected ) ) Select( newSelected );
 
-            ImGui.Columns( 2, "Columns", true );
+            ImGui.Columns( 2, "列", true );
 
             using( var tree = ImRaii.Child( "Tree" ) ) {
                 SelectUiUtils.DisplayVisible( Searched.Count, out var preItems, out var showItems, out var postItems, out var itemHeight );

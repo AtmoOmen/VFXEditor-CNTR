@@ -9,7 +9,7 @@ using VfxEditor.Ui.Interfaces;
 namespace VfxEditor.UldFormat.Timeline.Frames {
     public class UldFrame : IUiItem {
         public readonly ParsedUInt StartFrame = new( "起始帧" );
-        public readonly ParsedUInt EndFrame = new( "End Frame" );
+        public readonly ParsedUInt EndFrame = new( "结束帧" );
         public readonly List<UldKeyGroup> KeyGroups = new();
 
         public readonly CommandSplitView<UldKeyGroup> KeyGroupView;

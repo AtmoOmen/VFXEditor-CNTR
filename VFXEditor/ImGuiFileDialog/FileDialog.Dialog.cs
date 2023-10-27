@@ -330,7 +330,7 @@ namespace ImGuiFileDialog {
                 ImGui.TableSetupScrollFreeze( 0, 1 );
 
                 ImGui.TableSetupColumn( " 文件名", ImGuiTableColumnFlags.WidthStretch, -1, 0 );
-                ImGui.TableSetupColumn( "Type", ImGuiTableColumnFlags.WidthFixed, -1, 1 );
+                ImGui.TableSetupColumn( "类型", ImGuiTableColumnFlags.WidthFixed, -1, 1 );
                 ImGui.TableSetupColumn( "大小", ImGuiTableColumnFlags.WidthFixed, -1, 2 );
                 ImGui.TableSetupColumn( "日期", ImGuiTableColumnFlags.WidthFixed, -1, 3 );
 
@@ -517,7 +517,7 @@ namespace ImGuiFileDialog {
                         }
                     }
                     catch( Exception ) {
-                        PluginLog.Log( $"Error previewing image {path}" );
+                        PluginLog.Log( $"预览图像时发生错误 {path}" );
                         PreviewWrap = null;
                     }
                 }

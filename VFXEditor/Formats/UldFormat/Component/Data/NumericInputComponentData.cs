@@ -4,11 +4,11 @@ namespace VfxEditor.UldFormat.Component.Data {
     public class NumericInputComponentData : UldGenericData {
         public NumericInputComponentData() {
             Parsed.AddRange( new ParsedBase[] {
-                new ParsedUInt( "Unknown Node Id 1" ),
-                new ParsedUInt( "Unknown Node Id 2" ),
-                new ParsedUInt( "Unknown Node Id 3" ),
-                new ParsedUInt( "Unknown Node Id 4" ),
-                new ParsedUInt( "Unknown Node Id 5" ),
+                new ParsedUInt( "未知节点 ID 1" ),
+                new ParsedUInt( "未知节点 ID 2" ),
+                new ParsedUInt( "未知节点 ID 3" ),
+                new ParsedUInt( "未知节点 ID 4" ),
+                new ParsedUInt( "未知节点 ID 5" ),
                 new ParsedUInt( "颜色" ),
             } );
         }

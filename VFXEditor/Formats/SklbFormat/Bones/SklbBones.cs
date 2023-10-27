@@ -96,7 +96,7 @@ namespace VfxEditor.SklbFormat.Bones {
             ImGui.Separator();
 
             using( var style = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, new Vector2( 0, 4 ) ) ) {
-                ImGui.Columns( 2, "Columns", true );
+                ImGui.Columns( 2, "列", true );
 
                 using( var spacing = ImRaii.PushStyle( ImGuiStyleVar.ItemSpacing, ImGui.GetStyle().ItemInnerSpacing ) ) {
                     // New bone

@@ -61,8 +61,8 @@ namespace VfxEditor.UldFormat.Timeline {
             using var tabBar = ImRaii.TabBar( "栏", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton );
             if( !tabBar ) return;
 
-            DrawFrames( "Frames 1", FramesView1 );
-            DrawFrames( "Frames 2", FramesView2 );
+            DrawFrames( "帧 1", FramesView1 );
+            DrawFrames( "帧 2", FramesView2 );
         }
 
         private static void DrawFrames( string name, CommandSplitView<UldFrame> view ) {

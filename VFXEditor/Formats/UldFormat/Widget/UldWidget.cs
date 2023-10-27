@@ -22,7 +22,7 @@ namespace VfxEditor.UldFormat.Widget {
     }
 
     public class UldWidget : UldWorkspaceItem {
-        public readonly ParsedEnum<AlignmentType> AlignmentType = new( "Alignment Type" );
+        public readonly ParsedEnum<AlignmentType> AlignmentType = new( "对齐类型" );
         public readonly ParsedShort X = new( "X" );
         public readonly ParsedShort Y = new( "Y" );
 
@@ -101,7 +101,7 @@ namespace VfxEditor.UldFormat.Widget {
             NodeSplitView.Draw();
         }
 
-        public override string GetDefaultText() => $"Widget {GetIdx()}";
+        public override string GetDefaultText() => $"控件 {GetIdx()}";
 
         public override string GetWorkspaceId() => $"Widget{GetIdx()}";
 

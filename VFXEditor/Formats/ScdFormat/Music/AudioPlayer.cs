@@ -157,14 +157,14 @@ namespace VfxEditor.ScdFormat {
 
             ImGui.TextDisabled( "在预览音频文件时播放哪些声道。不影响 .scd 文件" );
 
-            if( ImGui.BeginCombo( "预览声道 1", $"Channel #{Channel1}" ) ) {
+            if( ImGui.BeginCombo( "预览声道 1", $"声道 #{Channel1}" ) ) {
                 for( var i = 0; i < Entry.NumChannels; i++ ) {
                     if( ImGui.Selectable( $"声道 #{i}", Channel1 == i ) ) Channel1 = i;
                 }
                 ImGui.EndCombo();
             }
 
-            if( ImGui.BeginCombo( "预览声道 2", $"Channel #{Channel2}" ) ) {
+            if( ImGui.BeginCombo( "预览声道 2", $"声道 #{Channel2}" ) ) {
                 for( var i = 0; i < Entry.NumChannels; i++ ) {
                     if( ImGui.Selectable( $"声道 #{i}", Channel2 == i ) ) Channel2 = i;
                 }
@@ -292,7 +292,7 @@ namespace VfxEditor.ScdFormat {
         }
 
         private void ImportDialog() {
-            var text = IsVorbis ? "音频文件{.ogg,.wav},.*" : "Audio files{.wav},.*";
+            var text = IsVorbis ? "音频文件{.ogg,.wav},.*" : "音频文件{.wav},.*";
             FileDialogManager.OpenFileDialog( "导入文件", text, ( bool ok, string res ) => {
                 if( ok ) ScdFile.Import( res, Entry );
             } );
