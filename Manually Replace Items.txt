@@ -1,0 +1,33 @@
+ocealot, AtmoOmen(本地化)
+VFX 编辑器、查看器 (中文汉化版)
+游戏内视觉效果、动画与音频编辑插件 | 图标来源: PAPACHIN | 本地化维护: AtmoOmen\n\n使用过程中出现任何问题请直接在獭频 @ 我 或 点击下方 浏览插件主页 按钮提交 Issue
+https://github.com/AtmoOmen/VFXEditor-CNTR
+
+Revised scale, position, and rotation only work on effects which are not attached to a binder. See the \"Binders\" tab for more information.": 
+修改后的位置、缩放和旋转仅会作用于未链接绑定器的效果。获取更多信息请查看\"绑定器\"一栏
+
+if( ImGui.SmallButton( "Guide" ) ) UiUtils.OpenUrl( "https://github.com/0ceal0t/Dalamud-VFXEditor/wiki/Notes-on-TMFC" );
+这里的Guide改成 指南
+
+Text = "Downloads"
+改成 下载
+public readonly AvfxInt Life = new( "Life", "Life" );
+第一个 Life 改成 生命周期
+
+UiUtils.HelpMarker( "The current value of Lua variables can be found in the \"Lua Variables\" tab of File > Tools" );
+可以在\"文件 > 工具 > Lua 变量\"选项卡中查阅 Lua 变量的当前值
+
+public override string GetDefaultText() => "Data"
+Data 改成 数据
+
+using var tabItem = ImRaii.TabItem( "Data" );
+Data 改成 数据 (多个)
+
+Current Weapons: {weapons.Aggregate( ( x, y ) => x + " | " + y )}
+当前武器: {weapons.Aggregate( ( x, y ) => x + " | " + y )}
+
+using( var tab = ImRaii.TabItem( "Properties" ) )
+Properties 改为 属性
+
+Binder {GetIdx()} ({Type.Value})
+绑定器 {GetIdx()} ({Type.Value})
